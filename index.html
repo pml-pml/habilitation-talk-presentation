@@ -3,238 +3,589 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Wystąpienie habilitacyjne — przestrzenie funkcji holomorficznych, operatory Carlesona i wagowe operatory złożenia.">
   <meta name="color-scheme" content="dark">
-  <title>Prezentacja habilitacyjna — osiągnięcie naukowe</title>
-
-  <!-- Biblioteki z CDN, w wersji przypiętej; wersję offline przygotujemy przed wystąpieniem. -->
+  <meta name="description" content="Zarys prezentacji habilitacyjnej — Paweł Mleczko.">
+  <title>Przestrzenie funkcji holomorficznych — wystąpienie habilitacyjne</title>
+  <!-- Wersje bibliotek są przypięte. Przed wystąpieniem przygotujemy wersję offline. -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/reset.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/reveal.css">
   <link id="reveal-theme" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/theme/moon.css">
-
-  <!-- Tymczasowe porównanie dwóch motywów bez zmieniania treści: ?theme=dracula. -->
   <script>
-    const themeChoice = new URLSearchParams(location.search).get('theme');
-    if (themeChoice === 'dracula') {
+    const selectedTheme = new URLSearchParams(location.search).get('theme');
+    if (selectedTheme === 'dracula') {
       document.getElementById('reveal-theme').href =
         'https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/theme/dracula.css';
     }
   </script>
-
-  <!-- Najpierw motyw Reveal.js, potem własna typografia i układy. -->
   <link rel="stylesheet" href="css/presentation.css">
 </head>
 <body>
-  <div class="reveal">
-    <div class="slides">
+<div class="reveal">
+  <div class="slides">
 
-      <!-- 01. Okładka. -->
-      <section class="slide-title" aria-label="Slajd tytułowy">
-        <div class="slide-content title-layout">
-          <div class="title-copy">
-            <p class="eyebrow">Wystąpienie habilitacyjne</p>
-            <h1>Przestrzenie funkcji holomorficznych,<br>
-              operatory Carlesona<br>
-              i wagowe operatory złożenia</h1>
-            <p class="affiliation">
-              Paweł Mleczko<br>
-              Uniwersytet im. Adama Mickiewicza w Poznaniu
-            </p>
-          </div>
-          <svg class="title-art" viewBox="0 0 420 420" aria-hidden="true" focusable="false">
-            <g fill="none" stroke="currentColor">
-              <circle cx="210" cy="210" r="176" class="strong"/>
-              <circle cx="210" cy="210" r="130" class="thin" stroke-dasharray="6 11"/>
-              <circle cx="210" cy="210" r="78" class="thin"/>
-              <path d="M34 210 H386 M210 34 V386" class="thin" stroke-dasharray="4 12"/>
-              <path d="M50 302 C120 74 265 75 370 232" class="strong"/>
-              <path d="M70 115 C215 315 260 95 347 310" class="thin"/>
-              <circle cx="210" cy="210" r="7" fill="currentColor" stroke="none"/>
-              <circle cx="359" cy="302" r="7" fill="currentColor" stroke="none"/>
-            </g>
-          </svg>
-        </div>
-        <aside class="notes">
-          Limit całego wystąpienia: 20 minut. Slajdy mają wspierać opowieść, nie być jej transkrypcją.
-          Ten slajd nie zawiera animacji odsłaniania elementów.
-        </aside>
-      </section>
+<!-- 01. Tytuł · 0:30 · od 0:00 do 0:30 -->
+<section data-slide-topic="Tytuł" data-duration-seconds="30">
 
-      <!-- 02. Mapa tematyczna: mało tekstu, mocne hasła. Slajd roboczy. -->
-      <section aria-label="Trzy obszary osiągnięcia">
-        <div class="slide-content">
-          <p class="eyebrow">Szkic narracji · slajd roboczy</p>
-          <h2>Trzy perspektywy jednego programu badawczego</h2>
-          <div class="layout-three">
-            <div class="theme-card">
-              <h3>Przestrzenie funkcji</h3>
-              <p class="card-description muted">Struktura analityczna</p>
-              <p class="main-symbol">\(H^p,\ H[X]\)</p>
-            </div>
-            <div class="theme-card">
-              <h3>Operatory Carlesona</h3>
-              <p class="card-description muted">Zanurzenia i miary</p>
-              <p class="main-symbol">\(\mu\)</p>
-            </div>
-            <div class="theme-card">
-              <h3>Wagowe operatory złożenia</h3>
-              <p class="card-description muted">Dynamika i własności operatorowe</p>
-              <p class="main-symbol">\(W_{u,\varphi}\)</p>
-            </div>
-          </div>
-          <p class="caption">Slajd jest szkicem graficznym. Ostateczne sformułowania ustalimy podczas pracy nad treścią.</p>
-        </div>
-        <aside class="notes">Połączyć trzy obszary we wspólną narrację. Nie czytać haseł ze slajdu.</aside>
-      </section>
+<div class="slide-content title-layout">
+  <div class="title-copy">
+    <p class="eyebrow">Wystąpienie habilitacyjne</p>
+    <h1>Przestrzenie funkcji holomorficznych,<br>operatory Carlesona<br>i wagowe operatory złożenia</h1>
+    <p class="affiliation">Paweł Mleczko<br>Uniwersytet im. Adama Mickiewicza w Poznaniu</p>
+  </div>
+  <svg class="title-art" viewBox="0 0 420 420" aria-hidden="true" focusable="false">
+    <g fill="none" stroke="currentColor">
+      <circle cx="210" cy="210" r="176" class="strong"/>
+      <circle cx="210" cy="210" r="130" class="thin" stroke-dasharray="6 11"/>
+      <circle cx="210" cy="210" r="78" class="thin"/>
+      <path d="M34 210 H386 M210 34 V386" class="thin" stroke-dasharray="4 12"/>
+      <path d="M50 302 C120 74 265 75 370 232" class="strong"/>
+      <path d="M70 115 C215 315 260 95 347 310" class="thin"/>
+      <circle cx="210" cy="210" r="7" fill="currentColor" stroke="none"/>
+      <circle cx="359" cy="302" r="7" fill="currentColor" stroke="none"/>
+    </g>
+  </svg>
+</div>
+<aside class="notes">
+  <p><strong>Slajd 1/17 · Tytuł</strong></p>
+  <p><strong>Czas:</strong> 0:30 · <strong>na zegarze:</strong> 0:00–0:30 (plan)</p>
+  <p>Powitać słuchaczy. Osiągnięcie składa się z siedmiu opublikowanych prac z lat 2013–2023. Przedstawię wspólną myśl przewodnią i kilka reprezentatywnych wyników, nie streszczenie siedmiu artykułów po kolei. Zapowiedziane maksymalnie 20 minut pozwala jedynie wskazać mechanizmy i znaczenie rezultatów.</p>
+  <p><strong>Źródło:</strong> Autoreferat, s. 1–2.</p>
+</aside>
+</section>
 
-      <!-- 03. Przykład: animacja przebiega wewnątrz slajdu, bez klikania i fragmentów.
-           Modele: e^{iθ}z; (z+a)/(1+az), 0<a<1;
-           C^{-1}(C(z)+it), C(z)=(1+z)/(1-z), t>0. -->
-      <section aria-label="Punkty stałe automorfizmów dysku">
-        <div class="slide-content">
-          <p class="eyebrow">Wizualizacja robocza · dynamika symbolu</p>
-          <h2>Punkty stałe automorfizmów dysku</h2>
-          <div class="layout-three diagram-grid">
 
-            <figure class="diagram-card">
-              <h3>Eliptyczny</h3>
-              <svg class="disk-diagram" viewBox="0 0 260 260" role="img"
-                   aria-label="Punkt stały zero wewnątrz dysku; inny punkt krąży wokół zera">
-                <circle class="disk-outline" cx="130" cy="130" r="103"/>
-                <circle class="guide" cx="130" cy="130" r="65"/>
-                <circle class="fixed-point" cx="130" cy="130" r="8"/>
-                <text class="math-label" x="140" y="117">0</text>
-                <circle class="moving-point elliptic-particle" cx="195" cy="130" r="7"/>
-              </svg>
-              <p class="formula--small">\(z\longmapsto e^{i\theta}z\)</p>
-              <figcaption class="diagram-caption">Punkt stały wewnątrz dysku</figcaption>
-            </figure>
+<!-- 02. Mapa wyników · 1:00 · od 0:30 do 1:30 -->
+<section data-slide-topic="Mapa wyników" data-duration-seconds="60">
 
-            <figure class="diagram-card">
-              <h3>Paraboliczny</h3>
-              <svg class="disk-diagram" viewBox="0 0 260 260" role="img"
-                   aria-label="Jeden punkt stały na brzegu dysku; orbita biegnie po okręgu stycznym wewnętrznie do brzegu">
-                <circle class="disk-outline" cx="130" cy="130" r="103"/>
-                <circle class="guide" cx="181.5" cy="130" r="51.5"/>
-                <circle class="fixed-point" cx="233" cy="130" r="8"/>
-                <text class="math-label" x="239" y="118">1</text>
-                <circle class="moving-point parabolic-still" cx="130" cy="130" r="7"/>
-                <circle class="moving-point parabolic-particle" r="7">
-                  <animateMotion path="M 130 130 A 51.5 51.5 0 0 1 222.7 99.1"
-                                 dur="7s" repeatCount="indefinite" calcMode="paced"/>
-                  <animate attributeName="opacity" values="0;1;1;0"
-                           keyTimes="0;0.08;0.92;1" dur="7s" repeatCount="indefinite"/>
-                </circle>
-              </svg>
-              <p class="formula--small">\(\varphi_t=C^{-1}\circ(C+it)\)</p>
-              <figcaption class="diagram-caption">Jeden punkt stały na brzegu</figcaption>
-            </figure>
+<div class="slide-content">
+  <p class="eyebrow">Punkt wyjścia</p>
+  <h2>Siedem prac, jeden motyw przewodni</h2>
+  <div class="layout-three three-areas">
+    <div class="theme-card"><h3>Przestrzenie analityczne</h3><p class="big-symbol">\(H^p\ \longrightarrow\ H[X]\)</p><p class="card-description">Uogólnienie struktury funkcjonalnej</p></div>
+    <div class="theme-card"><h3>Geometria wartości</h3><p class="big-symbol">\(T_\lambda,\ \mu\)</p><p class="card-description">Interpolacja i miary Carlesona</p></div>
+    <div class="theme-card"><h3>Operatory</h3><p class="big-symbol">\(C_\varphi,\ W_{u,\varphi}\)</p><p class="card-description">Widma, sumowalność, toeplitzowość</p></div>
+  </div>
+  <p class="result-tagline">Od klasycznego modelu do twierdzeń w szerokich klasach przestrzeni.</p>
+</div>
+<aside class="notes">
+  <p><strong>Slajd 2/17 · Mapa wyników</strong></p>
+  <p><strong>Czas:</strong> 1:00 · <strong>na zegarze:</strong> 0:30–1:30 (plan)</p>
+  <p>Nie należy odczytywać siedmiu tytułów prac. W autoreferacie grupuję wyniki w sześć problemów: interpolacja Carlesona, widma wagowych operatorów złożenia, porządkowa ograniczoność i sumowalność, podprzestrzenie niezmiennicze, asymptotyczne operatory Toeplitza oraz wielospójne obszary kołowe. Spaja je badanie mechanizmów, które przetrwają zastąpienie H^p przestrzenią generowaną przez ogólniejszą przestrzeń symetryczną.</p>
+  <p><strong>Źródło:</strong> Autoreferat, s. 2, wprowadzenie: sześć grup zagadnień i siedem prac [1]–[7].</p>
+</aside>
+</section>
 
-            <figure class="diagram-card">
-              <h3>Hiperboliczny</h3>
-              <svg class="disk-diagram" viewBox="0 0 260 260" role="img"
-                   aria-label="Dwa punkty stałe plus i minus jeden na brzegu; iteracje punktu zero zbliżają się do plus jeden">
-                <circle class="disk-outline" cx="130" cy="130" r="103"/>
-                <path class="guide" d="M 27 130 H 233"/>
-                <path class="trajectory trajectory--subtle" d="M 130 130 H 230"/>
-                <circle class="fixed-point" cx="27" cy="130" r="8"/>
-                <circle class="fixed-point" cx="233" cy="130" r="8"/>
-                <text class="math-label" x="10" y="116">−1</text>
-                <text class="math-label" x="239" y="116">1</text>
-                <circle class="moving-point hyperbolic-particle" cx="130" cy="130" r="7"/>
-              </svg>
-              <p class="formula--small">\(\varphi_a(z)=\frac{z+a}{1+az}\)</p>
-              <figcaption class="diagram-caption">Dwa punkty stałe na brzegu</figcaption>
-            </figure>
 
-          </div>
-          <p class="caption">Przykładowa animacja, nie ilustracja konkretnego twierdzenia o widmie.</p>
-        </div>
-        <aside class="notes">
-          Slajd demonstracyjny. W modelu eliptycznym 0 jest punktem stałym dla θ niebędącego wielokrotnością 2π.
-          W modelu parabolicznym C(z)=(1+z)/(1-z) oraz t&gt;0; orbita od z=0 biegnie po horocyklu
-          w stronę punktu 1, ale nie osiąga go w skończonym czasie.
-          W modelu hiperbolicznym a=0,45 do animacji iteracji punktu 0; +1 przyciąga, −1 odpycha.
-          Omówić, dlaczego geometria symbolu jest istotna w kontekście wagowych operatorów złożenia.
-        </aside>
-      </section>
+<!-- 03. Abstrakcyjne przestrzenie Hardy’ego · 1:10 · od 1:30 do 2:40 -->
+<section data-slide-topic="Abstrakcyjne przestrzenie Hardy’ego" data-duration-seconds="70">
 
-      <!-- 04. Test składu wzorów: do zastąpienia właściwym wynikiem naukowym. -->
-      <section aria-label="Slajd testowy wzorów matematycznych">
-        <div class="slide-content">
-          <p class="eyebrow">Slajd techniczny · skład matematyczny</p>
-          <h2>Od symbolu do operatora</h2>
-          <div class="math-showcase">
-            <div class="panel">
-              <h3>Dane</h3>
-              <p>\(\mathbb D=\{z\in\mathbb C:\lvert z\rvert&lt;1\}\)</p>
-              <p>\(\varphi:\mathbb D\rightarrow\mathbb D\)</p>
-              <p>\(u\in H(\mathbb D)\)</p>
-            </div>
-            <div class="panel">
-              <h3>Operatory</h3>
-              <div class="formula">
-                \[
-                  \begin{aligned}
-                    C_\varphi f &amp;= f\circ\varphi,\\[8pt]
-                    W_{u,\varphi}f &amp;= u\cdot(f\circ\varphi).
-                  \end{aligned}
-                \]
-              </div>
-            </div>
-          </div>
-          <p class="caption">Test renderowania MathJax. Ten slajd nie przedstawia jeszcze wyniku habilitacyjnego.</p>
-        </div>
-        <aside class="notes">
-          Kontrola symboli matematycznych, rozmiarów i wyrównania wzorów.
-          Po uzgodnieniu struktury wystąpienia zastąpić slajd rzeczywistym wynikiem naukowym.
-        </aside>
-      </section>
+<div class="slide-content">
+  <p class="eyebrow">Wspólny język</p>
+  <h2>Od przestrzeni \(H^p\) do \(H[X]\)</h2>
+  <div class="theorem-box">
+    <div class="formula hero-equation">\[\|f\|_{H[X]}=\sup_{0\le r<1}\|f(re^{it})\|_X\]</div>
+  </div>
+  <div class="layout-three">
+    <div class="panel aligned-center"><h3>Hardy–Lorentz</h3>\(H^{p,q}\)</div>
+    <div class="panel aligned-center"><h3>Hardy–Orlicz</h3>\(H^\Phi\)</div>
+    <div class="panel aligned-center"><h3>Hardy–Marcinkiewicz</h3>\(HM_\varphi\)</div>
+  </div>
+  <p class="centerline muted">\(H^\infty\hookrightarrow H[X]\hookrightarrow H^1\)</p>
+</div>
+<aside class="notes">
+  <p><strong>Slajd 3/17 · Abstrakcyjne przestrzenie Hardy’ego</strong></p>
+  <p><strong>Czas:</strong> 1:10 · <strong>na zegarze:</strong> 1:30–2:40 (plan)</p>
+  <p>Przypomnieć klasyczną normę Hardy’ego opartą na L^p. Zastępujemy L^p dowolną symetryczną przestrzenią Banacha X na okręgu. Funkcjonalna konstrukcja H[X] obejmuje H^p, Hardy’ego–Lorentza, Orlicza i Marcinkiewicza. To nie tylko zmiana oznaczenia: musimy odzyskać oszacowania punktowej ewaluacji, własności granic brzegowych i zachowanie operatorów. Ten wspólny język pozwala formułować wyniki w sposób niezależny od szczególnego wykładnika p.</p>
+  <p><strong>Źródło:</strong> Autoreferat, §1, s. 2–3.</p>
+</aside>
+</section>
 
+
+<!-- 04. Geometria interpolacji · 1:00 · od 2:40 do 3:40 -->
+<section data-slide-topic="Geometria interpolacji" data-duration-seconds="60">
+
+<div class="slide-content">
+  <p class="eyebrow">Wprowadzenie do wyników [6]</p>
+  <h2>Kiedy można zadawać wartości funkcji?</h2>
+  <div class="layout-two layout-two--asymmetric">
+    <div class="panel">
+      <p class="result-label">Ciąg interpolacyjny</p>
+      <p>Wybieramy punkty \(\lambda_n\in\mathbb D\) i wartości \(w_n\).</p>
+      <p class="big-symbol">\(f(\lambda_n)=w_n\)</p>
+      <p class="small">Geometria punktów narzuca warunki na istnienie funkcji.</p>
+    </div>
+    <div class="panel aligned-center">
+      <svg class="drawing" viewBox="0 0 330 290" role="img" aria-label="Schemat ciągu punktów w dysku">
+        <circle class="outline" cx="163" cy="144" r="116"/>
+        <circle cx="163" cy="144" r="80" class="outline" stroke-dasharray="3 9" opacity=".25"/>
+        <g class="accent-fill"><circle cx="100" cy="90" r="6"/><circle cx="179" cy="75" r="6"/><circle cx="231" cy="124" r="6"/><circle cx="205" cy="220" r="6"/><circle cx="85" cy="188" r="6"/><circle cx="144" cy="185" r="6"/></g>
+        <text x="224" y="104" class="text-label">λₙ</text>
+      </svg>
+      <span class="schema-caption">Schemat położenia punktów, nie konkretny ciąg.</span>
     </div>
   </div>
+  <div class="centerline">Jednostajne oddzielenie w metryce pseudohiperbolicznej</div>
+  <div class="formula">\[\inf_k\prod_{n\ne k}\left|\frac{\lambda_k-\lambda_n}{1-\overline{\lambda_n}\lambda_k}\right|>0\]</div>
+</div>
+<aside class="notes">
+  <p><strong>Slajd 4/17 · Geometria interpolacji</strong></p>
+  <p><strong>Czas:</strong> 1:00 · <strong>na zegarze:</strong> 2:40–3:40 (plan)</p>
+  <p>Punkty na rysunku są jedynie schematem, nie ilustracją ciągu spełniającego twierdzenie. Wyjaśnić pytanie Carlesona o interpolowanie dowolnych ograniczonych wartości, a następnie przejście do operatora ewaluacji T_lambda. Podstawowy fakt geometryczny to jednostajne oddzielenie w metryce pseudohiperbolicznej, ze wzmocnionym warunkiem iloczynowym. W tym miejscu rozpocząć opowieść o przenoszeniu twierdzenia Shapiro–Shieldsa na przestrzenie interpolacyjne.</p>
+  <p><strong>Źródło:</strong> Autoreferat, §2, s. 3–4; twierdzenia Carlesona i Shapiro–Shieldsa (kontekst historyczny).</p>
+</aside>
+</section>
 
-  <script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/reveal.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/plugin/math.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/plugin/notes.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/plugin/zoom.js"></script>
-  <script>
-    Reveal.initialize({
-      hash: true,
-      width: 1440,
-      height: 810,
-      margin: 0.055,
-      minScale: 0.2,
-      maxScale: 1.8,
-      center: false,
-      controls: true,
-      progress: true,
-      slideNumber: 'c/t',
-      navigationMode: 'linear',
 
-      // Wystąpienie: maksimum 20 minut, z zegarem w widoku prelegenta (klawisz S).
-      totalTime: 1200,
+<!-- 05. Twierdzenie o śladach · 1:25 · od 3:40 do 5:05 -->
+<section data-slide-topic="Twierdzenie o śladach" data-duration-seconds="85">
 
-      // Kluczowe: żadnego odsłaniania fragmentów, żadnego automatycznego przechodzenia slajdów.
-      fragments: false,
-      autoAnimate: false,
-      autoSlide: 0,
-      transition: 'fade',
-      transitionSpeed: 'fast',
-      backgroundTransition: 'fade',
+<div class="slide-content">
+  <p class="eyebrow">Wynik główny · praca [6]</p>
+  <h2>Geometryczny warunek, abstrakcyjna odpowiedź</h2>
+  <p class="statement">Dla \(X=\mathcal F(L^p,L^q)\) spełniającej założenia twierdzenia:</p>
+  <div class="theorem-box">
+    <p class="result-label">Dokładny opis śladów</p>
+    <div class="formula hero-equation hero-equation--compact">
+      \[\bigl\{(f(\lambda_n)):f\in H[X]\bigr\}
+      =\mathcal F\!\bigl(\ell^p(\nu),\ell^q(\nu)\bigr)\]
+    </div>
+    <p class="centerline small">\(\nu(\{n\})=1-|\lambda_n|^2\)</p>
+  </div>
+  <p class="result-tagline">Równość zachodzi wtedy i tylko wtedy, gdy \(\lambda\) jest jednostajnie oddzielony.</p>
+  <span class="paper-ref">[6] Lindström · Mastyło · Mleczko · Norrbo · Rzeczkowski (2022)</span>
+</div>
+<aside class="notes">
+  <p><strong>Slajd 5/17 · Twierdzenie o śladach</strong></p>
+  <p><strong>Czas:</strong> 1:25 · <strong>na zegarze:</strong> 3:40–5:05 (plan)</p>
+  <p>Pełne założenia: 1≤p<q≤∞, lambda jest ciągiem różnych punktów dysku, X=F(L^p,L^q) jest symetryczna, porządkowo ciągła i ma własność Fatou; F jest dokładnym funktorem interpolacyjnym posiadającym dualny funktor Köthego. Wtedy cała przestrzeń wartości funkcji z H[X] jest dokładnie przestrzenią sekwencji otrzymaną przez zastosowanie tego samego funktora do ważonych ell^p i ell^q. Część konieczna i wystarczająca to geometria interpolującego ciągu. Podkreślić związek z interpolacją operatorów, nie czytać wzoru powoli.</p>
+  <p><strong>Źródło:</strong> Autoreferat, §2, s. 4–5; [6, Thm. 7] (Twierdzenie 1 autoreferatu).</p>
+</aside>
+</section>
 
-      mathjax3: {
-        mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js',
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']],
-          displayMath: [['$$', '$$'], ['\\[', '\\]']]
-        },
-        options: {
-          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
+
+<!-- 06. Odwrotne zadanie interpolacyjne · 0:55 · od 5:05 do 6:00 -->
+<section data-slide-topic="Odwrotne zadanie interpolacyjne" data-duration-seconds="55">
+
+<div class="slide-content">
+  <p class="eyebrow">Drugie spojrzenie · praca [6]</p>
+  <h2>Czy można z góry wybrać przestrzeń wartości?</h2>
+  <div class="simple-steps">
+    <div class="step"><p class="result-label">Dane</p><p>\(E\) — ośrodkowa przestrzeń symetryczna</p></div>
+    <div class="step"><p class="result-label">Konstrukcja</p><p>dobieramy \(X\)</p></div>
+    <div class="step"><p class="result-label">Otrzymujemy</p><p>\(T_\lambda(H[X])=E\)</p></div>
+  </div>
+  <div class="theorem-box">
+    <p class="result-tagline">Dla dowolnego jednostajnie oddzielonego \(\lambda\) każda taka przestrzeń \(E\) może być realizowana jako przestrzeń śladów.</p>
+  </div>
+  <span class="paper-ref">[6] J. Inst. Math. Jussieu (2022)</span>
+</div>
+<aside class="notes">
+  <p><strong>Slajd 6/17 · Odwrotne zadanie interpolacyjne</strong></p>
+  <p><strong>Czas:</strong> 0:55 · <strong>na zegarze:</strong> 5:05–6:00 (plan)</p>
+  <p>To problem odwrotny do poprzedniego: znając ciąg lambda i docelową przestrzeń E, pytamy, czy da się skonstruować odpowiednią przestrzeń H[X]. Odpowiedź jest twierdząca dla każdej ośrodkowej przestrzeni symetrycznej E na przestrzeni miary dyskretnej z wagami nu_lambda, przy jednostajnie oddzielonym lambda. Jest to bardziej strukturalny wynik niż kolejny szczególny przypadek interpolacji Hardy–Lorentza czy Hardy–Orlicza. Wspomnieć krótko o tych dwóch zastosowaniach.</p>
+  <p><strong>Źródło:</strong> Autoreferat, §2, s. 5; [6, Thm. 12] (Twierdzenie 2 autoreferatu).</p>
+</aside>
+</section>
+
+
+<!-- 07. Wagowe operatory złożenia · 1:00 · od 6:00 do 7:00 -->
+<section data-slide-topic="Wagowe operatory złożenia" data-duration-seconds="60">
+
+<div class="slide-content">
+  <p class="eyebrow">Od funkcji do operatorów</p>
+  <h2>Waga sprawia, że iterowanie staje się trudniejsze</h2>
+  <div class="theorem-box">
+    <div class="formula hero-equation">\[W_{u,\varphi}f=u\cdot(f\circ\varphi)\]</div>
+  </div>
+  <div class="layout-two">
+    <div class="panel">
+      <h3>Bez wagi</h3>
+      <div class="formula">\(C_\varphi^{\,n}=C_{\varphi^{\circ n}}\)</div>
+    </div>
+    <div class="panel">
+      <h3>Z wagą</h3>
+      <div class="formula">\(W_{u,\varphi}^{\,n}=u_{(n)}C_{\varphi^{\circ n}}\)</div>
+    </div>
+  </div>
+  <div class="centerline small">\(u_{(n)}=\prod_{k=0}^{n-1}u\circ\varphi^{\circ k}\)</div>
+</div>
+<aside class="notes">
+  <p><strong>Slajd 7/17 · Wagowe operatory złożenia</strong></p>
+  <p><strong>Czas:</strong> 1:00 · <strong>na zegarze:</strong> 6:00–7:00 (plan)</p>
+  <p>W tym miejscu zmienić perspektywę: operatory C_phi przenoszą informację o dynamice funkcji phi. Dodanie wagi u tworzy iloczyn wzdłuż orbity, widoczny już we wzorze na n-tą iterację. Dla widma ważne są jednocześnie dynamika automorfizmu i zachowanie wagi przy punktach stałych. Rozważane w wynikach spektralnych operatory są ograniczone i zwykle odwracalne; symbol jest automorfizmem dysku, a waga często należy do algebry dyskowej.</p>
+  <p><strong>Źródło:</strong> Autoreferat, §3, s. 5–6.</p>
+</aside>
+</section>
+
+
+<!-- 08. Automorfizmy i punkty stałe · 1:15 · od 7:00 do 8:15 -->
+<section data-slide-topic="Automorfizmy i punkty stałe" data-duration-seconds="75">
+
+<div class="slide-content">
+  <p class="eyebrow">Wizualizacja · trzy typy dynamiki</p>
+  <h2>Geometria punktów stałych</h2>
+  <div class="layout-three diagram-grid">
+    <figure class="diagram-card">
+      <h3>Eliptyczny</h3>
+      <svg class="disk-diagram" viewBox="0 0 260 260" role="img" aria-label="Orbita okrąża wewnętrzny punkt stały">
+        <circle class="disk-outline" cx="130" cy="130" r="103"/>
+        <circle class="guide" cx="130" cy="130" r="65"/>
+        <circle class="fixed-point" cx="130" cy="130" r="8"/>
+        <text class="math-label" x="140" y="117">0</text>
+        <circle class="moving-point elliptic-particle" cx="195" cy="130" r="7"/>
+      </svg>
+      <p class="formula--small">\(z\mapsto e^{i\theta}z\)</p>
+      <figcaption class="diagram-caption">Punkt stały wewnątrz dysku</figcaption>
+    </figure>
+    <figure class="diagram-card">
+      <h3>Paraboliczny</h3>
+      <svg class="disk-diagram" viewBox="0 0 260 260" role="img" aria-label="Orbita przesuwa się po horocyklu do jednego brzegowego punktu stałego">
+        <circle class="disk-outline" cx="130" cy="130" r="103"/>
+        <circle class="guide" cx="181.5" cy="130" r="51.5"/>
+        <circle class="fixed-point" cx="233" cy="130" r="8"/>
+        <text class="math-label" x="239" y="118">1</text>
+        <circle class="moving-point parabolic-still" cx="130" cy="130" r="7"/>
+        <circle class="moving-point parabolic-particle" r="7">
+          <animateMotion path="M 130 130 A 51.5 51.5 0 0 1 222.7 99.1"
+                         dur="7s" repeatCount="indefinite" calcMode="paced"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.92;1" dur="7s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+      <p class="formula--small">\(\varphi_t=C^{-1}\circ(C+it)\)</p>
+      <figcaption class="diagram-caption">Jeden brzegowy punkt stały</figcaption>
+    </figure>
+    <figure class="diagram-card">
+      <h3>Hiperboliczny</h3>
+      <svg class="disk-diagram" viewBox="0 0 260 260" role="img" aria-label="Iteracje punktu 0 zbliżają się do przyciągającego punktu 1; drugi brzegowy punkt jest w minus jeden">
+        <circle class="disk-outline" cx="130" cy="130" r="103"/>
+        <path class="guide" d="M 27 130 H 233"/>
+        <circle class="fixed-point" cx="27" cy="130" r="8"/>
+        <circle class="fixed-point" cx="233" cy="130" r="8"/>
+        <text class="math-label" x="10" y="116">−1</text>
+        <text class="math-label" x="239" y="116">1</text>
+        <circle class="moving-point hyperbolic-particle" cx="130" cy="130" r="7"/>
+      </svg>
+      <p class="formula--small">\(\varphi_a(z)=\frac{z+a}{1+az}\)</p>
+      <figcaption class="diagram-caption">Dwa brzegowe punkty stałe</figcaption>
+    </figure>
+  </div>
+  <p class="caption">Animacje prezentują modele dynamiki; nie są częścią sformułowań twierdzeń.</p>
+</div>
+<aside class="notes">
+  <p><strong>Slajd 8/17 · Automorfizmy i punkty stałe</strong></p>
+  <p><strong>Czas:</strong> 1:15 · <strong>na zegarze:</strong> 7:00–8:15 (plan)</p>
+  <p>Zatrzymać się przy automorfizmach przez kilkadziesiąt sekund. Eliptyczny ma punkt stały wewnątrz dysku; paraboliczny ma jeden podwójny punkt na brzegu; hiperboliczny ma dwa punkty brzegowe. Podążyć za ruchomymi punktami, wskazując przyciąganie i odpychanie. W modelu parabolicznym C(z)=(1+z)/(1-z), t>0, a animowana krzywa jest horocyklem; w hiperbolicznym animacja ilustruje iteracje przy a=0,45. Ta geometria jest kluczem do odmiennych kształtów widm wagowych operatorów złożenia.</p>
+  <p><strong>Źródło:</strong> Autoreferat, §3–4, s. 6–7; klasyfikacja punktów stałych (kontekst). Animacje: modele przykładowe.</p>
+</aside>
+</section>
+
+
+<!-- 09. Widma — paraboliczne i eliptyczne · 1:25 · od 8:15 do 9:40 -->
+<section data-slide-topic="Widma — paraboliczne i eliptyczne" data-duration-seconds="85">
+
+<div class="slide-content">
+  <p class="eyebrow">Widma · prace [2] i [3]</p>
+  <h2>Od punktu stałego do okręgu w płaszczyźnie zespolonej</h2>
+  <div class="layout-two layout-two--asymmetric">
+    <div class="panel">
+      <p class="result-label">Automorfizm paraboliczny</p>
+      <div class="formula hero-equation--compact">\[\sigma(W_{u,\varphi})=\{\lambda:|\lambda|=|u(a)|\}\]</div>
+      <p class="small">\(a\) — brzegowy punkt stały \(\varphi\).</p>
+      <div class="quiet-rule"></div>
+      <p class="result-label">Automorfizm eliptyczny</p>
+      <p class="small">Przypadek nieokresowy: analogiczny okrąg; przypadek okresowy: widmo opisuje iloczyn wag wzdłuż cyklu.</p>
+    </div>
+    <div class="panel aligned-center">
+      <svg class="drawing spectrum-plot" viewBox="0 0 330 330" role="img" aria-label="Widmo w kształcie okręgu na płaszczyźnie zespolonej">
+        <path class="outline" d="M 22 165 H308 M165 25 V305" stroke-dasharray="4 8" opacity=".45"/>
+        <circle class="accent" cx="165" cy="165" r="104" stroke-width="7"/>
+        <circle cx="165" cy="165" r="3" class="accent-fill"/>
+        <text class="text-label" x="285" y="152">Re</text><text class="text-label" x="174" y="28">Im</text>
+      </svg>
+      <p class="small">Okrąg o promieniu \(|u(a)|\)</p>
+    </div>
+  </div>
+  <p class="footnote">Dla ograniczonych, odwracalnych \(W_{u,\varphi}\), przy odpowiednich założeniach na \(u\), na \(\mathcal B\) lub \(H[X]\).</p>
+</div>
+<aside class="notes">
+  <p><strong>Slajd 9/17 · Widma — paraboliczne i eliptyczne</strong></p>
+  <p><strong>Czas:</strong> 1:25 · <strong>na zegarze:</strong> 8:15–9:40 (plan)</p>
+  <p>Najważniejsze przesłanie: geometryczny typ automorfizmu determinuje strukturę widma, lecz waga decyduje o promieniu. Dla parabolicznego automorfizmu a to jedyny punkt stały, a widmo odwracalnego operatora na przestrzeni Blocha i na abstrakcyjnej Hardy’ego jest okręgiem o promieniu |u(a)|, zakładając u z algebry dyskowej. Dla eliptycznego o nieskończonym rzędzie otrzymujemy podobny okrąg. Dla skończonego rzędu m opis wykorzystuje równanie lambda^m = u_(m)(z), z domknięciem zbioru rozwiązań. Ostatni przypadek zostawić w notatkach, by nie przeciążyć slajdu.</p>
+  <p><strong>Źródło:</strong> Autoreferat, §4, s. 8–11; [2, Thm. 4.3 i 4.8], [3, Thm. 3–4].</p>
+</aside>
+</section>
+
+
+<!-- 10. Widma na Hardy–Lorentzu · 1:25 · od 9:40 do 11:05 -->
+<section data-slide-topic="Widma na Hardy–Lorentzu" data-duration-seconds="85">
+
+<div class="slide-content">
+  <p class="eyebrow">Widma · praca [3]</p>
+  <h2>Widmo na \(H^{p,q}\) jest takie jak na \(H^p\)</h2>
+  <div class="theorem-box">
+    <div class="formula hero-equation">\[\sigma_{H^{p,q}}(W_{u,\varphi})=\sigma_{H^p}(W_{u,\varphi})\]</div>
+    <p class="centerline small">\(1&lt;p,q&lt;\infty\), \(u\in A(\mathbb D)\), przy ograniczoności operatora.</p>
+  </div>
+  <div class="layout-two">
+    <div class="panel">
+      <p class="result-label">Hiperboliczny \(\varphi\) i odwracalny operator</p>
+      <div class="formula">\[\sigma(W)=\{\lambda:r_-\le |\lambda|\le r_+\}\]</div>
+      <p class="small">\(r_\pm\) zależą od \(u(a),u(b)\) i \(\varphi'(a),\varphi'(b)\).</p>
+    </div>
+    <div class="panel aligned-center">
+      <svg class="drawing spectrum-plot" viewBox="0 0 330 265" role="img" aria-label="Widmo wypełnia pierścień między dwoma okręgami">
+        <circle cx="165" cy="132" r="111" class="soft-fill"/>
+        <circle cx="165" cy="132" r="47" style="fill:var(--r-background-color)"/>
+        <circle cx="165" cy="132" r="111" class="accent"/>
+        <circle cx="165" cy="132" r="47" class="outline"/>
+        <text class="text-label" x="212" y="123">r−</text><text class="text-label" x="247" y="42">r+</text>
+      </svg>
+      <span class="schema-caption">Schemat pierścienia spektralnego</span>
+    </div>
+  </div>
+</div>
+<aside class="notes">
+  <p><strong>Slajd 10/17 · Widma na Hardy–Lorentzu</strong></p>
+  <p><strong>Czas:</strong> 1:25 · <strong>na zegarze:</strong> 9:40–11:05 (plan)</p>
+  <p>W [3] nie ograniczamy się do automorfizmów: przy 1<p,q<∞, u należącej do algebry dyskowej i działaniu operatora na H^{p,q}, uzyskaliśmy identyczność widma na H^{p,q} i H^p. Dowód korzysta ze stabilności widma na przestrzeniach interpolacyjnych (Asekritova, Kruglyak, Mastyło). Dla odwracalnego operatora z automorfizmem hiperbolicznym dostajemy cały domknięty pierścień; dokładne promienie to minimum i maksimum z |u(a)|/|φ'(a)|^{1/p} oraz |u(b)|/|φ'(b)|^{1/p}. Nie należy pomijać czynników z pochodnymi; odróżnia to H^p od przestrzeni Blocha i Dirichleta.</p>
+  <p><strong>Źródło:</strong> Autoreferat, §4, s. 10–11; [3, Thm. 5, Cor. 1] (Twierdzenia 8–9 autoreferatu).</p>
+</aside>
+</section>
+
+
+<!-- 11. Przestrzenie Blocha i Dirichleta · 1:05 · od 11:05 do 12:10 -->
+<section data-slide-topic="Przestrzenie Blocha i Dirichleta" data-duration-seconds="65">
+
+<div class="slide-content">
+  <p class="eyebrow">Widma · praca [2]</p>
+  <h2>Przypadek hiperboliczny: promień i ograniczenie widma</h2>
+  <div class="theorem-box">
+    <p class="result-label">Przestrzenie Blocha i Dirichleta</p>
+    <div class="formula hero-equation hero-equation--compact">
+      \[r(W_{u,\varphi})=\max\{|u(a)|,\ |u(b)|\}\]
+    </div>
+  </div>
+  <div class="panel">
+    <p class="result-label">W pracy uzyskano inkluzję</p>
+    <div class="formula">
+      \[\sigma(W_{u,\varphi})\subseteq
+      \bigl\{\lambda:\min(|u(a)|,|u(b)|)\le|\lambda|\le\max(|u(a)|,|u(b)|)\bigr\}\]
+    </div>
+  </div>
+  <p class="statement">\(a,b\in\partial\mathbb D\) — brzegowe punkty stałe automorfizmu.</p>
+  <span class="paper-ref">[2] Eklund · Lindström · Mleczko (2016)</span>
+</div>
+<aside class="notes">
+  <p><strong>Slajd 11/17 · Przestrzenie Blocha i Dirichleta</strong></p>
+  <p><strong>Czas:</strong> 1:05 · <strong>na zegarze:</strong> 11:05–12:10 (plan)</p>
+  <p>Rozdzielić promień spektralny i opis całego widma. Dla odwracalnych operatorów wagowych z u w algebrze dyskowej, dla przestrzeni Blocha i Dirichleta uzyskano wzór na promień spektralny w przypadku hiperbolicznym oraz zawieranie widma w pierścieniu wyznaczonym przez wartości wagi w dwóch punktach stałych. Nie twierdzić, że w pracy udowodniono zawsze równość. Dla przestrzeni Blocha z |u(a)|=|u(b)| jest pełny opis; w przypadku Dirichleta autorzy postawili hipotezę o równości, później rozstrzygniętą przez Abadiasa i współautorów (Adv. Math. 2024), co odnotowano w autoreferacie.</p>
+  <p><strong>Źródło:</strong> Autoreferat, §4, s. 8–10; [2, Thm. 4.6 i 5.2]; późniejszy wynik innych autorów wspomniany w autoreferacie.</p>
+</aside>
+</section>
+
+
+<!-- 12. Porządkowa ograniczoność · 1:05 · od 12:10 do 13:15 -->
+<section data-slide-topic="Porządkowa ograniczoność" data-duration-seconds="65">
+
+<div class="slide-content">
+  <p class="eyebrow">Idea · praca [4]</p>
+  <h2>Porządkowa ograniczoność i sumowalność</h2>
+  <div class="centerline small">Dla \(\widetilde C_\varphi:H^{p,q}\to L^p(\mathbb T)\), \(p&gt;2\), \(q=p/(p-1)\):</div>
+  <div class="simple-steps">
+    <div class="step"><strong>Porządkowa<br>ograniczoność</strong></div>
+    <div class="step"><strong>\(p\)-sumowalność</strong></div>
+    <div class="step"><div class="formula">\[(1-|\widetilde\varphi|)^{-1}\in L^1\]</div></div>
+  </div>
+  <p class="result-tagline">Trzy równoważne warunki dla jednego operatora.</p>
+  <span class="paper-ref">[4] Mastyło · Mleczko (2019)</span>
+</div>
+<aside class="notes">
+  <p><strong>Slajd 12/17 · Porządkowa ograniczoność</strong></p>
+  <p><strong>Czas:</strong> 1:05 · <strong>na zegarze:</strong> 12:10–13:15 (plan)</p>
+  <p>Przestrzeń H[X] nie ma naturalnego porządku, ale funkcje brzegowe leżą w symetrycznej kracie X. Stąd przejście do operatora złożenia C-tilde i badanie jego ograniczoności porządkowej. Wynik [4, Thm. 4.5] dotyczy p>2, q=p/(p−1), C-tilde z H^{p,q} do L^p na okręgu. Zaskakująca jest równoważność trzech pozornie różnych własności: porządkowej ograniczoności, p-sumowalności i całkowalności odwrotności odległości wartości brzegowych symbolu od okręgu. W innych twierdzeniach kryterium opisuje funkcja fundamentalna przestrzeni X.</p>
+  <p><strong>Źródło:</strong> Autoreferat, §5, s. 12–14; [4, Thm. 4.5, Prop. 3.1].</p>
+</aside>
+</section>
+
+
+<!-- 13. Beurling i podprzestrzenie niezmiennicze · 0:55 · od 13:15 do 14:10 -->
+<section data-slide-topic="Beurling i podprzestrzenie niezmiennicze" data-duration-seconds="55">
+
+<div class="slide-content">
+  <p class="eyebrow">Podprzestrzenie niezmiennicze · praca [1]</p>
+  <h2>Twierdzenie Beurlinga poza klasycznym \(H^p\)</h2>
+  <div class="theorem-box">
+    <div class="formula hero-equation">\[S(M)\subseteq M\quad\Longrightarrow\quad M=\theta\,H[X]\]</div>
+    <p class="centerline small">\(Sf(z)=zf(z)\), \(\theta\) — funkcja wewnętrzna</p>
+  </div>
+  <p class="result-tagline">Wersja dla przestrzeni \(H[X]\) generowanej przez jednostajnie wypukłą przestrzeń symetryczną \(X\).</p>
+  <span class="paper-ref">[1] J. Math. Anal. Appl. (2013)</span>
+</div>
+<aside class="notes">
+  <p><strong>Slajd 13/17 · Beurling i podprzestrzenie niezmiennicze</strong></p>
+  <p><strong>Czas:</strong> 0:55 · <strong>na zegarze:</strong> 13:15–14:10 (plan)</p>
+  <p>Wrócić do klasycznego twierdzenia Beurlinga dla przesunięcia na H^2: niezmiennicze domknięte podprzestrzenie mają postać theta H^2. Z pracy [1] wynika analogon M=theta H[X] dla przestrzeni H[X] przy jednostajnej wypukłości X (dla domkniętej niezmienniczej M). Powiedzieć, że problem został rozwiązany bez możliwości wykorzystania jawnej postaci funkcjonałów podtrzymujących dostępnej w L^p. W autoreferacie podane są także twierdzenia dla samej przestrzeni symetrycznej X, w tym opis podprzestrzeni z warunkiem S(M)=M.</p>
+  <p><strong>Źródło:</strong> Autoreferat, §6, s. 14–15; [1, Cor. 2.4] oraz [1, Thm. 2.3, 2.6].</p>
+</aside>
+</section>
+
+
+<!-- 14. Asymptotyczne operatory Toeplitza · 1:25 · od 14:10 do 15:35 -->
+<section data-slide-topic="Asymptotyczne operatory Toeplitza" data-duration-seconds="85">
+
+<div class="slide-content">
+  <p class="eyebrow">Kryterium strukturalne · praca [7]</p>
+  <h2>Kiedy operator złożenia jest asymptotycznie Toeplitzowy?</h2>
+  <div class="theorem-box">
+    <p class="result-label">Uogólnienie na \(H[X]\)</p>
+    <div class="formula hero-equation hero-equation--compact">\[B^nW_{u,\varphi}S^n\ \xrightarrow[\ n\to\infty\ ]{\ \|\cdot\|\ }\ A\]</div>
+  </div>
+  <div class="key-pair">
+    <div class="panel"><p class="big-symbol">\(W_{u,\varphi}\) zwarty</p></div>
+    <div class="relationship">lub</div>
+    <div class="panel"><p class="big-symbol">\(\varphi=\mathrm{id}\)</p></div>
+  </div>
+  <p class="centerline small">Przy ograniczoności \(W_{u,\varphi}\) i dopuszczalności przestrzeni \(X\): równoważność.</p>
+  <span class="paper-ref">[7] Lindström · Miihkinen · Mleczko · Norrbo (2023)</span>
+</div>
+<aside class="notes">
+  <p><strong>Slajd 14/17 · Asymptotyczne operatory Toeplitza</strong></p>
+  <p><strong>Czas:</strong> 1:25 · <strong>na zegarze:</strong> 14:10–15:35 (plan)</p>
+  <p>Przypomnieć charakterystykę Browna–Halmosa S*TS=T na H^2 oraz klasyczne operatory asymptotyczne. W H[X] nie mamy ogólnie sprzężenia Hilbertowskiego, dlatego zastępujemy je przesunięciem wstecz B. Dla dopuszczalnych przestrzeni symetrycznych X (własność Fatou, porządkowa ciągłość X i dualu Köthego, odpowiednia interpolacja L^p–L^q) pokazujemy, że ograniczony W jest jednostajnie asymptotycznie Toeplitzowy wtedy i tylko wtedy, gdy jest zwarty lub phi jest identycznością. To uogólnia wyniki również poza H^2. Zasygnalizować, że w [7] są też twierdzenia dla słabszych odmian asymptotyczności.</p>
+  <p><strong>Źródło:</strong> Autoreferat, §7, s. 15–18; [7, Prop. 3.1, Thm. 3.5] (Twierdzenie 17 autoreferatu).</p>
+</aside>
+</section>
+
+
+<!-- 15. Obszary kołowe · 1:05 · od 15:35 do 16:40 -->
+<section data-slide-topic="Obszary kołowe" data-duration-seconds="65">
+
+<div class="slide-content">
+  <p class="eyebrow">Zmiana geometrii dziedziny · praca [5]</p>
+  <h2>Z dysku do obszaru wielospójnego</h2>
+  <div class="layout-two">
+    <div class="panel aligned-center">
+      <svg class="drawing" viewBox="0 0 370 300" role="img" aria-label="Obszar kołowy: duży dysk z trzema wyciętymi dyskami wewnętrznymi">
+        <circle class="outline" cx="185" cy="150" r="121"/>
+        <circle class="soft-fill" cx="185" cy="150" r="120"/>
+        <g style="fill:var(--r-background-color)">
+          <circle cx="143" cy="113" r="29"/>
+          <circle cx="234" cy="97" r="25"/>
+          <circle cx="209" cy="200" r="38"/>
+        </g>
+        <g class="accent">
+          <circle cx="143" cy="113" r="29"/>
+          <circle cx="234" cy="97" r="25"/>
+          <circle cx="209" cy="200" r="38"/>
+        </g>
+        <text class="text-label" x="93" y="243">Ω</text>
+      </svg>
+      <span class="schema-caption">Schemat obszaru kołowego \(\Omega\)</span>
+    </div>
+    <div class="panel">
+      <p class="result-label">Rozkład funkcji</p>
+      <div class="formula">\[f=f_0+f_1+\dots+f_m\]</div>
+      <p class="small">Przy odpowiednich założeniach \(H[X](\Omega)\) jest sumą prostą przestrzeni związanych ze składowymi brzegu.</p>
+    </div>
+  </div>
+  <p class="result-tagline">Rozkład przestrzeni prowadzi do formuły interpolacyjnej na \(\Omega\).</p>
+  <span class="paper-ref">[5] Banach J. Math. Anal. (2019)</span>
+</div>
+<aside class="notes">
+  <p><strong>Slajd 15/17 · Obszary kołowe</strong></p>
+  <p><strong>Czas:</strong> 1:05 · <strong>na zegarze:</strong> 15:35–16:40 (plan)</p>
+  <p>Obszar kołowy to dysk, z którego usunięto rozłączne domknięte dyski. Konstrukcja H[X](Omega) musi uwzględnić regularne wyczerpania i miary harmoniczne na brzegach; w ogólnym przypadku normy przenosimy do ustalonej przestrzeni X przez izomorfizmy przestrzeni miar. Dla maksymalnej przestrzeni symetrycznej X otrzymaliśmy rozkład funkcji f jako sumę składowych pochodzących z otoczenia poszczególnych składowych brzegu ([5, Thm. 3.2]). Rozkład ten pozwala przenieść formułę interpolacyjną Xu na obszary wielospójne.</p>
+  <p><strong>Źródło:</strong> Autoreferat, §8, s. 18–20; [5, Thm. 3.2 i Cor. 3.4].</p>
+</aside>
+</section>
+
+
+<!-- 16. Miary Carlesona na obszarach kołowych · 1:25 · od 16:40 do 18:05 -->
+<section data-slide-topic="Miary Carlesona na obszarach kołowych" data-duration-seconds="85">
+
+<div class="slide-content">
+  <p class="eyebrow">Miary i zanurzenia · praca [5]</p>
+  <h2>Miara Carlesona ⇔ ograniczony operator zanurzenia</h2>
+  <div class="simple-steps">
+    <div class="step"><p class="result-label">Geometria</p><strong>\(\mu\) jest miarą Carlesona na \(\Omega\)</strong></div>
+    <div class="step"><p class="result-label">Operator</p><strong>\(j_\mu:H[X](\Omega)\to X(\Omega,\mu)\)</strong><small>jest ograniczony</small></div>
+    <div class="step"><p class="result-label">Redukcja</p><strong>\(\widetilde\mu\) jest miarą Carlesona na \(\mathbb D\)</strong></div>
+  </div>
+  <div class="theorem-box">
+    <p class="result-tagline">Równoważność przy regularnej funkcji fundamentalnej \(X\) i odpowiednich założeniach na \(\mu\).</p>
+  </div>
+  <p class="small">W tym samym kontekście: porządkowo ograniczone operatory złożenia na \(H[X](\Omega)\).</p>
+  <span class="paper-ref">[5] Mleczko · Rzeczkowski (2019)</span>
+</div>
+<aside class="notes">
+  <p><strong>Slajd 16/17 · Miary Carlesona na obszarach kołowych</strong></p>
+  <p><strong>Czas:</strong> 1:25 · <strong>na zegarze:</strong> 16:40–18:05 (plan)</p>
+  <p>Podkreślić, że w [5] badaliśmy nie tylko definicję H[X](Omega), lecz także miary Carlesona i kanoniczne zanurzenia do krat funkcji mierzalnych na Omega. Główne twierdzenie daje równoważność: mu jest miarą Carlesona na Omega, operator j_mu jest ograniczony, odpowiadający operator na dysku jest ograniczony i przeniesiona miara mu-tilde jest miarą Carlesona na dysku. Pełne założenia to między innymi bezatomowa miara probabilistyczna, maksymalna przestrzeń symetryczna X(Omega,mu), regularna funkcja fundamentalna. Wspomnieć też charakteryzację porządkowo ograniczonych operatorów złożenia ([5, Thm. 5.1]).</p>
+  <p><strong>Źródło:</strong> Autoreferat, §8, s. 20–21; [5, Thm. 4.2] (Twierdzenie 21 autoreferatu).</p>
+</aside>
+</section>
+
+
+<!-- 17. Podsumowanie · 0:55 · od 18:05 do 19:00 -->
+<section data-slide-topic="Podsumowanie" data-duration-seconds="55">
+
+<div class="slide-content">
+  <p class="eyebrow">Podsumowanie · siedem prac 2013–2023</p>
+  <h2>Co łączy te wyniki?</h2>
+  <div class="layout-three three-areas">
+    <div class="theme-card"><h3>Interpolacja</h3><p class="card-description">Przenoszenie własności z modeli klasycznych.</p><p class="big-symbol">\(H^p\rightsquigarrow H[X]\)</p></div>
+    <div class="theme-card"><h3>Geometria</h3><p class="card-description">Punkty stałe, ciągi interpolacyjne i miary.</p><p class="big-symbol">\(\varphi,\ \lambda,\ \mu\)</p></div>
+    <div class="theme-card"><h3>Struktura operatorów</h3><p class="card-description">Widmo, sumowalność i zachowanie asymptotyczne.</p><p class="big-symbol">\(\sigma(W),\ B^nWS^n\)</p></div>
+  </div>
+  <p class="result-tagline">Wspólne narzędzia — nowe klasy przestrzeni i nowe pytania.</p>
+  <p class="footnote">Dziękuję za uwagę.</p>
+</div>
+<aside class="notes">
+  <p><strong>Slajd 17/17 · Podsumowanie</strong></p>
+  <p><strong>Czas:</strong> 0:55 · <strong>na zegarze:</strong> 18:05–19:00 (plan)</p>
+  <p>Zamknąć opowieść w trzech punktach: interpolacja łączy klasyczne H^p z abstrakcyjnymi H[X], geometria dysku i obszarów kołowych determinuje własności analityczne, a teoria operatorów pozwala przejść od struktury przestrzeni do widm, sumowalności i toeplitzowości. Możliwe pytania na końcu: pełne widma w przypadku hiperbolicznym na ogólnych H[X], charakteryzacja zwartości wagowych operatorów złożenia, silna asymptotyczna toeplitzowość. W autoreferacie zostały one wskazane jako niezakończone; przed finalną wersją sprawdzić aktualny status literaturowy. Zakończyć w limicie czasu.</p>
+  <p><strong>Źródło:</strong> Autoreferat, s. 1–21, synteza prac [1]–[7]. Kierunki dalsze sformułowane jako propozycje prezentacji.</p>
+</aside>
+</section>
+
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/plugin/math.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/plugin/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/plugin/zoom.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    width: 1440,
+    height: 810,
+    margin: 0.055,
+    minScale: 0.2,
+    maxScale: 1.8,
+    center: false,
+    controls: true,
+    progress: true,
+    slideNumber: 'c/t',
+    navigationMode: 'linear',
+    totalTime: 1200,
+    fragments: false,
+    autoAnimate: false,
+    autoSlide: 0,
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    backgroundTransition: 'fade',
+    mathjax3: {
+      mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js',
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
       },
-      plugins: [RevealMath.MathJax3, RevealNotes, RevealZoom]
-    });
-  </script>
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    },
+    plugins: [RevealMath.MathJax3, RevealNotes, RevealZoom]
+  });
+</script>
 </body>
 </html>
