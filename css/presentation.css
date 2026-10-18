@@ -512,3 +512,102 @@
 @media print {
   .reveal .slides section .paper-ref { border-color: transparent; }
 }
+
+
+/* Slajd 2: siedem publikacji i trzy osie tematyczne, na jednym ekranie 16:9. */
+.reveal .overview-slide {
+  padding-top: 22px;
+  padding-bottom: 15px;
+  min-height: 0;
+}
+.reveal .overview-slide > h2 {
+  margin: 0.18em 0 0.43em;
+  font-size: 39px;
+}
+.reveal .overview-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.54fr) minmax(0, 0.94fr);
+  gap: 22px;
+  align-items: stretch;
+}
+.reveal .overview-papers,
+.reveal .overview-themes {
+  min-width: 0;
+  border: 1px solid color-mix(in srgb, var(--r-main-color) 21%, transparent);
+  border-radius: var(--deck-radius);
+  background: color-mix(in srgb, var(--r-background-color) 93%, var(--r-link-color) 7%);
+  padding: 17px 20px;
+}
+.reveal .overview-side-title {
+  font-size: 19px;
+  margin: 0 0 10px;
+  letter-spacing: 0.035em;
+}
+.reveal .overview-side-meta {
+  font-size: 15px;
+  color: var(--r-link-color);
+  font-weight: 500;
+}
+.reveal .overview-paper-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.reveal .overview-paper {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 11px;
+  padding: 8px 0;
+  margin: 0;
+  border-top: 1px solid color-mix(in srgb, var(--r-main-color) 12%, transparent);
+}
+.reveal .overview-paper-number {
+  display: block;
+  font-size: 14px;
+  line-height: 1.35;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--r-link-color);
+}
+.reveal .overview-paper-data { min-width: 0; }
+.reveal .overview-paper-title {
+  display: block;
+  font-size: 16px;
+  line-height: 1.16;
+  font-style: italic;
+  font-weight: 500;
+}
+.reveal .overview-paper-meta {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  line-height: 1.2;
+  opacity: 0.64;
+}
+.reveal .overview-theme {
+  padding: 13px 10px 15px;
+  border-top: 1px solid color-mix(in srgb, var(--r-main-color) 15%, transparent);
+  text-align: center;
+}
+.reveal .overview-theme-heading {
+  font-size: 21px;
+  line-height: 1.1;
+  font-weight: 700;
+  margin: 0;
+}
+.reveal .overview-theme-formula {
+  font-size: 28px;
+  line-height: 1.24;
+  color: var(--r-heading-color);
+  margin: 7px 0 3px;
+}
+.reveal .overview-theme-formula mjx-container { margin: 0 !important; }
+.reveal .overview-theme-text {
+  font-size: 16px;
+  line-height: 1.25;
+  opacity: 0.79;
+  margin: 0;
+}
+@media print {
+  .reveal .overview-paper-title { color: var(--r-main-color); }
+}
