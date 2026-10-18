@@ -269,3 +269,246 @@
   :root { --deck-body: 26px; --deck-h1: 54px; }
   .reveal .title-layout { grid-template-columns: minmax(0, 1fr) 250px; }
 }
+
+
+/* ============================================================
+ * Zarys wystąpienia habilitacyjnego: powtarzalne układy treści.
+ * Kolory nadal pochodzą wyłącznie z motywu Reveal.js.
+ * ============================================================ */
+
+.reveal .layout-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  align-items: start;
+}
+
+.reveal .layout-two--asymmetric {
+  grid-template-columns: minmax(0, 1.13fr) minmax(0, 0.87fr);
+}
+
+.reveal .big-symbol {
+  font-size: 1.65em;
+  line-height: 1.2;
+  margin: 0.65em 0;
+}
+
+.reveal .hero-equation {
+  margin: 0.75em auto;
+  font-size: 1.35em;
+  text-align: center;
+  max-width: 1250px;
+}
+
+.reveal .hero-equation--compact {
+  font-size: 1.03em;
+}
+
+.reveal .centerline {
+  text-align: center;
+  margin: 0.65em auto 0.85em;
+}
+
+.reveal .result-label {
+  color: var(--r-link-color);
+  font-size: var(--deck-kicker);
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  font-weight: 750;
+  margin: 0 0 0.6em;
+}
+
+.reveal .result-subtitle {
+  font-size: 23px;
+  margin: 0.4em 0;
+  line-height: 1.3;
+}
+
+.reveal .result-tagline {
+  font-weight: 550;
+  text-align: center;
+  font-size: 25px;
+  margin: 0.65em auto;
+  max-width: 1160px;
+}
+
+.reveal .quiet-rule {
+  height: 1px;
+  background: var(--r-main-color);
+  opacity: 0.15;
+  margin: 27px 0;
+}
+
+.reveal .aligned-center { text-align: center; }
+
+.reveal .key-pair {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 18px;
+}
+
+.reveal .key-pair .panel {
+  width: min(46%, 590px);
+  text-align: center;
+}
+
+.reveal .key-pair .relationship {
+  color: var(--r-link-color);
+  font-size: 44px;
+  font-weight: 700;
+}
+
+.reveal .simple-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+  gap: 24px;
+  margin: 22px 0;
+}
+
+.reveal .simple-steps .step {
+  border: 1px solid color-mix(in srgb, var(--r-main-color) 23%, transparent);
+  border-radius: var(--deck-radius);
+  padding: 24px 16px;
+  text-align: center;
+  min-height: 122px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.reveal .simple-steps .step small {
+  display: block;
+  opacity: 0.75;
+  font-size: 17px;
+  margin-top: 5px;
+}
+
+.reveal .statement {
+  font-size: 24px;
+  line-height: 1.38;
+  max-width: 1240px;
+}
+
+.reveal .statement--narrow { max-width: 900px; }
+
+.reveal .schema-caption {
+  display: block;
+  font-size: var(--deck-caption);
+  opacity: 0.75;
+  margin-top: 8px;
+}
+
+.reveal .data-mark {
+  color: var(--r-link-color);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.reveal .paper-ref {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 17px;
+  color: var(--r-link-color);
+  border: 1px solid color-mix(in srgb, var(--r-link-color) 47%, transparent);
+  border-radius: 99px;
+  padding: 5px 13px;
+}
+
+.reveal .drawing {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  height: auto;
+  color: var(--r-link-color);
+}
+
+.reveal .drawing .outline {
+  fill: none;
+  stroke: var(--r-main-color);
+  stroke-width: 2.5;
+}
+
+.reveal .drawing .accent {
+  fill: none;
+  stroke: var(--r-link-color);
+  stroke-width: 3;
+}
+
+.reveal .drawing .soft-fill {
+  fill: var(--r-link-color);
+  fill-opacity: 0.20;
+}
+
+.reveal .drawing .accent-fill {
+  fill: var(--r-link-color);
+}
+
+.reveal .drawing .text-label {
+  font-family: var(--deck-font);
+  font-size: 18px;
+  fill: var(--r-main-color);
+}
+
+.reveal .spectrum-plot { max-width: 330px; }
+
+.reveal .theorem-box {
+  border-left: 5px solid var(--r-link-color);
+  padding: 12px 26px 15px 30px;
+  background: color-mix(in srgb, var(--r-background-color) 91%, var(--r-link-color) 9%);
+  border-radius: 0 var(--deck-radius) var(--deck-radius) 0;
+  margin: 25px 0;
+}
+
+.reveal .theorem-box .formula {
+  font-size: 31px;
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
+.reveal .diagram-card .formula--small {
+  font-size: 21px;
+  white-space: normal;
+}
+
+.reveal .three-areas { margin-top: 35px; }
+.reveal .three-areas .theme-card { min-height: 220px; }
+
+.reveal .footnote {
+  margin-top: 28px;
+  opacity: 0.67;
+  font-size: 17px;
+}
+
+.reveal .compact-lines p { margin: 0.25em 0; }
+
+.reveal .keypoints {
+  display: grid;
+  gap: 22px;
+  margin-top: 28px;
+}
+
+.reveal .keypoints .point {
+  padding: 17px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--r-main-color) 18%, transparent);
+}
+
+.reveal .keypoints .point:last-child { border-bottom: 0; }
+
+.reveal .bullet-free {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reveal .bullet-free li { margin: 0.5em 0; }
+
+@media print {
+  .reveal .slides section .paper-ref { border-color: transparent; }
+}
