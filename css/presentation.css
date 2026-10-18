@@ -1,0 +1,271 @@
+/*
+ * Prezentacja habilitacyjna — styl warstwy treści.
+ * Kolorystykę dostarcza wybrany motyw Reveal.js (domyślnie Moon).
+ * Zmieniamy tu typografię, rytm, odstępy i diagramy — nie paletę barw.
+ */
+
+:root {
+  --deck-font: "Inter", "Segoe UI", "DejaVu Sans", sans-serif;
+  --deck-body: 29px;
+  --deck-small: 22px;
+  --deck-caption: 17px;
+  --deck-kicker: 17px;
+  --deck-h1: 60px;
+  --deck-h2: 43px;
+  --deck-h3: 28px;
+  --deck-radius: 15px;
+  --deck-panel-pad: 24px;
+  --deck-gap: 22px;
+  --deck-slide-pad: 24px;
+}
+
+.reveal {
+  font-family: var(--deck-font);
+  font-size: var(--deck-body);
+  line-height: 1.34;
+}
+
+.reveal .slides section {
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  font-family: var(--deck-font);
+  text-transform: none;
+  letter-spacing: -0.018em;
+  font-weight: 650;
+  line-height: 1.14;
+  text-shadow: none;
+}
+
+.reveal h1 {
+  font-size: var(--deck-h1);
+  max-width: 980px;
+}
+
+.reveal h2 {
+  font-size: var(--deck-h2);
+  margin: 0.3em 0 0.9em;
+}
+
+.reveal h3 {
+  font-size: var(--deck-h3);
+  margin: 0 0 0.4em;
+}
+
+.reveal p { margin: 0.45em 0; }
+.reveal ul { margin: 0.5em 0 0.5em 1.1em; }
+.reveal li { margin: 0.32em 0; }
+.reveal a { text-underline-offset: 0.13em; }
+
+.reveal .slide-content {
+  box-sizing: border-box;
+  padding: 28px var(--deck-slide-pad);
+  min-height: 720px;
+}
+
+.reveal .eyebrow {
+  margin: 0 0 0.55em;
+  font-size: var(--deck-kicker);
+  font-weight: 750;
+  line-height: 1.25;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--r-link-color);
+}
+
+.reveal .small { font-size: var(--deck-small); line-height: 1.36; }
+.reveal .caption { font-size: var(--deck-caption); line-height: 1.3; opacity: 0.8; }
+.reveal .muted { opacity: 0.77; }
+
+.reveal .panel,
+.reveal .diagram-card,
+.reveal .theme-card {
+  box-sizing: border-box;
+  background: color-mix(in srgb, var(--r-background-color) 90%, var(--r-link-color) 10%);
+  border: 1px solid color-mix(in srgb, var(--r-main-color) 23%, transparent);
+  border-radius: var(--deck-radius);
+}
+
+.reveal .panel { padding: var(--deck-panel-pad); }
+
+.reveal .layout-three {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--deck-gap);
+  align-items: stretch;
+}
+
+.reveal .theme-card { padding: 25px 25px 29px; min-height: 235px; }
+.reveal .theme-card .main-symbol { font-size: 1.48em; margin-top: 0.85em; }
+.reveal .theme-card .card-description { font-size: var(--deck-small); }
+
+.reveal .formula {
+  text-align: center;
+  margin: 0.3em 0;
+}
+
+.reveal .formula mjx-container[display="true"] {
+  margin: 0.36em auto !important;
+}
+
+.reveal .math-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1.07fr;
+  align-items: start;
+  gap: 42px;
+  margin-top: 28px;
+}
+
+.reveal .math-showcase .panel { min-height: 360px; }
+.reveal .math-showcase .formula { font-size: 1.17em; }
+
+/* Slajd tytułowy: delikatna geometria — bez obrazu pod tekstem. */
+.reveal .title-layout {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 30px;
+  align-items: center;
+  min-height: 680px;
+}
+
+.reveal .title-copy h1 { max-width: 970px; text-wrap: balance; margin: 0.5em 0 0.55em; }
+.reveal .title-copy .affiliation {
+  border-left: 3px solid var(--r-link-color);
+  padding-left: 20px;
+  margin-top: 32px;
+  font-size: var(--deck-small);
+}
+.reveal .title-art { width: 100%; height: auto; color: var(--r-link-color); opacity: 0.29; }
+.reveal .title-art .thin { stroke-width: 1.4; }
+.reveal .title-art .strong { stroke-width: 3; }
+
+/* Schematy dysku: rozdzielenie geometrii od opisu i notatek. */
+.reveal .diagram-grid { margin-top: 12px; }
+.reveal .diagram-card {
+  margin: 0;
+  padding: 20px 18px 18px;
+  text-align: center;
+  min-width: 0;
+  min-height: 525px;
+}
+.reveal .diagram-card h3 { margin-bottom: 6px; }
+.reveal .diagram-card p { margin: 0.3em 0; }
+.reveal .diagram-card .disk-diagram {
+  display: block;
+  width: 100%;
+  max-width: 270px;
+  height: 265px;
+  margin: 0 auto 8px;
+  overflow: visible;
+  color: var(--r-main-color);
+}
+
+.disk-diagram .disk-outline {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  opacity: 0.92;
+}
+.disk-diagram .guide {
+  fill: none;
+  stroke: currentColor;
+  opacity: 0.38;
+  stroke-width: 1.5;
+  stroke-dasharray: 5 7;
+}
+.disk-diagram .trajectory {
+  fill: none;
+  stroke: var(--r-link-color);
+  stroke-width: 2.5;
+  opacity: 0.75;
+}
+.disk-diagram .trajectory--subtle { stroke-dasharray: 4 6; }
+.disk-diagram .fixed-point {
+  fill: var(--r-link-color);
+  stroke: var(--r-background-color);
+  stroke-width: 2;
+}
+.disk-diagram .moving-point {
+  fill: var(--r-heading-color);
+  stroke: var(--r-background-color);
+  stroke-width: 1.8;
+}
+.disk-diagram .math-label {
+  font-family: var(--deck-font);
+  font-size: 16px;
+  fill: currentColor;
+  opacity: 0.95;
+}
+
+.reveal .diagram-card .formula--small { font-size: 21px; white-space: nowrap; }
+.reveal .diagram-card .diagram-caption { font-size: var(--deck-caption); margin-top: 4px; }
+
+/* Przykładowa animacja: nie zależy od przełączania fragmentów Reveal.js. */
+.disk-diagram .elliptic-particle {
+  transform-origin: 130px 130px;
+  transform-box: view-box;
+  animation: orbit-rotation 9s linear infinite;
+}
+.disk-diagram .hyperbolic-particle {
+  animation: hyperbolic-iterates 9s linear infinite;
+}
+.disk-diagram .parabolic-particle { opacity: 1; }
+.disk-diagram .parabolic-still { display: none; }
+
+@keyframes orbit-rotation {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Punkty odpowiadają kolejnym iteracjom x -> (x+0.45)/(1+0.45*x),
+   począwszy od x=0, po przeskalowaniu promienia dysku do 103 px. */
+@keyframes hyperbolic-iterates {
+  0%, 11% { transform: translateX(0); }
+  17%, 28% { transform: translateX(46.35px); }
+  34%, 45% { transform: translateX(77.1px); }
+  51%, 62% { transform: translateX(92.3px); }
+  68%, 79% { transform: translateX(98.8px); }
+  85%, 95% { transform: translateX(101.4px); opacity: 1; }
+  100% { transform: translateX(101.5px); opacity: 0; }
+}
+
+/* Zatrzymujemy animację CSS na slajdach, które nie są pokazywane. */
+.reveal .slides section:not(.present) .elliptic-particle,
+.reveal .slides section:not(.present) .hyperbolic-particle { animation-play-state: paused; }
+
+/* Reveal.js bez odsłaniania: także przypadkowa klasa fragment niczego nie ukrywa. */
+.reveal .slides .fragment {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+.reveal .progress { height: 4px; }
+.reveal .slide-number { font-size: 15px; }
+
+/* Dostępność i druk: pokazywanie punktów bez animacji. */
+@media (prefers-reduced-motion: reduce) {
+  .disk-diagram .elliptic-particle,
+  .disk-diagram .hyperbolic-particle { animation: none !important; }
+  .disk-diagram .parabolic-particle { display: none; }
+  .disk-diagram .parabolic-still { display: block; }
+}
+
+@media print {
+  .disk-diagram .elliptic-particle,
+  .disk-diagram .hyperbolic-particle { animation: none !important; }
+  .disk-diagram .parabolic-particle { display: none; }
+  .disk-diagram .parabolic-still { display: block; }
+}
+
+/* Prezentacja jest skalowana przez Reveal.js, lecz w małych podglądach
+   układy kolumnowe nie powinny nachodzić na siebie. */
+@media (max-width: 720px) {
+  :root { --deck-body: 26px; --deck-h1: 54px; }
+  .reveal .title-layout { grid-template-columns: minmax(0, 1fr) 250px; }
+}
