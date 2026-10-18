@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="Zarys prezentacji habilitacyjnej — Paweł Mleczko.">
-  <title>Przestrzenie funkcji holomorficznych — wystąpienie habilitacyjne</title>
+  <meta name="description" content="Osiągnięcie naukowe: Przestrzenie funkcji holomorficznych, operatory Carlesona i wagowe operatory złożenia.">
+  <title>Przestrzenie funkcji holomorficznych, operatory Carlesona i wagowe operatory złożenia</title>
   <!-- Wersje bibliotek są przypięte. Przed wystąpieniem przygotujemy wersję offline. -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/reset.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/reveal.css">
@@ -28,7 +28,6 @@
 
 <div class="slide-content title-layout">
   <div class="title-copy">
-    <p class="eyebrow">Wystąpienie habilitacyjne</p>
     <h1>Przestrzenie funkcji holomorficznych,<br>operatory Carlesona<br>i wagowe operatory złożenia</h1>
     <p class="affiliation">Paweł Mleczko<br>Uniwersytet im. Adama Mickiewicza w Poznaniu</p>
   </div>
@@ -56,22 +55,89 @@
 
 <!-- 02. Mapa wyników · 1:00 · od 0:30 do 1:30 -->
 <section data-slide-topic="Mapa wyników" data-duration-seconds="60">
-
-<div class="slide-content">
-  <p class="eyebrow">Punkt wyjścia</p>
-  <h2>Siedem prac, jeden motyw przewodni</h2>
-  <div class="layout-three three-areas">
-    <div class="theme-card"><h3>Przestrzenie analityczne</h3><p class="big-symbol">\(H^p\ \longrightarrow\ H[X]\)</p><p class="card-description">Uogólnienie struktury funkcjonalnej</p></div>
-    <div class="theme-card"><h3>Geometria wartości</h3><p class="big-symbol">\(T_\lambda,\ \mu\)</p><p class="card-description">Interpolacja i miary Carlesona</p></div>
-    <div class="theme-card"><h3>Operatory</h3><p class="big-symbol">\(C_\varphi,\ W_{u,\varphi}\)</p><p class="card-description">Widma, sumowalność, toeplitzowość</p></div>
+<div class="slide-content overview-slide">
+  <p class="eyebrow">Osiągnięcie naukowe · 2013–2023</p>
+  <h2>Siedem prac i trzy motywy przewodnie</h2>
+  <div class="overview-grid">
+    <div class="overview-papers" aria-label="Siedem publikacji wchodzących w skład osiągnięcia naukowego">
+      <h3 class="overview-side-title">Prace naukowe <span class="overview-side-meta">[1]–[7]</span></h3>
+      <ol class="overview-paper-list">
+          <li class="overview-paper">
+            <span class="overview-paper-number">01</span>
+            <div class="overview-paper-data">
+              <cite class="overview-paper-title">On Beurling type theorem for abstract Hardy spaces</cite>
+              <span class="overview-paper-meta">J. Math. Anal. Appl. · 2013</span>
+            </div>
+          </li>
+          <li class="overview-paper">
+            <span class="overview-paper-number">02</span>
+            <div class="overview-paper-data">
+              <cite class="overview-paper-title">Spectral properties of weighted composition operators on the Bloch and Dirichlet spaces</cite>
+              <span class="overview-paper-meta">Studia Math. · 2016</span>
+            </div>
+          </li>
+          <li class="overview-paper">
+            <span class="overview-paper-number">03</span>
+            <div class="overview-paper-data">
+              <cite class="overview-paper-title">Spectra of weighted composition operators on abstract Hardy spaces</cite>
+              <span class="overview-paper-meta">RACSAM · 2019</span>
+            </div>
+          </li>
+          <li class="overview-paper">
+            <span class="overview-paper-number">04</span>
+            <div class="overview-paper-data">
+              <cite class="overview-paper-title">Composition operators on Banach spaces of analytic functions</cite>
+              <span class="overview-paper-meta">Ann. Acad. Sci. Fenn. Math. · 2019</span>
+            </div>
+          </li>
+          <li class="overview-paper">
+            <span class="overview-paper-number">05</span>
+            <div class="overview-paper-data">
+              <cite class="overview-paper-title">Carleson measures on circular domains and canonical embeddings of Hardy spaces into function lattices</cite>
+              <span class="overview-paper-meta">Banach J. Math. Anal. · 2019</span>
+            </div>
+          </li>
+          <li class="overview-paper">
+            <span class="overview-paper-number">06</span>
+            <div class="overview-paper-data">
+              <cite class="overview-paper-title">Carleson interpolating sequences for Banach spaces of analytic functions</cite>
+              <span class="overview-paper-meta">J. Inst. Math. Jussieu · 2022</span>
+            </div>
+          </li>
+          <li class="overview-paper">
+            <span class="overview-paper-number">07</span>
+            <div class="overview-paper-data">
+              <cite class="overview-paper-title">The Toeplitzness of weighted composition operators on Banach spaces of holomorphic functions</cite>
+              <span class="overview-paper-meta">Complex Var. Elliptic Equ. · 2023</span>
+            </div>
+          </li>
+      </ol>
+    </div>
+    <div class="overview-themes" aria-label="Trzy motywy przewodnie">
+      <h3 class="overview-side-title">Motywy przewodnie</h3>
+      <div class="overview-theme">
+        <p class="overview-theme-heading">Przestrzenie</p>
+        <div class="overview-theme-formula">\(H^p\longrightarrow HX\)</div>
+        <p class="overview-theme-text">Od modelu do ogólnej struktury</p>
+      </div>
+      <div class="overview-theme">
+        <p class="overview-theme-heading">Metody</p>
+        <div class="overview-theme-formula">\(T_\lambda,\ \mu\)</div>
+        <p class="overview-theme-text">Geometria i interpolacja</p>
+      </div>
+      <div class="overview-theme">
+        <p class="overview-theme-heading">Operatory</p>
+        <div class="overview-theme-formula">\(uC_\phi,\ j_\mu\)</div>
+        <p class="overview-theme-text">Widma, sumowalność, toeplitzowość</p>
+      </div>
+    </div>
   </div>
-  <p class="result-tagline">Od klasycznego modelu do twierdzeń w szerokich klasach przestrzeni.</p>
 </div>
 <aside class="notes">
-  <p><strong>Slajd 2/17 · Mapa wyników</strong></p>
+  <p><strong>Slajd 2/17 · Prace i motywy przewodnie</strong></p>
   <p><strong>Czas:</strong> 1:00 · <strong>na zegarze:</strong> 0:30–1:30 (plan)</p>
-  <p>Nie należy odczytywać siedmiu tytułów prac. W autoreferacie grupuję wyniki w sześć problemów: interpolacja Carlesona, widma wagowych operatorów złożenia, porządkowa ograniczoność i sumowalność, podprzestrzenie niezmiennicze, asymptotyczne operatory Toeplitza oraz wielospójne obszary kołowe. Spaja je badanie mechanizmów, które przetrwają zastąpienie H^p przestrzenią generowaną przez ogólniejszą przestrzeń symetryczną.</p>
-  <p><strong>Źródło:</strong> Autoreferat, s. 2, wprowadzenie: sześć grup zagadnień i siedem prac [1]–[7].</p>
+  <p>Prace [1]–[7] wypisano w kolejności z autoreferatu. Wskazać trzy wspólne osie: przestrzenie HX, metody interpolacyjne i miary Carlesona oraz badane operatory. Oznaczenia: T_lambda — operator Carlesona, uC_phi — wagowy operator złożenia, j_mu — operator zanurzenia.</p>
+  <p><strong>Źródło:</strong> Autoreferat, s. 1–5 i 20–21.</p>
 </aside>
 </section>
 
@@ -81,21 +147,21 @@
 
 <div class="slide-content">
   <p class="eyebrow">Wspólny język</p>
-  <h2>Od przestrzeni \(H^p\) do \(H[X]\)</h2>
+  <h2>Od przestrzeni \(H^p\) do \(HX\)</h2>
   <div class="theorem-box">
-    <div class="formula hero-equation">\[\|f\|_{H[X]}=\sup_{0\le r<1}\|f(re^{it})\|_X\]</div>
+    <div class="formula hero-equation">\[\|f\|_{HX}=\sup_{0\le r<1}\|f(re^{it})\|_X\]</div>
   </div>
   <div class="layout-three">
     <div class="panel aligned-center"><h3>Hardy–Lorentz</h3>\(H^{p,q}\)</div>
-    <div class="panel aligned-center"><h3>Hardy–Orlicz</h3>\(H^\Phi\)</div>
+    <div class="panel aligned-center"><h3>Hardy–Orlicz</h3>\(H^\varphi\)</div>
     <div class="panel aligned-center"><h3>Hardy–Marcinkiewicz</h3>\(HM_\varphi\)</div>
   </div>
-  <p class="centerline muted">\(H^\infty\hookrightarrow H[X]\hookrightarrow H^1\)</p>
+  <p class="centerline muted">\(H^\infty\hookrightarrow HX\hookrightarrow H^1\)</p>
 </div>
 <aside class="notes">
   <p><strong>Slajd 3/17 · Abstrakcyjne przestrzenie Hardy’ego</strong></p>
   <p><strong>Czas:</strong> 1:10 · <strong>na zegarze:</strong> 1:30–2:40 (plan)</p>
-  <p>Przypomnieć klasyczną normę Hardy’ego opartą na L^p. Zastępujemy L^p dowolną symetryczną przestrzenią Banacha X na okręgu. Funkcjonalna konstrukcja H[X] obejmuje H^p, Hardy’ego–Lorentza, Orlicza i Marcinkiewicza. To nie tylko zmiana oznaczenia: musimy odzyskać oszacowania punktowej ewaluacji, własności granic brzegowych i zachowanie operatorów. Ten wspólny język pozwala formułować wyniki w sposób niezależny od szczególnego wykładnika p.</p>
+  <p>Przypomnieć klasyczną normę Hardy’ego opartą na L^p. Zastępujemy L^p dowolną symetryczną przestrzenią Banacha X na okręgu. Funkcjonalna konstrukcja HX obejmuje H^p, Hardy’ego–Lorentza, Orlicza i Marcinkiewicza. To nie tylko zmiana oznaczenia: musimy odzyskać oszacowania punktowej ewaluacji, własności granic brzegowych i zachowanie operatorów. Ten wspólny język pozwala formułować wyniki w sposób niezależny od szczególnego wykładnika p.</p>
   <p><strong>Źródło:</strong> Autoreferat, §1, s. 2–3.</p>
 </aside>
 </section>
@@ -142,12 +208,12 @@
 <div class="slide-content">
   <p class="eyebrow">Wynik główny · praca [6]</p>
   <h2>Geometryczny warunek, abstrakcyjna odpowiedź</h2>
-  <p class="statement">Dla \(X=\mathcal F(L^p,L^q)\) spełniającej założenia twierdzenia:</p>
+  <p class="statement">Dla \(X=F(L^p,L^q)\) spełniającej założenia twierdzenia:</p>
   <div class="theorem-box">
     <p class="result-label">Dokładny opis śladów</p>
     <div class="formula hero-equation hero-equation--compact">
-      \[\bigl\{(f(\lambda_n)):f\in H[X]\bigr\}
-      =\mathcal F\!\bigl(\ell^p(\nu),\ell^q(\nu)\bigr)\]
+      \[\bigl\{(f(\lambda_n)):f\in HX\bigr\}
+      =F\!\bigl(\ell^p(\nu),\ell^q(\nu)\bigr)\]
     </div>
     <p class="centerline small">\(\nu(\{n\})=1-|\lambda_n|^2\)</p>
   </div>
@@ -157,7 +223,7 @@
 <aside class="notes">
   <p><strong>Slajd 5/17 · Twierdzenie o śladach</strong></p>
   <p><strong>Czas:</strong> 1:25 · <strong>na zegarze:</strong> 3:40–5:05 (plan)</p>
-  <p>Pełne założenia: 1≤p<q≤∞, lambda jest ciągiem różnych punktów dysku, X=F(L^p,L^q) jest symetryczna, porządkowo ciągła i ma własność Fatou; F jest dokładnym funktorem interpolacyjnym posiadającym dualny funktor Köthego. Wtedy cała przestrzeń wartości funkcji z H[X] jest dokładnie przestrzenią sekwencji otrzymaną przez zastosowanie tego samego funktora do ważonych ell^p i ell^q. Część konieczna i wystarczająca to geometria interpolującego ciągu. Podkreślić związek z interpolacją operatorów, nie czytać wzoru powoli.</p>
+  <p>Pełne założenia: 1≤p<q≤∞, lambda jest ciągiem różnych punktów dysku, X=F(L^p,L^q) jest symetryczna, porządkowo ciągła i ma własność Fatou; F jest dokładnym funktorem interpolacyjnym posiadającym dualny funktor Köthego. Wtedy cała przestrzeń wartości funkcji z HX jest dokładnie przestrzenią sekwencji otrzymaną przez zastosowanie tego samego funktora do ważonych ell^p i ell^q. Część konieczna i wystarczająca to geometria interpolującego ciągu. Podkreślić związek z interpolacją operatorów, nie czytać wzoru powoli.</p>
   <p><strong>Źródło:</strong> Autoreferat, §2, s. 4–5; [6, Thm. 7] (Twierdzenie 1 autoreferatu).</p>
 </aside>
 </section>
@@ -172,7 +238,7 @@
   <div class="simple-steps">
     <div class="step"><p class="result-label">Dane</p><p>\(E\) — ośrodkowa przestrzeń symetryczna</p></div>
     <div class="step"><p class="result-label">Konstrukcja</p><p>dobieramy \(X\)</p></div>
-    <div class="step"><p class="result-label">Otrzymujemy</p><p>\(T_\lambda(H[X])=E\)</p></div>
+    <div class="step"><p class="result-label">Otrzymujemy</p><p>\(T_\lambda(HX)=E\)</p></div>
   </div>
   <div class="theorem-box">
     <p class="result-tagline">Dla dowolnego jednostajnie oddzielonego \(\lambda\) każda taka przestrzeń \(E\) może być realizowana jako przestrzeń śladów.</p>
@@ -182,7 +248,7 @@
 <aside class="notes">
   <p><strong>Slajd 6/17 · Odwrotne zadanie interpolacyjne</strong></p>
   <p><strong>Czas:</strong> 0:55 · <strong>na zegarze:</strong> 5:05–6:00 (plan)</p>
-  <p>To problem odwrotny do poprzedniego: znając ciąg lambda i docelową przestrzeń E, pytamy, czy da się skonstruować odpowiednią przestrzeń H[X]. Odpowiedź jest twierdząca dla każdej ośrodkowej przestrzeni symetrycznej E na przestrzeni miary dyskretnej z wagami nu_lambda, przy jednostajnie oddzielonym lambda. Jest to bardziej strukturalny wynik niż kolejny szczególny przypadek interpolacji Hardy–Lorentza czy Hardy–Orlicza. Wspomnieć krótko o tych dwóch zastosowaniach.</p>
+  <p>To problem odwrotny do poprzedniego: znając ciąg lambda i docelową przestrzeń E, pytamy, czy da się skonstruować odpowiednią przestrzeń HX. Odpowiedź jest twierdząca dla każdej ośrodkowej przestrzeni symetrycznej E na przestrzeni miary dyskretnej z wagami nu_lambda, przy jednostajnie oddzielonym lambda. Jest to bardziej strukturalny wynik niż kolejny szczególny przypadek interpolacji Hardy–Lorentza czy Hardy–Orlicza. Wspomnieć krótko o tych dwóch zastosowaniach.</p>
   <p><strong>Źródło:</strong> Autoreferat, §2, s. 5; [6, Thm. 12] (Twierdzenie 2 autoreferatu).</p>
 </aside>
 </section>
@@ -195,19 +261,19 @@
   <p class="eyebrow">Od funkcji do operatorów</p>
   <h2>Waga sprawia, że iterowanie staje się trudniejsze</h2>
   <div class="theorem-box">
-    <div class="formula hero-equation">\[W_{u,\varphi}f=u\cdot(f\circ\varphi)\]</div>
+    <div class="formula hero-equation">\[uC_\phi(f)=u\cdot(f\circ\phi)\]</div>
   </div>
   <div class="layout-two">
     <div class="panel">
       <h3>Bez wagi</h3>
-      <div class="formula">\(C_\varphi^{\,n}=C_{\varphi^{\circ n}}\)</div>
+      <div class="formula">\(C_\phi^{\,n}=C_{\phi^{\circ n}}\)</div>
     </div>
     <div class="panel">
       <h3>Z wagą</h3>
-      <div class="formula">\(W_{u,\varphi}^{\,n}=u_{(n)}C_{\varphi^{\circ n}}\)</div>
+      <div class="formula">\(\bigl(uC_\phi\bigr)^n=u_{(n)}C_{\phi^{\circ n}}\)</div>
     </div>
   </div>
-  <div class="centerline small">\(u_{(n)}=\prod_{k=0}^{n-1}u\circ\varphi^{\circ k}\)</div>
+  <div class="centerline small">\(u_{(n)}=\prod_{k=0}^{n-1}u\circ\phi^{\circ k}\)</div>
 </div>
 <aside class="notes">
   <p><strong>Slajd 7/17 · Wagowe operatory złożenia</strong></p>
@@ -251,7 +317,7 @@
           <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.92;1" dur="7s" repeatCount="indefinite"/>
         </circle>
       </svg>
-      <p class="formula--small">\(\varphi_t=C^{-1}\circ(C+it)\)</p>
+      <p class="formula--small">\(\phi_t=C^{-1}\circ(C+it)\)</p>
       <figcaption class="diagram-caption">Jeden brzegowy punkt stały</figcaption>
     </figure>
     <figure class="diagram-card">
@@ -265,7 +331,7 @@
         <text class="math-label" x="239" y="116">1</text>
         <circle class="moving-point hyperbolic-particle" cx="130" cy="130" r="7"/>
       </svg>
-      <p class="formula--small">\(\varphi_a(z)=\frac{z+a}{1+az}\)</p>
+      <p class="formula--small">\(\phi_a(z)=\frac{z+a}{1+az}\)</p>
       <figcaption class="diagram-caption">Dwa brzegowe punkty stałe</figcaption>
     </figure>
   </div>
@@ -289,8 +355,8 @@
   <div class="layout-two layout-two--asymmetric">
     <div class="panel">
       <p class="result-label">Automorfizm paraboliczny</p>
-      <div class="formula hero-equation--compact">\[\sigma(W_{u,\varphi})=\{\lambda:|\lambda|=|u(a)|\}\]</div>
-      <p class="small">\(a\) — brzegowy punkt stały \(\varphi\).</p>
+      <div class="formula hero-equation--compact">\[\sigma(uC_\phi)=\{\lambda:|\lambda|=|u(a)|\}\]</div>
+      <p class="small">\(a\) — brzegowy punkt stały \(\phi\).</p>
       <div class="quiet-rule"></div>
       <p class="result-label">Automorfizm eliptyczny</p>
       <p class="small">Przypadek nieokresowy: analogiczny okrąg; przypadek okresowy: widmo opisuje iloczyn wag wzdłuż cyklu.</p>
@@ -305,7 +371,7 @@
       <p class="small">Okrąg o promieniu \(|u(a)|\)</p>
     </div>
   </div>
-  <p class="footnote">Dla ograniczonych, odwracalnych \(W_{u,\varphi}\), przy odpowiednich założeniach na \(u\), na \(\mathcal B\) lub \(H[X]\).</p>
+  <p class="footnote">Dla ograniczonych, odwracalnych \(uC_\phi\), przy odpowiednich założeniach na \(u\), na \(\mathcal B\) lub \(HX\).</p>
 </div>
 <aside class="notes">
   <p><strong>Slajd 9/17 · Widma — paraboliczne i eliptyczne</strong></p>
@@ -323,14 +389,14 @@
   <p class="eyebrow">Widma · praca [3]</p>
   <h2>Widmo na \(H^{p,q}\) jest takie jak na \(H^p\)</h2>
   <div class="theorem-box">
-    <div class="formula hero-equation">\[\sigma_{H^{p,q}}(W_{u,\varphi})=\sigma_{H^p}(W_{u,\varphi})\]</div>
+    <div class="formula hero-equation">\[\sigma_{H^{p,q}}(uC_\phi)=\sigma_{H^p}(uC_\phi)\]</div>
     <p class="centerline small">\(1&lt;p,q&lt;\infty\), \(u\in A(\mathbb D)\), przy ograniczoności operatora.</p>
   </div>
   <div class="layout-two">
     <div class="panel">
-      <p class="result-label">Hiperboliczny \(\varphi\) i odwracalny operator</p>
-      <div class="formula">\[\sigma(W)=\{\lambda:r_-\le |\lambda|\le r_+\}\]</div>
-      <p class="small">\(r_\pm\) zależą od \(u(a),u(b)\) i \(\varphi'(a),\varphi'(b)\).</p>
+      <p class="result-label">Hiperboliczny \(\phi\) i odwracalny operator</p>
+      <div class="formula">\[\sigma_{H^{p,q}}(uC_\phi)=\{\lambda:r_-\le |\lambda|\le r_+\}\]</div>
+      <p class="small">\(r_\pm\) zależą od \(u(a),u(b)\) i \(\phi'(a),\phi'(b)\).</p>
     </div>
     <div class="panel aligned-center">
       <svg class="drawing spectrum-plot" viewBox="0 0 330 265" role="img" aria-label="Widmo wypełnia pierścień między dwoma okręgami">
@@ -360,15 +426,15 @@
   <p class="eyebrow">Widma · praca [2]</p>
   <h2>Przypadek hiperboliczny: promień i ograniczenie widma</h2>
   <div class="theorem-box">
-    <p class="result-label">Przestrzenie Blocha i Dirichleta</p>
+    <p class="result-label">Przestrzenie Blocha i Dirichleta · \(X\in\{\mathcal B,\mathcal D\}\)</p>
     <div class="formula hero-equation hero-equation--compact">
-      \[r(W_{u,\varphi})=\max\{|u(a)|,\ |u(b)|\}\]
+      \[r_X(uC_\phi)=\max\{|u(a)|,\ |u(b)|\}\]
     </div>
   </div>
   <div class="panel">
     <p class="result-label">W pracy uzyskano inkluzję</p>
     <div class="formula">
-      \[\sigma(W)\subseteq\{\lambda:r_-\le|\lambda|\le r_+\}\]
+      \[\sigma_X(uC_\phi)\subseteq\{\lambda:r_-\le|\lambda|\le r_+\}\]
     </div>
     <p class="centerline small">\(r_-=\min\{|u(a)|,|u(b)|\}\), \(r_+=\max\{|u(a)|,|u(b)|\}\)</p>
   </div>
@@ -390,11 +456,11 @@
 <div class="slide-content">
   <p class="eyebrow">Idea · praca [4]</p>
   <h2>Porządkowa ograniczoność i sumowalność</h2>
-  <div class="centerline small">Dla \(\widetilde C_\varphi:H^{p,q}\to L^p(\mathbb T)\), \(p&gt;2\), \(q=p/(p-1)\):</div>
+  <div class="centerline small">Dla \(\widetilde C_\phi:H^{p,q}\to L^p(\mathbb T)\), \(p&gt;2\), \(q=p/(p-1)\):</div>
   <div class="simple-steps">
     <div class="step"><strong>Porządkowa<br>ograniczoność</strong></div>
     <div class="step"><strong>\(p\)-sumowalność</strong></div>
-    <div class="step"><div class="formula">\[(1-|\widetilde\varphi|)^{-1}\in L^1\]</div></div>
+    <div class="step"><div class="formula">\[(1-|\widetilde\phi|)^{-1}\in L^1\]</div></div>
   </div>
   <p class="result-tagline">Trzy równoważne warunki dla jednego operatora.</p>
   <span class="paper-ref">[4] Mastyło · Mleczko (2019)</span>
@@ -402,7 +468,7 @@
 <aside class="notes">
   <p><strong>Slajd 12/17 · Porządkowa ograniczoność</strong></p>
   <p><strong>Czas:</strong> 1:05 · <strong>na zegarze:</strong> 12:10–13:15 (plan)</p>
-  <p>Przestrzeń H[X] nie ma naturalnego porządku, ale funkcje brzegowe leżą w symetrycznej kracie X. Stąd przejście do operatora złożenia C-tilde i badanie jego ograniczoności porządkowej. Wynik [4, Thm. 4.5] dotyczy p>2, q=p/(p−1), C-tilde z H^{p,q} do L^p na okręgu. Zaskakująca jest równoważność trzech pozornie różnych własności: porządkowej ograniczoności, p-sumowalności i całkowalności odwrotności odległości wartości brzegowych symbolu od okręgu. W innych twierdzeniach kryterium opisuje funkcja fundamentalna przestrzeni X.</p>
+  <p>Przestrzeń HX nie ma naturalnego porządku, ale funkcje brzegowe leżą w symetrycznej kracie X. Stąd przejście do operatora złożenia C-tilde i badanie jego ograniczoności porządkowej. Wynik [4, Thm. 4.5] dotyczy p>2, q=p/(p−1), C-tilde z H^{p,q} do L^p na okręgu. Zaskakująca jest równoważność trzech pozornie różnych własności: porządkowej ograniczoności, p-sumowalności i całkowalności odwrotności odległości wartości brzegowych symbolu od okręgu. W innych twierdzeniach kryterium opisuje funkcja fundamentalna przestrzeni X.</p>
   <p><strong>Źródło:</strong> Autoreferat, §5, s. 12–14; [4, Thm. 4.5, Prop. 3.1].</p>
 </aside>
 </section>
@@ -415,16 +481,16 @@
   <p class="eyebrow">Podprzestrzenie niezmiennicze · praca [1]</p>
   <h2>Twierdzenie Beurlinga poza klasycznym \(H^p\)</h2>
   <div class="theorem-box">
-    <div class="formula hero-equation">\[S(M)\subseteq M\quad\Longrightarrow\quad M=\theta\,H[X]\]</div>
+    <div class="formula hero-equation">\[S(M)\subseteq M\quad\Longrightarrow\quad M=\theta\,HX\]</div>
     <p class="centerline small">\(Sf(z)=zf(z)\), \(\theta\) — funkcja wewnętrzna</p>
   </div>
-  <p class="result-tagline">Wersja dla przestrzeni \(H[X]\) generowanej przez jednostajnie wypukłą przestrzeń symetryczną \(X\).</p>
+  <p class="result-tagline">Wersja dla przestrzeni \(HX\) generowanej przez jednostajnie wypukłą przestrzeń symetryczną \(X\).</p>
   <span class="paper-ref">[1] J. Math. Anal. Appl. (2013)</span>
 </div>
 <aside class="notes">
   <p><strong>Slajd 13/17 · Beurling i podprzestrzenie niezmiennicze</strong></p>
   <p><strong>Czas:</strong> 0:55 · <strong>na zegarze:</strong> 13:15–14:10 (plan)</p>
-  <p>Wrócić do klasycznego twierdzenia Beurlinga dla przesunięcia na H^2: niezmiennicze domknięte podprzestrzenie mają postać theta H^2. Z pracy [1] wynika analogon M=theta H[X] dla przestrzeni H[X] przy jednostajnej wypukłości X (dla domkniętej niezmienniczej M). Powiedzieć, że problem został rozwiązany bez możliwości wykorzystania jawnej postaci funkcjonałów podtrzymujących dostępnej w L^p. W autoreferacie podane są także twierdzenia dla samej przestrzeni symetrycznej X, w tym opis podprzestrzeni z warunkiem S(M)=M.</p>
+  <p>Wrócić do klasycznego twierdzenia Beurlinga dla przesunięcia na H^2: niezmiennicze domknięte podprzestrzenie mają postać theta H^2. Z pracy [1] wynika analogon M=theta HX dla przestrzeni HX przy jednostajnej wypukłości X (dla domkniętej niezmienniczej M). Powiedzieć, że problem został rozwiązany bez możliwości wykorzystania jawnej postaci funkcjonałów podtrzymujących dostępnej w L^p. W autoreferacie podane są także twierdzenia dla samej przestrzeni symetrycznej X, w tym opis podprzestrzeni z warunkiem S(M)=M.</p>
   <p><strong>Źródło:</strong> Autoreferat, §6, s. 14–15; [1, Cor. 2.4] oraz [1, Thm. 2.3, 2.6].</p>
 </aside>
 </section>
@@ -437,21 +503,21 @@
   <p class="eyebrow">Kryterium strukturalne · praca [7]</p>
   <h2>Kiedy operator złożenia jest asymptotycznie Toeplitzowy?</h2>
   <div class="theorem-box">
-    <p class="result-label">Uogólnienie na \(H[X]\)</p>
-    <div class="formula hero-equation hero-equation--compact">\[B^nW_{u,\varphi}S^n\ \xrightarrow[\ n\to\infty\ ]{\ \|\cdot\|\ }\ A\]</div>
+    <p class="result-label">Uogólnienie na \(HX\)</p>
+    <div class="formula hero-equation hero-equation--compact">\[B^n(uC_\phi)S^n\ \xrightarrow[\ n\to\infty\ ]{\ \|\cdot\|\ }\ A\]</div>
   </div>
   <div class="key-pair">
-    <div class="panel"><p class="big-symbol">\(W_{u,\varphi}\) zwarty</p></div>
+    <div class="panel"><p class="big-symbol">\(uC_\phi\) zwarty</p></div>
     <div class="relationship">lub</div>
-    <div class="panel"><p class="big-symbol">\(\varphi=\mathrm{id}\)</p></div>
+    <div class="panel"><p class="big-symbol">\(\phi=\mathrm{id}\)</p></div>
   </div>
-  <p class="centerline small">Przy ograniczoności \(W_{u,\varphi}\) i dopuszczalności przestrzeni \(X\): równoważność.</p>
+  <p class="centerline small">Przy ograniczoności \(uC_\phi\) i dopuszczalności przestrzeni \(X\): równoważność.</p>
   <span class="paper-ref">[7] Lindström · Miihkinen · Mleczko · Norrbo (2023)</span>
 </div>
 <aside class="notes">
   <p><strong>Slajd 14/17 · Asymptotyczne operatory Toeplitza</strong></p>
   <p><strong>Czas:</strong> 1:25 · <strong>na zegarze:</strong> 14:10–15:35 (plan)</p>
-  <p>Przypomnieć charakterystykę Browna–Halmosa S*TS=T na H^2 oraz klasyczne operatory asymptotyczne. W H[X] nie mamy ogólnie sprzężenia Hilbertowskiego, dlatego zastępujemy je przesunięciem wstecz B. Dla dopuszczalnych przestrzeni symetrycznych X (własność Fatou, porządkowa ciągłość X i dualu Köthego, odpowiednia interpolacja L^p–L^q) pokazujemy, że ograniczony W jest jednostajnie asymptotycznie Toeplitzowy wtedy i tylko wtedy, gdy jest zwarty lub phi jest identycznością. To uogólnia wyniki również poza H^2. Zasygnalizować, że w [7] są też twierdzenia dla słabszych odmian asymptotyczności.</p>
+  <p>Przypomnieć charakterystykę Browna–Halmosa S*TS=T na H^2 oraz klasyczne operatory asymptotyczne. W HX nie mamy ogólnie sprzężenia Hilbertowskiego, dlatego zastępujemy je przesunięciem wstecz B. Dla dopuszczalnych przestrzeni symetrycznych X (własność Fatou, porządkowa ciągłość X i dualu Köthego, odpowiednia interpolacja L^p–L^q) pokazujemy, że ograniczony W jest jednostajnie asymptotycznie Toeplitzowy wtedy i tylko wtedy, gdy jest zwarty lub phi jest identycznością. To uogólnia wyniki również poza H^2. Zasygnalizować, że w [7] są też twierdzenia dla słabszych odmian asymptotyczności.</p>
   <p><strong>Źródło:</strong> Autoreferat, §7, s. 15–18; [7, Prop. 3.1, Thm. 3.5] (Twierdzenie 17 autoreferatu).</p>
 </aside>
 </section>
@@ -485,7 +551,7 @@
     <div class="panel">
       <p class="result-label">Rozkład funkcji</p>
       <div class="formula">\[f=f_0+f_1+\dots+f_m\]</div>
-      <p class="small">Przy odpowiednich założeniach \(H[X](\Omega)\) jest sumą prostą przestrzeni związanych ze składowymi brzegu.</p>
+      <p class="small">Przy odpowiednich założeniach \(HX(\Omega)\) jest sumą prostą przestrzeni związanych ze składowymi brzegu.</p>
     </div>
   </div>
   <p class="result-tagline">Rozkład przestrzeni prowadzi do formuły interpolacyjnej na \(\Omega\).</p>
@@ -494,7 +560,7 @@
 <aside class="notes">
   <p><strong>Slajd 15/17 · Obszary kołowe</strong></p>
   <p><strong>Czas:</strong> 1:05 · <strong>na zegarze:</strong> 15:35–16:40 (plan)</p>
-  <p>Obszar kołowy to dysk, z którego usunięto rozłączne domknięte dyski. Konstrukcja H[X](Omega) musi uwzględnić regularne wyczerpania i miary harmoniczne na brzegach; w ogólnym przypadku normy przenosimy do ustalonej przestrzeni X przez izomorfizmy przestrzeni miar. Dla maksymalnej przestrzeni symetrycznej X otrzymaliśmy rozkład funkcji f jako sumę składowych pochodzących z otoczenia poszczególnych składowych brzegu ([5, Thm. 3.2]). Rozkład ten pozwala przenieść formułę interpolacyjną Xu na obszary wielospójne.</p>
+  <p>Obszar kołowy to dysk, z którego usunięto rozłączne domknięte dyski. Konstrukcja HX(Omega) musi uwzględnić regularne wyczerpania i miary harmoniczne na brzegach; w ogólnym przypadku normy przenosimy do ustalonej przestrzeni X przez izomorfizmy przestrzeni miar. Dla maksymalnej przestrzeni symetrycznej X otrzymaliśmy rozkład funkcji f jako sumę składowych pochodzących z otoczenia poszczególnych składowych brzegu ([5, Thm. 3.2]). Rozkład ten pozwala przenieść formułę interpolacyjną Xu na obszary wielospójne.</p>
   <p><strong>Źródło:</strong> Autoreferat, §8, s. 18–20; [5, Thm. 3.2 i Cor. 3.4].</p>
 </aside>
 </section>
@@ -508,19 +574,19 @@
   <h2>Miara Carlesona ⇔ ograniczony operator zanurzenia</h2>
   <div class="simple-steps">
     <div class="step"><p class="result-label">Geometria</p><strong>\(\mu\) jest miarą Carlesona na \(\Omega\)</strong></div>
-    <div class="step"><p class="result-label">Operator</p><strong>\(j_\mu:H[X](\Omega)\to X(\Omega,\mu)\)</strong><small>jest ograniczony</small></div>
+    <div class="step"><p class="result-label">Operator</p><strong>\(j_\mu:HX(\Omega)\to X(\Omega,\mu)\)</strong><small>jest ograniczony</small></div>
     <div class="step"><p class="result-label">Redukcja</p><strong>\(\widetilde\mu\) jest miarą Carlesona na \(\mathbb D\)</strong></div>
   </div>
   <div class="theorem-box">
     <p class="result-tagline">Równoważność przy regularnej funkcji fundamentalnej \(X\) i odpowiednich założeniach na \(\mu\).</p>
   </div>
-  <p class="small">W tym samym kontekście: porządkowo ograniczone operatory złożenia na \(H[X](\Omega)\).</p>
+  <p class="small">W tym samym kontekście: porządkowo ograniczone operatory złożenia na \(HX(\Omega)\).</p>
   <span class="paper-ref">[5] Mleczko · Rzeczkowski (2019)</span>
 </div>
 <aside class="notes">
   <p><strong>Slajd 16/17 · Miary Carlesona na obszarach kołowych</strong></p>
   <p><strong>Czas:</strong> 1:25 · <strong>na zegarze:</strong> 16:40–18:05 (plan)</p>
-  <p>Podkreślić, że w [5] badaliśmy nie tylko definicję H[X](Omega), lecz także miary Carlesona i kanoniczne zanurzenia do krat funkcji mierzalnych na Omega. Główne twierdzenie daje równoważność: mu jest miarą Carlesona na Omega, operator j_mu jest ograniczony, odpowiadający operator na dysku jest ograniczony i przeniesiona miara mu-tilde jest miarą Carlesona na dysku. Pełne założenia to między innymi bezatomowa miara probabilistyczna, maksymalna przestrzeń symetryczna X(Omega,mu), regularna funkcja fundamentalna. Wspomnieć też charakteryzację porządkowo ograniczonych operatorów złożenia ([5, Thm. 5.1]).</p>
+  <p>Podkreślić, że w [5] badaliśmy nie tylko definicję HX(Omega), lecz także miary Carlesona i kanoniczne zanurzenia do krat funkcji mierzalnych na Omega. Główne twierdzenie daje równoważność: mu jest miarą Carlesona na Omega, operator j_mu jest ograniczony, odpowiadający operator na dysku jest ograniczony i przeniesiona miara mu-tilde jest miarą Carlesona na dysku. Pełne założenia to między innymi bezatomowa miara probabilistyczna, maksymalna przestrzeń symetryczna X(Omega,mu), regularna funkcja fundamentalna. Wspomnieć też charakteryzację porządkowo ograniczonych operatorów złożenia ([5, Thm. 5.1]).</p>
   <p><strong>Źródło:</strong> Autoreferat, §8, s. 20–21; [5, Thm. 4.2] (Twierdzenie 21 autoreferatu).</p>
 </aside>
 </section>
@@ -533,9 +599,9 @@
   <p class="eyebrow">Podsumowanie · siedem prac 2013–2023</p>
   <h2>Co łączy te wyniki?</h2>
   <div class="layout-three three-areas">
-    <div class="theme-card"><h3>Interpolacja</h3><p class="card-description">Przenoszenie własności z modeli klasycznych.</p><p class="big-symbol">\(H^p\rightsquigarrow H[X]\)</p></div>
-    <div class="theme-card"><h3>Geometria</h3><p class="card-description">Punkty stałe, ciągi interpolacyjne i miary.</p><p class="big-symbol">\(\varphi,\ \lambda,\ \mu\)</p></div>
-    <div class="theme-card"><h3>Struktura operatorów</h3><p class="card-description">Widmo, sumowalność i zachowanie asymptotyczne.</p><p class="big-symbol">\(\sigma(W),\ B^nWS^n\)</p></div>
+    <div class="theme-card"><h3>Interpolacja</h3><p class="card-description">Przenoszenie własności z modeli klasycznych.</p><p class="big-symbol">\(H^p\rightsquigarrow HX\)</p></div>
+    <div class="theme-card"><h3>Geometria</h3><p class="card-description">Punkty stałe, ciągi interpolacyjne i miary.</p><p class="big-symbol">\(\phi,\ \lambda,\ \mu\)</p></div>
+    <div class="theme-card"><h3>Struktura operatorów</h3><p class="card-description">Widmo, sumowalność i zachowanie asymptotyczne.</p><p class="big-symbol">\(\sigma_X(uC_\phi),\ B^nTS^n\)</p></div>
   </div>
   <p class="result-tagline">Wspólne narzędzia — nowe klasy przestrzeni i nowe pytania.</p>
   <p class="footnote">Dziękuję za uwagę.</p>
@@ -543,7 +609,7 @@
 <aside class="notes">
   <p><strong>Slajd 17/17 · Podsumowanie</strong></p>
   <p><strong>Czas:</strong> 0:55 · <strong>na zegarze:</strong> 18:05–19:00 (plan)</p>
-  <p>Zamknąć opowieść w trzech punktach: interpolacja łączy klasyczne H^p z abstrakcyjnymi H[X], geometria dysku i obszarów kołowych determinuje własności analityczne, a teoria operatorów pozwala przejść od struktury przestrzeni do widm, sumowalności i toeplitzowości. Możliwe pytania na końcu: pełne widma w przypadku hiperbolicznym na ogólnych H[X], charakteryzacja zwartości wagowych operatorów złożenia, silna asymptotyczna toeplitzowość. W autoreferacie zostały one wskazane jako niezakończone; przed finalną wersją sprawdzić aktualny status literaturowy. Zakończyć w limicie czasu.</p>
+  <p>Zamknąć opowieść w trzech punktach: interpolacja łączy klasyczne H^p z abstrakcyjnymi HX, geometria dysku i obszarów kołowych determinuje własności analityczne, a teoria operatorów pozwala przejść od struktury przestrzeni do widm, sumowalności i toeplitzowości. Możliwe pytania na końcu: pełne widma w przypadku hiperbolicznym na ogólnych HX, charakteryzacja zwartości wagowych operatorów złożenia, silna asymptotyczna toeplitzowość. W autoreferacie zostały one wskazane jako niezakończone; przed finalną wersją sprawdzić aktualny status literaturowy. Zakończyć w limicie czasu.</p>
   <p><strong>Źródło:</strong> Autoreferat, s. 1–21, synteza prac [1]–[7]. Kierunki dalsze sformułowane jako propozycje prezentacji.</p>
 </aside>
 </section>
