@@ -514,7 +514,7 @@
 }
 
 
-/* Slajd 2: pełna lista publikacji oraz trzy osobne kafelki pod nią. */
+/* Slajd 2: kafelki motywów przewodnich nad wykazem publikacji. */
 .reveal .overview-slide {
   min-height: 0;
   padding: 18px 24px 16px;
@@ -528,6 +528,7 @@
 }
 
 .reveal .overview-papers {
+  margin-top: 14px;
   min-width: 0;
   padding: 13px 21px 9px;
   border: 1px solid color-mix(in srgb, var(--r-main-color) 20%, transparent);
@@ -585,7 +586,7 @@
   opacity: 0.92;
 }
 .reveal .overview-themes-title {
-  margin: 13px 0 9px;
+  margin: 0 0 9px;
 }
 .reveal .overview-themes {
   display: grid;
