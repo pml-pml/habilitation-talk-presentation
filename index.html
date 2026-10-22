@@ -623,7 +623,8 @@
     height: initialCanvasSize.height,
     margin: 0,
     minScale: 0.2,
-    maxScale: 1.8,
+    // Nie ograniczamy powiększenia do 1.8: na monitorach HiDPI/4K zostawiałoby to pasy.
+    maxScale: 8,
     center: false,
     controls: true,
     progress: true,
