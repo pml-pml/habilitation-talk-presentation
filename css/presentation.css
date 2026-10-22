@@ -17,6 +17,7 @@
   --deck-panel-pad: 24px;
   --deck-gap: 22px;
   --deck-slide-pad: 24px;
+  --slide-canvas-height: 810px;
 }
 
 .reveal {
@@ -147,8 +148,8 @@ html, body {
 .reveal .slides > section {
   position: absolute;
   box-sizing: border-box;
-  height: 810px;
-  min-height: 810px;
+  height: var(--slide-canvas-height);
+  min-height: var(--slide-canvas-height);
   background-color: #f8f7f1;
 }
 .reveal h1, .reveal h2, .reveal h3 { color: #0d2846; }
@@ -165,8 +166,8 @@ html, body {
   gap: 0;
   box-sizing: border-box;
   width: 100%;
-  height: 810px;
-  min-height: 810px;
+  height: var(--slide-canvas-height);
+  min-height: var(--slide-canvas-height);
   padding: 0;
   overflow: hidden;
 }
@@ -219,7 +220,7 @@ html, body {
   max-height: none;
   width: 100%;
   height: 100%;
-  min-height: 810px;
+  min-height: var(--slide-canvas-height);
   object-fit: cover;
   object-position: center center;
   opacity: 1;
@@ -235,7 +236,7 @@ html, body {
   top: 0;
   left: 0;
   width: 16.666667%;
-  height: 810px;
+  height: var(--slide-canvas-height);
   pointer-events: none;
   background: #103b62 url("../assets/collegium-chat-original.avif") 62% center / cover no-repeat;
   border-right: 2px solid rgba(187,149,98,.40);
@@ -247,7 +248,7 @@ html, body {
   box-sizing: border-box;
   margin-left: 16.666667%;
   width: 83.333333%;
-  min-height: 810px;
+  min-height: var(--slide-canvas-height);
   padding: 22px 23px 18px;
 }
 .reveal .slides > section:not(:first-child) h2 {
