@@ -142,8 +142,9 @@ html, body {
   color: #173350;
 }
 .reveal { color: #173350; background: #f8f7f1; }
+/* Slajdy Reveal.js muszą zajmować wspólny obszar (nie układać się pionowo). */
 .reveal .slides > section {
-  position: relative;
+  position: absolute;
   box-sizing: border-box;
   background-color: #f8f7f1;
 }
