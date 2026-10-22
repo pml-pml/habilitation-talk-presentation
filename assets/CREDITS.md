@@ -1,17 +1,12 @@
-# Źródła grafiki w prezentacji
+# Pochodzenie grafiki
 
-## Collegium Minus — fotografia
+Prezentacja korzysta z ilustracji wybranej przez autora w rozmowie z ChatGPT.
 
-- **Autor:** Krzysztof Duda (AMU Fotoportal).
-- **Tytuł:** *Collegium Minus w Poznaniu*.
-- **Źródło:** [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Collegium_Minus_w_Poznaniu.jpg).
-- **Licencja:** [Creative Commons Attribution–ShareAlike 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/).
-- **Zmiany w prezentacji:** kadrowanie, korekta nasycenia i kontrastu, nakładki tonalne i geometryczne.
-- **Wykorzystanie:** fotografia jest ładowana z oryginalnego adresu Wikimedia Commons, zarówno na slajdzie tytułowym, jak i w lewym panelu dalszych slajdów.
+- **Plik:** `assets/collegium-chat-original.avif`.
+- **Pochodzenie:** bezpośrednio z grafiki wygenerowanej w czacie; obraz zachowuje oryginalną kompozycję i wymiary 941 × 1672 px.
+- **Format:** AVIF (optymalizacja sposobu zapisu do strony internetowej, bez zmian kompozycji).
+- **Wykorzystanie:** pełna grafika w prawej 1/3 slajdu tytułowego, odpowiedni wycinek tej samej grafiki w lewej 1/6 na slajdach pozostałych.
 
-## Elementy ilustracyjne
+Ilustracja zawiera wizerunek budynku w stylu architektury akademickiej. Nie jest to fotografia dokumentacyjna Collegium Minus.
 
-- `chat-reference-math-sky.svg` — fragment wcześniejszej, wygenerowanej w czacie i zaakceptowanej przez autora prezentacji grafiki (granatowe tło, łuki i oznaczenia (H^p), (HX)).
-- `collegium-geometry.svg` — wektorowa nakładka okręgów, łuków, siatki i punktów, opracowana na potrzeby tej kompozycji.
-
-Uwaga techniczna: ponieważ fotografia pochodzi ze zdalnego adresu Wikimedia Commons, jej wyświetlenie wymaga dostępu do Internetu. Części wektorowe są przechowywane bezpośrednio w repozytorium.
+Pozostałe wcześniejsze próby motywu w katalogu `assets/` nie są wykorzystywane przez aktualną prezentację.

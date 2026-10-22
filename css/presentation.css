@@ -124,10 +124,9 @@
 .reveal .math-showcase .formula { font-size: 1.17em; }
 
 /*
- * Collegium Minus / akademicka geometria.
- * Inspiracja: zaakceptowana grafika z czata (jasny papier, granat, złoto).
- * Zdjęcie: Krzysztof Duda, AMU Fotoportal, Wikimedia Commons, CC BY-SA 3.0.
- * Prawa jedna trzecia na slajdzie tytułowym; lewa jedna szósta na kolejnych.
+ * Grafika bezpośrednio z czatu; pełny, nieprzetworzony układ kadru.
+ * Na slajdzie tytułowym grafika zajmuje 1/3 po prawej, na kolejnych 1/6 po lewej.
+ * Jedynym źródłem wizualnym jest assets/collegium-chat-original.avif.
  */
 :root {
   --r-background-color: #f8f7f1;
@@ -142,10 +141,7 @@ html, body {
   background-color: #f8f7f1 !important;
   color: #173350;
 }
-.reveal {
-  color: #173350;
-  background: #f8f7f1;
-}
+.reveal { color: #173350; background: #f8f7f1; }
 .reveal .slides > section {
   position: relative;
   box-sizing: border-box;
@@ -156,7 +152,7 @@ html, body {
 .reveal .controls { color: #496f88; }
 .reveal .progress { color: var(--deck-gold); }
 .reveal .progress span { background: var(--deck-gold); }
-.reveal .slides > section a:not(.image-credit a) { color: #34627b; }
+.reveal .slides > section a { color: #34627b; }
 
 .reveal .title-layout {
   display: grid;
@@ -211,108 +207,32 @@ html, body {
   border: none;
   color: #244463;
 }
-.reveal .title-layout .title-art {
-  position: relative;
+.reveal .title-layout img.title-art {
   display: block;
   width: 100%;
   height: 100%;
   min-height: 810px;
-  overflow: hidden;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 1;
   background: #0b3153;
   border: 0;
-  opacity: 1;
   box-shadow: none;
-  isolation: isolate;
 }
-.reveal .collegium-art::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(244,239,228,.26) 0%, transparent 20%),
-    linear-gradient(0deg, rgba(9,30,52,.48) 0%, rgba(9,30,52,.13) 35%, rgba(10,47,77,.05) 73%, rgba(9,35,61,.05) 100%);
-}
-.reveal .collegium-photo {
-  position: absolute;
-  z-index: 0;
-  inset: 215px 0 0;
-  background: #153d62 url("https://upload.wikimedia.org/wikipedia/commons/b/be/Collegium_Minus_w_Poznaniu.jpg") 32% 57% / auto 100% no-repeat;
-  filter: saturate(.77) contrast(1.10) brightness(.95);
-}
-.reveal .collegium-sky {
-  position: absolute;
-  z-index: 1;
-  left: -3px;
-  top: -5px;
-  width: calc(100% + 6px);
-  height: 317px;
-  object-fit: cover;
-  object-position: 52% 0%;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 52%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 52%, transparent 100%);
-}
-.reveal .collegium-geometry {
-  position: absolute;
-  z-index: 2;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  opacity: .82;
-}
-.reveal .image-credit {
-  position: absolute;
-  z-index: 3;
-  bottom: 12px;
-  right: 12px;
-  font: 11px/1.15 var(--deck-font);
-  text-align: right;
-  margin: 0;
-  background: rgba(4,29,49,.70);
-  padding: 6px 8px;
-  border-radius: 3px;
-}
-.reveal .image-credit a,
-.reveal .slides > section .image-credit a {
-  color: #f8f6f0 !important;
-  text-decoration: none;
-}
-.reveal .image-credit a:hover { text-decoration: underline; }
-
-/* Użycie tej samej fotografii i geometrii na pozostałych slajdach. */
 .reveal .slides > section:not(:first-child) { font-size: 27px; }
 .reveal .slides > section:not(:first-child)::before {
   content: "";
   position: absolute;
   z-index: 0;
   top: 0;
-  bottom: 0;
   left: 0;
   width: 16.666667%;
   height: 810px;
   pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(15,51,83,.20) 0%, rgba(14,49,80,.05) 40%, rgba(6,32,58,.40) 100%),
-    url("https://upload.wikimedia.org/wikipedia/commons/b/be/Collegium_Minus_w_Poznaniu.jpg") 28% 56% / auto 100% no-repeat;
-  border-right: 2px solid rgba(187,149,98,.45);
-  filter: saturate(.80);
+  background: #103b62 url("../assets/collegium-chat-original.avif") 62% center / cover no-repeat;
+  border-right: 2px solid rgba(187,149,98,.40);
 }
-.reveal .slides > section:not(:first-child)::after {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: 0;
-  width: 16.666667%;
-  height: 810px;
-  pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(7,37,67,.42), transparent 55%),
-    url("../assets/collegium-geometry.svg") center center / auto 100% no-repeat;
-  box-shadow: inset -1px 0 0 rgba(231,202,158,.55);
-}
+.reveal .slides > section:not(:first-child)::after { content: none; }
 .reveal .slides > section:not(:first-child) .slide-content {
   position: relative;
   z-index: 1;
