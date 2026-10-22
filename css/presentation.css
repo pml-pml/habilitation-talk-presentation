@@ -123,26 +123,120 @@
 .reveal .math-showcase .panel { min-height: 360px; }
 .reveal .math-showcase .formula { font-size: 1.17em; }
 
-/* Slajd tytułowy: delikatna geometria — bez obrazu pod tekstem. */
-.reveal .title-layout {
+/* Grafika: pełny panel 1/3 po prawej na okładce, pionowy pas 1/6 po lewej na kolejnych slajdach. */
+.reveal .slides > section {
+  position: relative;
   box-sizing: border-box;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 360px;
-  gap: 30px;
-  align-items: center;
-  min-height: 680px;
 }
 
-.reveal .title-copy h1 { max-width: 970px; text-wrap: balance; margin: 0.5em 0 0.55em; }
+.reveal .title-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  align-items: stretch;
+  width: 100%;
+  height: 810px;
+  min-height: 810px;
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+.reveal .title-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 42px 48px 42px 60px;
+}
+
+.reveal .title-copy h1 {
+  font-size: 51px;
+  line-height: 1.17;
+  max-width: 840px;
+  text-wrap: balance;
+  margin: 0 0 36px;
+}
+
 .reveal .title-copy .affiliation {
   border-left: 3px solid var(--r-link-color);
   padding-left: 20px;
-  margin-top: 32px;
-  font-size: var(--deck-small);
+  margin: 0;
+  font-size: 23px;
+  line-height: 1.46;
 }
-.reveal .title-art { width: 100%; height: auto; color: var(--r-link-color); opacity: 0.29; }
-.reveal .title-art .thin { stroke-width: 1.4; }
-.reveal .title-art .strong { stroke-width: 3; }
+
+.reveal .title-layout .title-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+  object-position: center;
+  opacity: 1;
+  border: none;
+  box-shadow: none;
+  background: #042b37;
+}
+
+.reveal .slides > section:not(:first-child) {
+  font-size: 27px;
+}
+
+.reveal .slides > section:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 16.666667%;
+  height: 810px;
+  pointer-events: none;
+  background: #042b37 url("../assets/academia-math-rail.svg") center center / cover no-repeat;
+  border-right: 1px solid color-mix(in srgb, var(--r-link-color) 31%, transparent);
+}
+
+.reveal .slides > section:not(:first-child) .slide-content {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  margin-left: 16.666667%;
+  width: 83.333333%;
+  min-height: 810px;
+  padding: 24px 23px 18px;
+}
+
+.reveal .slides > section:not(:first-child) h2 {
+  font-size: 39px;
+  margin: .22em 0 .7em;
+}
+
+.reveal .slides > section:not(:first-child) .panel {
+  padding: 19px;
+}
+
+.reveal .slides > section:not(:first-child) .layout-three {
+  gap: 16px;
+}
+
+.reveal .slides > section:not(:first-child) .layout-two {
+  gap: 19px;
+}
+
+.reveal .slides > section:not(:first-child) .theorem-box {
+  margin: 19px 0;
+  padding: 11px 18px 13px 20px;
+}
+
+.reveal .slides > section:not(:first-child) .simple-steps {
+  gap: 14px;
+}
+
+.reveal .slides > section:not(:first-child) .theme-card {
+  padding: 18px 16px 20px;
+}
 
 /* Schematy dysku: rozdzielenie geometrii od opisu i notatek. */
 .reveal .diagram-grid { margin-top: 12px; }
