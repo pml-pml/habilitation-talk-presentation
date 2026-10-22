@@ -430,6 +430,11 @@ html, body {
   text-align: center;
   margin: 0.65em auto 0.85em;
 }
+/* Slajd interpolacji ma długi wzór na dole: delikatnie skróć wyłącznie
+   odstęp przed formułą, nie zmieniając wspólnej linii nagłówków. */
+.reveal .slides > section[data-slide-topic="Geometria interpolacji"] .centerline {
+  margin-bottom: 0.55em;
+}
 
 .reveal .result-label {
   color: var(--r-link-color);
