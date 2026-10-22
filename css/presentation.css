@@ -596,6 +596,11 @@ html, body {
 
 .reveal .three-areas { margin-top: 35px; }
 .reveal .three-areas .theme-card { min-height: 220px; }
+/* Ostatni wzór na slajdzie podsumowania jest dłuższy niż pozostałe. */
+.reveal .three-areas .theme-card:last-child .big-symbol {
+  font-size: 1.22em;
+  white-space: nowrap;
+}
 
 .reveal .footnote {
   margin-top: 28px;
