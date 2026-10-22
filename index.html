@@ -602,10 +602,20 @@
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/plugin/notes.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/plugin/zoom.js"></script>
 <script>
+  // Szerokość projektowa pozostaje stała; wysokość dopasowuje się do ekranu.
+  // Zapobiega to pasom ponad i pod slajdem na ekranach 16:10 i 4:3.
+  const SLIDE_DESIGN_WIDTH = 1440;
+  function getSlideHeightForViewport() {
+    const viewportWidth = Math.max(1, document.documentElement.clientWidth);
+    const viewportHeight = Math.max(1, window.innerHeight);
+    const height = Math.max(810, Math.ceil(SLIDE_DESIGN_WIDTH * viewportHeight / viewportWidth));
+    document.documentElement.style.setProperty('--slide-canvas-height', height + 'px');
+    return height;
+  }
   Reveal.initialize({
     hash: true,
-    width: 1440,
-    height: 810,
+    width: SLIDE_DESIGN_WIDTH,
+    height: getSlideHeightForViewport(),
     margin: 0,
     minScale: 0.2,
     maxScale: 1.8,
@@ -632,6 +642,10 @@
       }
     },
     plugins: [RevealMath.MathJax3, RevealNotes, RevealZoom]
+  });
+  window.addEventListener('resize', () => {
+    const height = getSlideHeightForViewport();
+    if (Reveal.getConfig().height !== height) Reveal.configure({ height });
   });
 </script>
 </body>
