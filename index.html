@@ -610,7 +610,7 @@
   function getCanvasSize() {
     const viewportWidth = Math.max(1, window.innerWidth);
     const viewportHeight = Math.max(1, window.innerHeight);
-    // Reveal.js zaokrągla skalę do trzech cyfr po przecinku. Przy 21:9,
+    // Reveal.js zaokrągla skalę do dwóch cyfr po przecinku. Przy 21:9,
     // 4K i niektórych poziomach zoomu oznaczało to 1–4 px pustego paska.
     // Wybieramy dokładnie taką skalę, jaką zastosuje Reveal, a logiczne
     // wymiary wyliczamy z rozmiaru rzeczywistego okna.
@@ -618,7 +618,7 @@
       viewportWidth / SLIDE_DESIGN_WIDTH,
       viewportHeight / SLIDE_DESIGN_HEIGHT
     );
-    const effectiveScale = Math.max(0.2, Math.floor(idealScale * 1000) / 1000);
+    const effectiveScale = Math.max(0.2, Math.floor(idealScale * 100) / 100);
     const width = viewportWidth / effectiveScale;
     const height = viewportHeight / effectiveScale;
     document.documentElement.style.setProperty('--slide-canvas-height', height + 'px');
