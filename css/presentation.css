@@ -139,18 +139,25 @@
   --r-selection-background-color: #d2b47f;
   --deck-gold: #caa16b;
 }
+/* Jedna warstwa tła pod całą prezentacją, także pod elementami graficznymi. */
 html, body {
-  background-color: #f8f7f1 !important;
+  background-color: var(--r-background-color) !important;
   color: #173350;
 }
-.reveal { color: #173350; background: #f8f7f1; }
+.reveal {
+  color: #173350;
+  background: var(--r-background-color);
+}
+.reveal .slides {
+  background-color: var(--r-background-color);
+}
 /* Slajdy Reveal.js muszą zajmować wspólny obszar (nie układać się pionowo). */
 .reveal .slides > section {
   position: absolute;
   box-sizing: border-box;
   height: var(--slide-canvas-height);
   min-height: var(--slide-canvas-height);
-  background-color: #f8f7f1;
+  background-color: var(--r-background-color);
 }
 .reveal h1, .reveal h2, .reveal h3 { color: #0d2846; }
 .reveal .slide-number { color: #173350; background: #f8f7f1c9; }
@@ -181,9 +188,8 @@ html, body {
   align-items: flex-start;
   box-sizing: border-box;
   padding: 46px 42px 46px 61px;
-  background:
-    radial-gradient(ellipse at 93% 26%, rgba(230,206,161,.20), transparent 28%),
-    linear-gradient(90deg, #faf9f4 0%, #f8f7f1 79%, #f1f2ed 100%);
+  /* Bez dodatkowego gradientu: widoczny jest jednolity kolor całego slajdu. */
+  background: transparent;
 }
 .reveal .title-copy::after {
   content: "";
@@ -224,7 +230,8 @@ html, body {
   object-fit: cover;
   object-position: center center;
   opacity: 1;
-  background: #0b3153;
+  /* Kolor pod obrazem taki sam jak pod resztą slajdu. */
+  background: var(--r-background-color);
   border: 0;
   box-shadow: none;
 }
@@ -238,7 +245,8 @@ html, body {
   width: 16.666667%;
   height: var(--slide-canvas-height);
   pointer-events: none;
-  background: #103b62 url("../assets/collegium-chat-original.avif") 62% center / cover no-repeat;
+  /* Kolor pod obrazem bocznym jest identyczny z tłem całego slajdu. */
+  background: var(--r-background-color) url("../assets/collegium-chat-original.avif") 62% center / cover no-repeat;
   border-right: 2px solid rgba(187,149,98,.40);
 }
 .reveal .slides > section:not(:first-child)::after { content: none; }
