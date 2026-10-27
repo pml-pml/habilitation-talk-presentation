@@ -230,10 +230,18 @@ html, body {
   object-fit: cover;
   object-position: center center;
   opacity: 1;
-  /* Kolor pod obrazem taki sam jak pod resztą slajdu. */
+  /* Pod przezroczystymi pikselami pozostaje dokładnie tło slajdu. */
   background: var(--r-background-color);
   border: 0;
   box-shadow: none;
+  /* Delikatnie wygasza lewy brzeg po kadrowaniu przez object-fit: cover.
+     Nie modyfikuje PNG i nie narusza prawej części z budynkiem. */
+  -webkit-mask-image: linear-gradient(to right,
+    transparent 0%, rgba(0,0,0,0.1) 9%, rgba(0,0,0,0.5) 20%,
+    rgba(0,0,0,0.88) 31%, #000 40%);
+  mask-image: linear-gradient(to right,
+    transparent 0%, rgba(0,0,0,0.1) 9%, rgba(0,0,0,0.5) 20%,
+    rgba(0,0,0,0.88) 31%, #000 40%);
 }
 .reveal .slides > section:not(:first-child) { font-size: 27px; }
 .reveal .slides > section:not(:first-child)::before {
