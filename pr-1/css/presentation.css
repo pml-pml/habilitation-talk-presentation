@@ -608,6 +608,30 @@ html, body {
   color: var(--ink-2);
   text-wrap: pretty;
 }
+.reveal .motto {
+  position: absolute;
+  top: 40px;
+  right: var(--deck-slide-pad);
+  width: max-content;
+  max-width: 680px;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  font-size: 18px;
+  line-height: 1.4;
+  font-style: italic;
+  color: var(--ink-2);
+}
+.reveal .motto p { margin: 0; }
+.reveal .motto footer {
+  margin-top: 6px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  color: var(--slate);
+}
+.reveal .motto footer::before { content: "— "; }
 .reveal .overview {
   position: relative;
   display: grid;
@@ -699,8 +723,8 @@ html, body {
 }
 .reveal .topics .refs { display: block; margin-top: 4px; font-size: 15px; font-weight: 650; color: var(--slate); }
 .reveal .other-papers {
-  margin-top: 10px;
-  padding-top: 7px;
+  margin-top: 22px;
+  padding-top: 9px;
   border-top: 1px solid var(--hairline);
 }
 .reveal .overview + .other-papers .col-title,
@@ -716,8 +740,8 @@ html, body {
   list-style: none;
   margin: 0;
   padding: 0;
-  columns: 3;
-  column-gap: 26px;
+  columns: 2;
+  column-gap: 34px;
 }
 .reveal .other-papers li {
   break-inside: avoid;

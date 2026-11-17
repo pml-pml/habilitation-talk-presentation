@@ -106,9 +106,14 @@
     const papers = box.querySelector('.papers');
     // Linie biegną kolejno od pracy do tematu; t0 — początek, dur — czas jednej linii.
     const t0 = 0.9, dur = 1.8, gap = 1.2;
+    // Półkola między tematami, od kropek, do których dochodzą linie: [od, do, promień poziomy].
+    // Operatory Carlesona → wagowe operatory złożenia; przestrzenie Hardy’ego → wagowe operatory złożenia.
+    const ARCS = [[0, 1, 44], [2, 1, 44]];
     let items = [];
+    const firstLink = new Map();
     function layout() {
       if (!box.offsetWidth) return;
+      firstLink.clear();
       while (links.firstChild) links.removeChild(links.firstChild);
       set(links, { viewBox: '0 0 ' + box.offsetWidth + ' ' + box.offsetHeight });
       const x1 = papers.offsetLeft + papers.offsetWidth + 6;
@@ -131,8 +136,29 @@
           const end = svg('circle', { cx: f1(x2), cy: f1(y2), r: 5, class: 'anchor-end', opacity: 0 }, links);
           const halo = svg('circle', { r: 13, class: 'runner-halo', opacity: 0 }, links);
           const dot = svg('circle', { r: 6.5, class: 'runner', opacity: 0 }, links);
-          items.push({ path, len, end, halo, dot, paper: p, topic: li, start: t0 + gap * k++ });
+          const it = { path, len, end, halo, dot, paper: p, topic: li, start: t0 + gap * k++ };
+          items.push(it);
+          if (!firstLink.has(li) || firstLink.get(li).start > it.start) firstLink.set(li, it);
         });
+      });
+      // Półkola po lewej stronie kafelków; rysują się po liniach.
+      const tl = box.querySelectorAll('.topics li');
+      const arcStart = t0 + gap * (k - 1) + dur + 0.5;
+      ARCS.forEach(([a, b, rx], j) => {
+        const A = tl[a], B = tl[b];
+        if (!A || !B) return;
+        const xa = A.offsetLeft - 6, xb = B.offsetLeft - 6;
+        const ya = A.offsetTop + A.offsetHeight / 2, yb = B.offsetTop + B.offsetHeight / 2;
+        const ry = Math.abs(yb - ya) / 2;
+        const sweep = yb > ya ? 0 : 1;
+        const d = 'M' + f1(xa) + ' ' + f1(ya) + 'A' + f1(rx) + ' ' + f1(ry) + ' 0 0 ' + sweep + ' ' + f1(xb) + ' ' + f1(yb);
+        const path = svg('path', { d, class: 'arc' }, links);
+        const len = path.getTotalLength();
+        set(path, { 'stroke-dasharray': f1(len) + ' ' + f1(len + 10), 'stroke-dashoffset': f1(len) });
+        const end = svg('circle', { cx: f1(xb), cy: f1(yb), r: 5, class: 'anchor-end', opacity: 0 }, links);
+        const halo = svg('circle', { r: 13, class: 'runner-halo', opacity: 0 }, links);
+        const dot = svg('circle', { r: 6.5, class: 'runner', opacity: 0 }, links);
+        items.push({ path, len, end, halo, dot, start: arcStart + gap * j });
       });
     }
     function frame(t) {
@@ -147,11 +173,18 @@
         set(it.dot, { cx: f1(q.x), cy: f1(q.y), opacity: vis });
         set(it.halo, { cx: f1(q.x), cy: f1(q.y), opacity: vis });
         it.end.setAttribute('opacity', u >= 1 ? 1 : 0);
-        if (u > 0 && u < 1) active.add(it.paper);
-        if (u >= 1) reached.add(it.topic);
+        if (it.paper && u > 0 && u < 1) active.add(it.paper);
+        if (it.topic && u >= 1) reached.add(it.topic);
       }
       box.querySelectorAll('.papers li').forEach(li => li.classList.toggle('is-active', active.has(li)));
       box.querySelectorAll('.topics li').forEach(li => li.classList.toggle('is-reached', reached.has(li)));
+      // Kafelek tematu wyłania się, gdy zbliża się do niego pierwsza linia.
+      for (const [li, first] of firstLink) {
+        const u = clamp((t - first.start) / dur);
+        const s = ease(clamp((u - 0.15) / 0.85));
+        li.style.opacity = f1(s * 100) / 100;
+        li.style.transform = s >= 1 ? '' : 'translateX(' + f1((1 - s) * 28) + 'px) scale(' + (0.96 + 0.04 * s).toFixed(3) + ')';
+      }
     }
     return {
       poster: 60,
