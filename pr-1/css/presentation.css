@@ -1,0 +1,809 @@
+/*
+ * Prezentacja habilitacyjna — styl warstwy treści.
+ * Wariant akademicki: jasny motyw z grafiką Collegium Minus UAM,
+ * inspirowany zaakceptowaną ilustracją z czata.
+ */
+
+:root {
+  --deck-font: "Inter", "Segoe UI", "DejaVu Sans", sans-serif;
+  --deck-body: 29px;
+  --deck-small: 22px;
+  --deck-caption: 17px;
+  --deck-kicker: 17px;
+  --deck-h1: 60px;
+  --deck-h2: 43px;
+  --deck-h3: 28px;
+  --deck-radius: 15px;
+  --deck-panel-pad: 24px;
+  --deck-gap: 22px;
+  --deck-slide-pad: 24px;
+  --slide-canvas-height: 810px;
+}
+
+.reveal {
+  font-family: var(--deck-font);
+  font-size: var(--deck-body);
+  line-height: 1.34;
+}
+
+.reveal .slides section {
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  font-family: var(--deck-font);
+  text-transform: none;
+  letter-spacing: -0.018em;
+  font-weight: 650;
+  line-height: 1.14;
+  text-shadow: none;
+}
+
+.reveal h1 {
+  font-size: var(--deck-h1);
+  max-width: 980px;
+}
+
+.reveal h2 {
+  font-size: var(--deck-h2);
+  margin: 0.3em 0 0.9em;
+}
+
+.reveal h3 {
+  font-size: var(--deck-h3);
+  margin: 0 0 0.4em;
+}
+
+.reveal p { margin: 0.45em 0; }
+.reveal ul { margin: 0.5em 0 0.5em 1.1em; }
+.reveal li { margin: 0.32em 0; }
+.reveal a { text-underline-offset: 0.13em; }
+
+.reveal .slide-content {
+  box-sizing: border-box;
+  padding: 28px var(--deck-slide-pad);
+  min-height: 720px;
+}
+
+.reveal .eyebrow {
+  margin: 0 0 0.55em;
+  font-size: var(--deck-kicker);
+  font-weight: 750;
+  line-height: 1.25;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--r-link-color);
+}
+
+.reveal .small { font-size: var(--deck-small); line-height: 1.36; }
+.reveal .caption { font-size: var(--deck-caption); line-height: 1.3; opacity: 0.8; }
+.reveal .muted { opacity: 0.77; }
+
+.reveal .panel,
+.reveal .diagram-card,
+.reveal .theme-card {
+  box-sizing: border-box;
+  background: color-mix(in srgb, var(--r-background-color) 90%, var(--r-link-color) 10%);
+  border: 1px solid color-mix(in srgb, var(--r-main-color) 23%, transparent);
+  border-radius: var(--deck-radius);
+}
+
+.reveal .panel { padding: var(--deck-panel-pad); }
+
+.reveal .layout-three {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--deck-gap);
+  align-items: stretch;
+}
+
+.reveal .theme-card { padding: 25px 25px 29px; min-height: 235px; }
+.reveal .theme-card .main-symbol { font-size: 1.48em; margin-top: 0.85em; }
+.reveal .theme-card .card-description { font-size: var(--deck-small); }
+
+.reveal .formula {
+  text-align: center;
+  margin: 0.3em 0;
+}
+
+.reveal .formula mjx-container[display="true"] {
+  margin: 0.36em auto !important;
+}
+
+.reveal .math-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1.07fr;
+  align-items: start;
+  gap: 42px;
+  margin-top: 28px;
+}
+
+.reveal .math-showcase .panel { min-height: 360px; }
+.reveal .math-showcase .formula { font-size: 1.17em; }
+
+/* Obrazy wypełniają całą wysokość slajdu i stykają się z jego skrajną krawędzią. */
+/*
+ * Grafika bezpośrednio z czatu; pełny, nieprzetworzony układ kadru.
+ * Na slajdzie tytułowym grafika zajmuje 1/3 po prawej, na kolejnych 1/6 po lewej.
+ * Jedynym źródłem wizualnym jest assets/collegium-chat-original.avif.
+ */
+:root {
+  --r-background-color: #f8f7f1;
+  --r-main-color: #173350;
+  --r-heading-color: #0d2846;
+  --r-link-color: #416b86;
+  --r-link-color-hover: #153e60;
+  --r-selection-background-color: #d2b47f;
+  --deck-gold: #caa16b;
+}
+/* Jedna warstwa tła pod całą prezentacją, także pod elementami graficznymi. */
+html, body {
+  background-color: var(--r-background-color) !important;
+  color: #173350;
+}
+.reveal {
+  color: #173350;
+  background: var(--r-background-color);
+}
+.reveal .slides {
+  background-color: var(--r-background-color);
+}
+/* Slajdy Reveal.js muszą zajmować wspólny obszar (nie układać się pionowo). */
+.reveal .slides > section {
+  position: absolute;
+  box-sizing: border-box;
+  height: var(--slide-canvas-height);
+  min-height: var(--slide-canvas-height);
+  background-color: var(--r-background-color);
+}
+.reveal h1, .reveal h2, .reveal h3 { color: #0d2846; }
+.reveal .slide-number { color: #173350; background: #f8f7f1c9; }
+.reveal .controls { color: #496f88; }
+.reveal .progress { color: var(--deck-gold); }
+.reveal .progress span { background: var(--deck-gold); }
+.reveal .slides > section a { color: #34627b; }
+
+.reveal .title-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--slide-canvas-height);
+  min-height: var(--slide-canvas-height);
+  padding: 0;
+  overflow: hidden;
+}
+.reveal .title-copy {
+  min-width: 0;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 46px 42px 46px 61px;
+  /* Bez dodatkowego gradientu: widoczny jest jednolity kolor całego slajdu. */
+  background: transparent;
+}
+.reveal .title-copy::after {
+  content: "";
+  display: block;
+  width: 166px;
+  height: 5px;
+  order: 1;
+  margin: 2px 0 28px;
+  background: linear-gradient(90deg, #c69b61, #ddb87d);
+}
+.reveal .title-copy h1 {
+  font-size: 50px;
+  line-height: 1.18;
+  max-width: 825px;
+  margin: 0 0 30px;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+  color: #0d2745;
+}
+.reveal .title-copy .affiliation {
+  order: 2;
+  margin: 0;
+  padding: 0;
+  font-size: 23px;
+  line-height: 1.44;
+  border: none;
+  color: #244463;
+}
+.reveal .title-layout img.title-art {
+  display: block;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  max-height: none;
+  width: 100%;
+  height: 100%;
+  min-height: var(--slide-canvas-height);
+  object-fit: cover;
+  object-position: center center;
+  opacity: 1;
+  /* Pod przezroczystymi pikselami pozostaje dokładnie tło slajdu. */
+  background: var(--r-background-color);
+  border: 0;
+  box-shadow: none;
+  /* Delikatnie wygasza lewy brzeg po kadrowaniu przez object-fit: cover.
+     Nie modyfikuje PNG i nie narusza prawej części z budynkiem. */
+  -webkit-mask-image: linear-gradient(to right,
+    transparent 0%, rgba(0,0,0,0.1) 9%, rgba(0,0,0,0.5) 20%,
+    rgba(0,0,0,0.88) 31%, #000 40%);
+  mask-image: linear-gradient(to right,
+    transparent 0%, rgba(0,0,0,0.1) 9%, rgba(0,0,0,0.5) 20%,
+    rgba(0,0,0,0.88) 31%, #000 40%);
+}
+.reveal .slides > section:not(:first-child) { font-size: 27px; }
+.reveal .slides > section:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 16.666667%;
+  height: var(--slide-canvas-height);
+  pointer-events: none;
+  /* Kolor pod obrazem bocznym jest identyczny z tłem całego slajdu. */
+  background: var(--r-background-color) url("../assets/collegium-chat-original.avif") 62% center / cover no-repeat;
+  border-right: 2px solid rgba(187,149,98,.40);
+}
+.reveal .slides > section:not(:first-child)::after { content: none; }
+/* Nieco większy górny margines treści na slajdach 2–17; slajd tytułowy bez zmian. */
+.reveal .slides > section:not(:first-child) .slide-content {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  margin-left: 16.666667%;
+  width: 83.333333%;
+  min-height: var(--slide-canvas-height);
+  padding: 36px 23px 18px;
+}
+
+/* ============================================================
+ * Warstwa treści slajdów 2–16.
+ * Slajd tytułowy i pasek z grafiką (::before) pozostają bez zmian.
+ * ============================================================ */
+
+:root {
+  --ink: #0d2846;
+  --ink-2: #173350;
+  --slate: #416b86;
+  --slate-soft: rgba(65, 107, 134, 0.14);
+  --slate-line: rgba(65, 107, 134, 0.55);
+  --gold: #c39457;
+  --gold-2: #ddb87d;
+  --gold-soft: rgba(198, 155, 97, 0.18);
+  --paper: #fffdf8;
+  --hairline: rgba(13, 40, 70, 0.11);
+  --hairline-2: rgba(13, 40, 70, 0.18);
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.9) inset,
+                 0 1px 2px rgba(13, 40, 70, 0.05),
+                 0 18px 38px -26px rgba(13, 40, 70, 0.42);
+  --math-serif: "STIX Two Text", "STIX Two Math", "Cambria Math", "Times New Roman", serif;
+  --enter-ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+.reveal .slides > section:not(:first-child) h2 {
+  font-size: 38px;
+  font-weight: 640;
+  margin: 0.12em 0 0.62em;
+  max-width: 1100px;
+  text-wrap: balance;
+}
+
+/* Nagłówek nad tytułem: numer paragrafu autoreferatu i prace. */
+.reveal .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 0.5em;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--slate);
+}
+.reveal .eyebrow::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 34px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-2));
+}
+
+/* ---------- Układy ---------- */
+.reveal .split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+  gap: 26px;
+  align-items: start;
+}
+.reveal .split--text-left { grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr); }
+.reveal .split--wide-figure { grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr); }
+.reveal .stack { display: grid; gap: 16px; align-content: start; }
+
+/* Główny blok slajdu wyśrodkowany w pionie między tytułem a stopką. */
+.reveal .slides > section:not(:first-child) .slide-content {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 64px;
+}
+.reveal .slide-content > .split,
+.reveal .slide-content > .diagram-grid { margin-top: auto; margin-bottom: auto; }
+.reveal .slide-content > .summary-grid { margin-top: auto; }
+.reveal .slide-content > .summary-grid + .thanks { margin-bottom: auto; }
+.reveal .slide-content > .split + .note,
+.reveal .slide-content > .diagram-grid + .note { margin-bottom: auto; }
+.reveal .split--even { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+
+/* ---------- Okienka ---------- */
+.reveal .card,
+.reveal .thm {
+  position: relative;
+  box-sizing: border-box;
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+}
+.reveal .card { padding: 16px 20px; font-size: 22px; line-height: 1.38; }
+.reveal .card p { margin: 0.3em 0; }
+
+/* Twierdzenie: złota linia u góry, etykieta z lokalizacją w pracy. */
+.reveal .thm { padding: 16px 22px 16px; font-size: 22px; line-height: 1.4; }
+.reveal .thm::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 22px;
+  width: 62px;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-2));
+}
+.reveal .thm p { margin: 0.32em 0; }
+.reveal .thm-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 2px 0 6px;
+}
+.reveal .thm-label {
+  font-size: 14px;
+  font-weight: 750;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.reveal .thm-ref {
+  font-size: 14px;
+  font-weight: 600;
+  color: #8a6534;
+  white-space: nowrap;
+  padding: 2px 9px;
+  border: 1px solid rgba(195, 148, 87, 0.45);
+  border-radius: 99px;
+  background: rgba(221, 184, 125, 0.12);
+}
+.reveal .thm .formula,
+.reveal .card .formula { margin: 0.2em 0; }
+.reveal .thm .formula mjx-container[display="true"],
+.reveal .card .formula mjx-container[display="true"] { margin: 0.28em auto !important; }
+.reveal .thm--quiet { background: rgba(255, 253, 248, 0.6); box-shadow: none; }
+.reveal .thm--quiet::before { background: var(--slate-line); }
+
+.reveal .note {
+  font-size: 18px;
+  line-height: 1.38;
+  color: rgba(23, 51, 80, 0.78);
+  margin: 4px 2px 0;
+}
+
+/* Okno rysunku: lekko jaśniejsze tło i pasek odczytów. */
+.reveal .figure {
+  margin: 0;
+  box-sizing: border-box;
+  border-radius: 20px;
+  border: 1px solid var(--hairline);
+  background:
+    radial-gradient(120% 90% at 30% 20%, #ffffff 0%, rgba(255, 255, 255, 0.55) 55%, rgba(255, 255, 255, 0) 100%),
+    var(--paper);
+  box-shadow: var(--shadow-card);
+  padding: 12px 14px 10px;
+  overflow: hidden;
+}
+.reveal .figure svg.anim,
+.reveal .figure svg.diagram {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.reveal .readout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 18px;
+  margin: 6px 4px 2px;
+  padding-top: 8px;
+  border-top: 1px solid var(--hairline);
+  font-size: 17px;
+  line-height: 1.3;
+  color: rgba(23, 51, 80, 0.86);
+}
+.reveal .readout .val {
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+  color: var(--ink);
+  display: inline-block;
+  min-width: 3.1em;
+}
+.reveal .readout .sep { opacity: 0.35; }
+.reveal .readout mjx-container { font-size: 105% !important; }
+
+/* Stopka z pracą, której dotyczy slajd. */
+.reveal .paper-foot {
+  position: absolute;
+  left: 23px;
+  right: 150px;
+  bottom: 20px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.3;
+  color: rgba(23, 51, 80, 0.72);
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+.reveal .paper-foot::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  transform: translateY(-1px) rotate(45deg);
+  background: var(--gold);
+}
+.reveal .paper-foot i { font-style: italic; }
+
+/* ---------- Wzory i drobne elementy ---------- */
+.reveal .formula { text-align: center; margin: 0.3em 0; }
+.reveal .formula mjx-container[display="true"] { margin: 0.36em auto !important; }
+.reveal .formula--lead { font-size: 1.12em; }
+.reveal .centerline { text-align: center; }
+.reveal .small { font-size: 20px; line-height: 1.38; }
+.reveal .muted { color: rgba(23, 51, 80, 0.72); }
+.reveal .chips { display: flex; flex-wrap: wrap; gap: 8px 10px; margin-top: 8px; }
+.reveal .chip {
+  font-size: 19px;
+  padding: 4px 13px;
+  border-radius: 99px;
+  border: 1px solid var(--hairline-2);
+  background: rgba(255, 255, 255, 0.7);
+}
+.reveal .rule { height: 1px; background: var(--hairline); margin: 10px 0; border: 0; }
+.reveal .tag-inline {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+.reveal .equiv-list { margin: 6px 0 0; padding: 0; list-style: none; counter-reset: eq; }
+.reveal .equiv-list li {
+  counter-increment: eq;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: baseline;
+  margin: 4px 0;
+}
+.reveal .equiv-list li::before {
+  content: "(" counter(eq) ")";
+  font-size: 18px;
+  color: var(--slate);
+}
+
+/* ---------- Grafika SVG (rysowana w js/animations.js) ---------- */
+.reveal svg .disk-fill { fill: #ffffff; fill-opacity: 0.75; }
+.reveal svg .omega-fill { fill: var(--slate); fill-opacity: 0.08; fill-rule: evenodd; }
+.reveal svg .ink-line { fill: none; stroke: var(--ink); stroke-width: 2.2; }
+.reveal svg .slate-line { fill: none; stroke: var(--slate); stroke-width: 2; }
+.reveal svg .gold-line { fill: none; stroke: var(--gold); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.reveal svg .thick { stroke-width: 3.6; }
+.reveal svg .grid-line { fill: none; stroke: var(--ink); stroke-opacity: 0.14; stroke-width: 1.2; stroke-dasharray: 3 6; }
+.reveal svg .axis { fill: none; stroke: var(--ink); stroke-opacity: 0.38; stroke-width: 1.3; }
+.reveal svg .ghost-line { fill: none; stroke: var(--slate); stroke-opacity: 0.32; stroke-width: 1.4; }
+.reveal svg .cursor-line { fill: none; stroke: var(--gold); stroke-opacity: 0.55; stroke-width: 1.3; stroke-dasharray: 3 4; }
+.reveal svg .soft-area { fill: var(--gold); fill-opacity: 0.13; stroke: none; }
+.reveal svg .slate-area { fill: var(--slate); fill-opacity: 0.16; stroke: none; fill-rule: evenodd; }
+.reveal svg .gold-area { fill: var(--gold); fill-opacity: 0.30; stroke: var(--gold); stroke-width: 1.6; }
+.reveal svg .dot-ink { fill: var(--ink); stroke: #fff; stroke-width: 1.6; }
+.reveal svg .dot-slate { fill: var(--slate); stroke: #fff; stroke-width: 1.4; }
+.reveal svg .dot-gold { fill: var(--gold); stroke: #fff; stroke-width: 1.6; }
+.reveal svg .dot-faint { fill: var(--slate); fill-opacity: 0.35; }
+.reveal svg .bar { fill: var(--slate); fill-opacity: 0.72; }
+.reveal svg .bar.is-current { fill: var(--gold); fill-opacity: 1; }
+.reveal svg .cell { fill: var(--ink); }
+.reveal svg .cell-frame { fill: none; stroke: var(--ink); stroke-opacity: 0.12; stroke-width: 1; }
+.reveal svg .window { fill: var(--gold); fill-opacity: 0.08; stroke: var(--gold); stroke-width: 2.6; }
+.reveal svg .lbl {
+  font-family: var(--deck-font);
+  font-size: 15px;
+  fill: rgba(23, 51, 80, 0.8);
+}
+.reveal svg .lbl-strong { font-family: var(--deck-font); font-size: 16px; font-weight: 650; fill: var(--ink); }
+.reveal svg .mth {
+  font-family: var(--math-serif);
+  font-style: italic;
+  font-size: 19px;
+  fill: var(--ink);
+}
+.reveal svg .mth-up { font-family: var(--math-serif); font-size: 19px; fill: var(--ink); }
+.reveal svg .mth-gold { fill: #9b6f35; }
+
+/* ---------- Diagramy budowane przy wejściu na slajd ---------- */
+.reveal .diagram-wrap { position: relative; }
+.reveal .diagram-wrap .node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  font-size: 25px;
+  padding: 6px 14px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--hairline-2);
+  box-shadow: 0 8px 20px -16px rgba(13, 40, 70, 0.5);
+}
+.reveal .diagram-wrap .node--key { border-color: rgba(195, 148, 87, 0.7); background: #fffaf0; }
+.reveal .diagram-wrap .node--plain { background: transparent; border-color: transparent; box-shadow: none; }
+.reveal svg.diagram .arrow { fill: none; stroke: var(--ink); stroke-opacity: 0.7; stroke-width: 2; }
+.reveal svg.diagram .arrow--gold { stroke: var(--gold); stroke-opacity: 1; stroke-width: 3; }
+.reveal svg.diagram .arrow--dash { stroke-dasharray: 6 6; }
+.reveal svg.diagram .head { fill: var(--ink); fill-opacity: 0.7; }
+.reveal svg.diagram .head--gold { fill: var(--gold); fill-opacity: 1; }
+.reveal svg.diagram .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.reveal .slides section.present svg.diagram .draw {
+  animation: draw-in 0.9s var(--enter-ease) forwards;
+  animation-delay: var(--d, 0s);
+}
+.reveal svg.diagram .pop { opacity: 0; }
+.reveal .slides section.present svg.diagram .pop,
+.reveal .slides section.present .diagram-wrap .pop {
+  animation: fade-in 0.5s ease forwards;
+  animation-delay: var(--d, 0s);
+}
+.reveal .diagram-wrap .pop { opacity: 0; }
+@keyframes draw-in { to { stroke-dashoffset: 0; } }
+@keyframes fade-in { to { opacity: 1; } }
+
+/* ---------- Wejście elementów na slajd ---------- */
+.reveal .slides section.present .enter {
+  animation: enter-up 0.7s var(--enter-ease) both;
+  animation-delay: calc(var(--i, 0) * 90ms + 80ms);
+}
+@keyframes enter-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- Slajd 2: prace i zagadnienia ---------- */
+.reveal .overview {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 120px 400px;
+  align-items: start;
+}
+.reveal .overview svg.links {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.reveal .overview svg.links path {
+  fill: none;
+  stroke: var(--slate);
+  stroke-opacity: 0.45;
+  stroke-width: 1.6;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.reveal .slides section.present .overview svg.links path {
+  animation: draw-in 1s var(--enter-ease) forwards;
+  animation-delay: var(--d, 0.6s);
+}
+.reveal .overview .col-title {
+  font-size: 15px;
+  font-weight: 750;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin: 0 0 8px;
+}
+.reveal .papers,
+.reveal .topics { list-style: none; margin: 0; padding: 0; }
+.reveal .papers li {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  align-items: baseline;
+  padding: 7px 14px 7px 0;
+  margin: 0;
+  border-top: 1px solid var(--hairline);
+}
+.reveal .papers li:first-child { border-top: 0; }
+.reveal .papers .num {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--slate);
+  font-variant-numeric: tabular-nums;
+}
+.reveal .papers cite {
+  display: block;
+  font-size: 18px;
+  line-height: 1.2;
+  font-style: italic;
+  color: var(--ink);
+}
+.reveal .papers .meta { display: block; font-size: 14px; line-height: 1.25; margin-top: 2px; color: rgba(23, 51, 80, 0.75); }
+.reveal .topics li {
+  position: relative;
+  font-size: 19px;
+  line-height: 1.26;
+  padding: 11px 14px 11px 16px;
+  margin: 0 0 9px;
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--gold);
+  border-radius: 4px 12px 12px 4px;
+  box-shadow: 0 10px 22px -20px rgba(13, 40, 70, 0.6);
+}
+.reveal .topics .refs { font-size: 15px; font-weight: 650; color: var(--slate); margin-left: 4px; white-space: nowrap; }
+
+/* ---------- Slajd z automorfizmami ---------- */
+.reveal .diagram-grid { margin-top: 6px; }
+.reveal .diagram-card {
+  margin: 0;
+  padding: 18px 16px 14px;
+  text-align: center;
+  min-width: 0;
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: 18px;
+  box-shadow: var(--shadow-card);
+}
+.reveal .diagram-card h3 { font-size: 25px; margin: 0 0 4px; }
+.reveal .diagram-card p { margin: 0.25em 0; }
+.reveal .diagram-card .disk-diagram {
+  display: block;
+  width: 100%;
+  max-width: 270px;
+  height: 265px;
+  margin: 0 auto 6px;
+  overflow: visible;
+  color: var(--r-main-color);
+}
+.reveal .diagram-card .formula--small { font-size: 21px; }
+.reveal .diagram-card .diagram-caption { font-size: 17px; margin-top: 4px; color: rgba(23, 51, 80, 0.78); }
+
+.disk-diagram .disk-outline { fill: #fff; fill-opacity: 0.7; stroke: currentColor; stroke-width: 2.5; }
+.disk-diagram .guide { fill: none; stroke: currentColor; opacity: 0.38; stroke-width: 1.5; stroke-dasharray: 5 7; }
+.disk-diagram .flow { fill: none; stroke: var(--slate); stroke-opacity: 0.22; stroke-width: 1.3; }
+.disk-diagram .fixed-point { fill: var(--gold); stroke: #fff; stroke-width: 2; }
+.disk-diagram .moving-point { fill: var(--r-heading-color); stroke: #fff; stroke-width: 1.8; }
+.disk-diagram .math-label { font-family: var(--math-serif); font-size: 17px; fill: currentColor; }
+
+/* Animacje automorfizmów (bez zmian w przebiegu ruchu). */
+.disk-diagram .elliptic-particle {
+  transform-origin: 130px 130px;
+  transform-box: view-box;
+  animation: orbit-rotation 9s linear infinite;
+}
+.disk-diagram .hyperbolic-particle { animation: hyperbolic-iterates 9s linear infinite; }
+.disk-diagram .parabolic-particle { opacity: 1; }
+.disk-diagram .parabolic-still { display: none; }
+@keyframes orbit-rotation { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+/* Kolejne iteracje x -> (x+0.45)/(1+0.45x) od x=0; promień dysku 103 px. */
+@keyframes hyperbolic-iterates {
+  0%, 11% { transform: translateX(0); }
+  17%, 28% { transform: translateX(46.35px); }
+  34%, 45% { transform: translateX(77.1px); }
+  51%, 62% { transform: translateX(92.3px); }
+  68%, 79% { transform: translateX(98.8px); }
+  85%, 95% { transform: translateX(101.4px); opacity: 1; }
+  100% { transform: translateX(101.5px); opacity: 0; }
+}
+.reveal .slides section:not(.present) .elliptic-particle,
+.reveal .slides section:not(.present) .hyperbolic-particle { animation-play-state: paused; }
+
+/* ---------- Podsumowanie ---------- */
+.reveal .summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.reveal .summary-grid .card { padding: 18px 20px 16px; }
+.reveal .summary-grid h3 { font-size: 24px; margin: 0 0 8px; }
+.reveal .summary-grid ul { list-style: none; margin: 0; padding: 0; }
+.reveal .summary-grid li {
+  font-size: 19px;
+  line-height: 1.32;
+  margin: 0 0 8px;
+  padding-left: 16px;
+  position: relative;
+}
+.reveal .summary-grid li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  transform: rotate(45deg);
+  background: var(--gold);
+}
+.reveal .summary-grid .refs { color: var(--slate); font-weight: 650; font-size: 16px; white-space: nowrap; }
+.reveal .thanks {
+  margin-top: 28px;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: right;
+}
+
+/* Reveal.js bez fragmentów: przypadkowa klasa fragment niczego nie ukrywa. */
+.reveal .slides .fragment {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+.reveal .progress { height: 4px; }
+.reveal .slide-number { font-size: 15px; }
+
+/* Dostępność i druk: stan końcowy, bez ruchu. */
+@media (prefers-reduced-motion: reduce) {
+  .disk-diagram .elliptic-particle,
+  .disk-diagram .hyperbolic-particle { animation: none !important; }
+  .disk-diagram .parabolic-particle { display: none; }
+  .disk-diagram .parabolic-still { display: block; }
+  .reveal .slides section .enter,
+  .reveal .slides section svg.diagram .draw,
+  .reveal .slides section svg.diagram .pop,
+  .reveal .slides section .diagram-wrap .pop,
+  .reveal .overview svg.links path {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
+@media print {
+  .disk-diagram .elliptic-particle,
+  .disk-diagram .hyperbolic-particle { animation: none !important; }
+  .disk-diagram .parabolic-particle { display: none; }
+  .disk-diagram .parabolic-still { display: block; }
+  .reveal .slides section .enter,
+  .reveal .slides section svg.diagram .draw,
+  .reveal .slides section svg.diagram .pop,
+  .reveal .slides section .diagram-wrap .pop,
+  .reveal .overview svg.links path {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
+
+@media (max-width: 720px) {
+  :root { --deck-body: 26px; --deck-h1: 54px; }
+  .reveal .title-layout { grid-template-columns: minmax(0, 1fr) 250px; }
+}
