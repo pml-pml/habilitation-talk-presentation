@@ -128,9 +128,10 @@
           const path = svg('path', { d }, links);
           const len = path.getTotalLength();
           set(path, { 'stroke-dasharray': f1(len) + ' ' + f1(len + 10), 'stroke-dashoffset': f1(len) });
+          const end = svg('circle', { cx: f1(x2), cy: f1(y2), r: 5, class: 'anchor-end', opacity: 0 }, links);
           const halo = svg('circle', { r: 13, class: 'runner-halo', opacity: 0 }, links);
           const dot = svg('circle', { r: 6.5, class: 'runner', opacity: 0 }, links);
-          items.push({ path, len, halo, dot, paper: p, topic: li, start: t0 + gap * k++ });
+          items.push({ path, len, end, halo, dot, paper: p, topic: li, start: t0 + gap * k++ });
         });
       });
     }
@@ -145,6 +146,7 @@
         const vis = u > 0 && u < 1 ? 1 : 0;
         set(it.dot, { cx: f1(q.x), cy: f1(q.y), opacity: vis });
         set(it.halo, { cx: f1(q.x), cy: f1(q.y), opacity: vis });
+        it.end.setAttribute('opacity', u >= 1 ? 1 : 0);
         if (u > 0 && u < 1) active.add(it.paper);
         if (u >= 1) reached.add(it.topic);
       }
