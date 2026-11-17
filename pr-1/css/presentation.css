@@ -253,8 +253,9 @@ html, body {
   width: 16.666667%;
   height: var(--slide-canvas-height);
   pointer-events: none;
-  /* Kolor pod obrazem bocznym jest identyczny z tłem całego slajdu. */
-  background: var(--r-background-color) url("../assets/collegium-chat-original.avif") 62% center / cover no-repeat;
+  /* Kolor pod obrazem bocznym jest identyczny z tłem całego slajdu.
+     Obraz dosunięty do prawej krawędzi paska: przy lewej krawędzi slajdu jest niebo. */
+  background: var(--r-background-color) url("../assets/collegium-chat-original.avif") 100% center / cover no-repeat;
   border-right: 2px solid rgba(187,149,98,.40);
 }
 .reveal .slides > section:not(:first-child)::after { content: none; }
