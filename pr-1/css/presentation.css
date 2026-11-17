@@ -596,13 +596,24 @@ html, body {
   to { opacity: 1; transform: none; }
 }
 
-/* ---------- Slajd 2: prace i zagadnienia ---------- */
+/* ---------- Slajd 2: prace i tematy ---------- */
+.reveal .lead {
+  max-width: 1040px;
+  margin: -0.25em 0 0.9em;
+  padding-left: 18px;
+  border-left: 3px solid var(--gold);
+  font-size: 23px;
+  line-height: 1.42;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
 .reveal .overview {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 120px 400px;
-  align-items: start;
+  grid-template-columns: 540px minmax(120px, 1fr) 310px;
+  align-items: stretch;
 }
+.reveal .overview > div { display: flex; flex-direction: column; min-width: 0; }
 .reveal .overview svg.links {
   position: absolute;
   inset: 0;
@@ -614,61 +625,77 @@ html, body {
 .reveal .overview svg.links path {
   fill: none;
   stroke: var(--slate);
-  stroke-opacity: 0.45;
-  stroke-width: 1.6;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
+  stroke-opacity: 0.6;
+  stroke-width: 3.2;
+  stroke-linecap: round;
 }
-.reveal .slides section.present .overview svg.links path {
-  animation: draw-in 1s var(--enter-ease) forwards;
-  animation-delay: var(--d, 0.6s);
-}
+.reveal .overview svg.links .runner-halo { fill: var(--gold); fill-opacity: 0.22; }
+.reveal .overview svg.links .runner { fill: var(--gold); stroke: #fff; stroke-width: 2; }
+.reveal .overview svg.links .anchor { fill: var(--slate); }
 .reveal .overview .col-title {
   font-size: 15px;
   font-weight: 750;
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--slate);
-  margin: 0 0 8px;
+  margin: 0 0 6px;
 }
 .reveal .papers,
 .reveal .topics { list-style: none; margin: 0; padding: 0; }
 .reveal .papers li {
   display: grid;
-  grid-template-columns: 40px minmax(0, 1fr);
+  grid-template-columns: 38px minmax(0, 1fr);
   align-items: baseline;
-  padding: 7px 14px 7px 0;
+  padding: 5px 10px 5px 6px;
   margin: 0;
   border-top: 1px solid var(--hairline);
+  border-radius: 8px;
+  transition: background-color 0.5s ease;
 }
 .reveal .papers li:first-child { border-top: 0; }
+.reveal .papers li.is-active { background: rgba(221, 184, 125, 0.18); }
 .reveal .papers .num {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--slate);
   font-variant-numeric: tabular-nums;
+  transition: color 0.5s ease;
 }
+.reveal .papers li.is-active .num { color: #9b6f35; }
 .reveal .papers cite {
   display: block;
-  font-size: 18px;
+  font-size: 16.5px;
   line-height: 1.2;
   font-style: italic;
   color: var(--ink);
 }
-.reveal .papers .meta { display: block; font-size: 14px; line-height: 1.25; margin-top: 2px; color: rgba(23, 51, 80, 0.75); }
+.reveal .papers .meta { display: block; font-size: 13px; line-height: 1.25; margin-top: 2px; color: rgba(23, 51, 80, 0.75); }
+.reveal .topics {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 14px;
+}
 .reveal .topics li {
   position: relative;
-  font-size: 19px;
-  line-height: 1.26;
-  padding: 11px 14px 11px 16px;
-  margin: 0 0 9px;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.28;
+  padding: 16px 18px 16px 20px;
+  margin: 0;
   background: var(--paper);
   border: 1px solid var(--hairline);
-  border-left: 3px solid var(--gold);
-  border-radius: 4px 12px 12px 4px;
-  box-shadow: 0 10px 22px -20px rgba(13, 40, 70, 0.6);
+  border-left: 4px solid var(--slate-line);
+  border-radius: 4px 14px 14px 4px;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.6s ease, box-shadow 0.6s ease;
 }
-.reveal .topics .refs { font-size: 15px; font-weight: 650; color: var(--slate); margin-left: 4px; white-space: nowrap; }
+.reveal .topics li.is-reached {
+  border-left-color: var(--gold);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 18px 36px -24px rgba(155, 111, 53, 0.55);
+}
+.reveal .topics .refs { display: block; margin-top: 4px; font-size: 15px; font-weight: 650; color: var(--slate); }
 
 /* ---------- Slajd z automorfizmami ---------- */
 .reveal .diagram-grid { margin-top: 6px; }

@@ -104,32 +104,58 @@
     const box = root;
     const links = box.querySelector('svg.links');
     const papers = box.querySelector('.papers');
+    // Linie biegną kolejno od pracy do tematu; t0 — początek, dur — czas jednej linii.
+    const t0 = 0.9, dur = 1.8, gap = 1.2;
+    let items = [];
     function layout() {
       if (!box.offsetWidth) return;
       while (links.firstChild) links.removeChild(links.firstChild);
       set(links, { viewBox: '0 0 ' + box.offsetWidth + ' ' + box.offsetHeight });
-      const x1 = papers.offsetLeft + papers.offsetWidth + 2;
+      const x1 = papers.offsetLeft + papers.offsetWidth + 6;
+      items = [];
       let k = 0;
       box.querySelectorAll('.topics li').forEach(li => {
-        const x2 = li.offsetLeft - 4;
+        const x2 = li.offsetLeft - 6;
         const y2 = li.offsetTop + li.offsetHeight / 2;
         li.dataset.papers.split(/\s+/).forEach(n => {
           const p = box.querySelector('.papers li[data-paper="' + n + '"]');
           if (!p) return;
           const y1 = p.offsetTop + p.offsetHeight / 2;
-          const d = 'M' + f1(x1) + ' ' + f1(y1) + 'C' + f1(x1 + 70) + ' ' + f1(y1) + ' ' +
-            f1(x2 - 70) + ' ' + f1(y2) + ' ' + f1(x2) + ' ' + f1(y2);
-          const path = svg('path', { d, pathLength: 1 }, links);
-          path.style.setProperty('--d', (0.55 + 0.13 * k++) + 's');
+          const cx = (x2 - x1) * 0.5;
+          const d = 'M' + f1(x1) + ' ' + f1(y1) + 'C' + f1(x1 + cx) + ' ' + f1(y1) + ' ' +
+            f1(x2 - cx) + ' ' + f1(y2) + ' ' + f1(x2) + ' ' + f1(y2);
+          svg('circle', { cx: f1(x1), cy: f1(y1), r: 4, class: 'anchor' }, links);
+          const path = svg('path', { d }, links);
+          const len = path.getTotalLength();
+          set(path, { 'stroke-dasharray': f1(len) + ' ' + f1(len + 10), 'stroke-dashoffset': f1(len) });
+          const halo = svg('circle', { r: 13, class: 'runner-halo', opacity: 0 }, links);
+          const dot = svg('circle', { r: 6.5, class: 'runner', opacity: 0 }, links);
+          items.push({ path, len, halo, dot, paper: p, topic: li, start: t0 + gap * k++ });
         });
       });
     }
-    let laidOut = false;
+    function frame(t) {
+      if (!items.length) layout();
+      const reached = new Set(), active = new Set();
+      for (const it of items) {
+        const u = clamp((t - it.start) / dur);
+        const s = (1 - Math.cos(Math.PI * u)) / 2;
+        it.path.setAttribute('stroke-dashoffset', f1(it.len * (1 - s)));
+        const q = it.path.getPointAtLength(it.len * s);
+        const vis = u > 0 && u < 1 ? 1 : 0;
+        set(it.dot, { cx: f1(q.x), cy: f1(q.y), opacity: vis });
+        set(it.halo, { cx: f1(q.x), cy: f1(q.y), opacity: vis });
+        if (u > 0 && u < 1) active.add(it.paper);
+        if (u >= 1) reached.add(it.topic);
+      }
+      box.querySelectorAll('.papers li').forEach(li => li.classList.toggle('is-active', active.has(li)));
+      box.querySelectorAll('.topics li').forEach(li => li.classList.toggle('is-reached', reached.has(li)));
+    }
     return {
-      poster: 0,
-      start() { layout(); laidOut = true; },
-      frame(t) { if (!laidOut || t < 0.5) { layout(); laidOut = true; } },
-      relayout: layout
+      poster: 60,
+      start() { layout(); },
+      frame,
+      relayout() { layout(); }
     };
   };
 
