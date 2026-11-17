@@ -608,6 +608,33 @@ html, body {
   color: var(--ink-2);
   text-wrap: pretty;
 }
+.reveal .spaces-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+.reveal .spaces-grid .thm { font-size: 21px; padding-left: 16px; padding-right: 16px; }
+.reveal .spaces-grid .formula { font-size: 1.04em; }
+/* Złote kreski nad okienkami: 1/3, 2/3 i cała szerokość. */
+.reveal .spaces-grid .thm::before { left: 16px; }
+.reveal .spaces-grid .thm:nth-child(1)::before { width: calc((100% - 32px) / 3); }
+.reveal .spaces-grid .thm:nth-child(2)::before { width: calc((100% - 32px) * 2 / 3); }
+.reveal .spaces-grid .thm:nth-child(3)::before { width: calc(100% - 32px); }
+.reveal .spaces-examples { margin-top: 22px; }
+.reveal .spaces-examples ul { list-style: none; margin: 0.5em 0 0.2em; padding: 0; }
+.reveal .spaces-examples li { position: relative; margin: 0.7em 0; padding-left: 30px; }
+.reveal .spaces-examples li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0.52em;
+  width: 9px;
+  height: 9px;
+  transform: rotate(45deg);
+  background: linear-gradient(135deg, var(--gold-2), var(--gold));
+  box-shadow: 0 0 0 3px rgba(221, 184, 125, 0.22);
+}
 .reveal .motto {
   position: absolute;
   top: 40px;

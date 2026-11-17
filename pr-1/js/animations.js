@@ -487,7 +487,7 @@
     svg('rect', { x: 18, y: 372, width: 26, height: 14, rx: 3, class: 'slate-area' }, root);
     rich(root, 52, 384, [['widmo na H', 'up'], ['p,q', 'sup']], 'lbl');
     svg('path', { d: 'M18 404h26', class: 'gold-line', 'stroke-dasharray': '7 6' }, root);
-    rich(root, 52, 409, [['|u(b)| ≤ |λ| ≤ |u(a)|: pierścień dla ', 'up'], ['ℬ', 'up'], [' i ', 'up'], ['𝒟', 'up']], 'lbl');
+    rich(root, 52, 409, [['|u(b)| ⩽ |λ| ⩽ |u(a)|: pierścień dla ', 'up'], ['ℬ', 'up'], [' i ', 'up'], ['𝒟', 'up']], 'lbl');
 
     const oP = output(root, 'p'), oM = output(root, 'rm'), oR = output(root, 'rp');
     return {

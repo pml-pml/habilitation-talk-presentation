@@ -105,49 +105,47 @@
 </section>
 
 
-<!-- 03. Przestrzenie HX · 1:15 · od 1:30 do 2:45 -->
-<section data-slide-topic="Przestrzenie HX" data-duration-seconds="75">
+<!-- 03. Przestrzenie funkcji holomorficznych · 1:15 · od 1:30 do 2:45 -->
+<section data-slide-topic="Przestrzenie funkcji holomorficznych" data-duration-seconds="75">
 <div class="slide-content">
-  <p class="eyebrow">§ 1 · Abstrakcyjne przestrzenie Hardy’ego</p>
-  <h2>Przestrzeń \(HX\)</h2>
-  <div class="split">
-    <figure class="figure enter">
-      <svg class="anim" data-anim="hx-radial" viewBox="0 0 600 330" role="img" aria-label="Okrąg o promieniu r w dysku i wykres modułu funkcji na tym okręgu"></svg>
-      <div class="readout">
-        <span>\(f(z)=(1-z)^{-1/3}\), \(X=L^2\)</span><span class="sep">|</span>
-        <span>\(r=\) <span class="val" data-out="r">0,50</span></span>
-        <span>\(\|f_r\|_{L^2}=\) <span class="val" data-out="norm">1,00</span></span>
-      </div>
-    </figure>
-    <div class="stack">
-      <div class="thm enter">
-        <div class="thm-head"><span class="thm-label">Definicja</span></div>
-        <p>\(X\subset L^0(\mathbb T)\) — symetryczna przestrzeń Banacha. Przestrzeń \(HX\) tworzą funkcje \(f\in H(\mathbb D)\), dla których</p>
-        <div class="formula formula--lead">\[\|f\|_{HX}=\sup_{0\le r&lt;1}\|f_r\|_X&lt;\infty,\]</div>
-        <p class="small">gdzie \(f_r(e^{it})=f(re^{it})\). Wtedy \(H^\infty\hookrightarrow HX\hookrightarrow H^1\).</p>
-      </div>
-      <div class="card enter">
-        <p class="tag-inline">Przykłady</p>
-        <div class="chips">
-          <span class="chip">\(H^p\)</span>
-          <span class="chip">Hardy–Lorentz \(H^{p,q}\)</span>
-          <span class="chip">Hardy–Orlicz \(H^\phi\)</span>
-          <span class="chip">Hardy–Marcinkiewicz \(HM_\phi\)</span>
-        </div>
-      </div>
-      <p class="note enter">Bryskin (1973), Fehér, Gaşpar i&nbsp;Johnen (1973); przestrzenie Hardy’ego–Orlicza — Leśniewicz (1966).</p>
+  <p class="eyebrow">Trzy typy przestrzeni</p>
+  <h2>Przestrzenie funkcji holomorficznych</h2>
+  <div class="spaces-grid">
+    <div class="thm enter">
+      <div class="thm-head"><span class="thm-label">Przestrzenie Hardy’ego</span></div>
+      <p>\(X\subset L^0(\mathbb T)\) — symetryczna przestrzeń Banacha. Przestrzeń \(HX\) tworzą funkcje \(f\in H(\mathbb D)\), dla których</p>
+      <div class="formula">\[\|f\|_{HX}=\sup_{0\leqslant r&lt;1}\|f_r\|_X&lt;\infty,\]</div>
+      <p class="small">gdzie \(f_r(e^{it})=f(re^{it})\).</p>
     </div>
+    <div class="thm enter">
+      <div class="thm-head"><span class="thm-label">Przestrzeń Dirichleta</span></div>
+      <p>Przestrzeń \(\mathcal D\) tworzą funkcje \(f\in H(\mathbb D)\), dla których</p>
+      <div class="formula">\[\begin{aligned}&amp;\|f\|_{\mathcal D}^2=|f(0)|^2\\&amp;\quad+\int_{\mathbb D}|f'(z)|^2\,dA(z)&lt;\infty,\end{aligned}\]</div>
+      <p class="small">gdzie \(dA\) — znormalizowana miara Lebesgue’a na \(\mathbb D\).</p>
+    </div>
+    <div class="thm enter">
+      <div class="thm-head"><span class="thm-label">Przestrzeń Blocha</span></div>
+      <p>Przestrzeń \(\mathcal B\) tworzą funkcje \(f\in H(\mathbb D)\), dla których</p>
+      <div class="formula">\[\begin{aligned}&amp;\|f\|_{\mathcal B}=|f(0)|\\&amp;\quad+\sup_{z\in\mathbb D}(1-|z|^2)|f'(z)|&lt;\infty.\end{aligned}\]</div>
+    </div>
+  </div>
+  <div class="card spaces-examples enter">
+    <p class="tag-inline">Przykłady przestrzeni Hardy’ego</p>
+    <ul>
+      <li>klasyczne przestrzenie Hardy’ego \(H^p=HL^p\), \(1\leqslant p\leqslant\infty\);</li>
+      <li>przestrzenie Hardy’ego–Lorentza \(H^{p,q}=HL^{p,q}\), \(1&lt;p&lt;\infty\), \(1\leqslant q\leqslant\infty\);</li>
+      <li>przestrzenie Hardy’ego–Orlicza \(H^\phi=HL^\phi\), \(\phi\) — funkcja Orlicza.</li>
+    </ul>
   </div>
 </div>
 <aside class="notes">
-  <p><strong>Slajd 3/16 · Przestrzenie HX</strong></p>
+  <p><strong>Slajd 3/16 · Przestrzenie funkcji holomorficznych</strong></p>
   <p><strong>Czas:</strong> 1:15 · <strong>na zegarze:</strong> 1:30–2:45</p>
-  <p>Norma w \(H^p\) to supremum norm \(L^p\) funkcji na okręgach o promieniu \(r\). W miejsce \(L^p(\mathbb T)\) bierzemy symetryczną przestrzeń Banacha \(X\). Animacja: okrąg o promieniu \(r\) i wykres \(|f(re^{it})|\) dla \(f(z)=(1-z)^{-1/3}\); przy \(r\to1\) pojawia się osobliwość w punkcie \(1\), a norma \(\|f_r\|_{L^2}\) rośnie do \(\|f\|_{H^2}\).</p>
-  <p>Przykłady: \(H^{p,q}=HL^{p,q}\), \(H^\phi=HL^\phi\), \(HM_\phi\). Przestrzenie typu \(HX\) rozważali Bryskin oraz Fehér, Gaşpar i&nbsp;Johnen; cytują ich Lindenstrauss i&nbsp;Tzafriri.</p>
-  <p><strong>Źródło:</strong> Autoreferat, § 1, s. 2–3.</p>
+  <p>Trzy typy przestrzeni, na których działają operatory w&nbsp;pracach [1]–[7]. Abstrakcyjne przestrzenie Hardy’ego \(HX\): norma w&nbsp;\(H^p\) to supremum norm \(L^p\) na okręgach o&nbsp;promieniu \(r\); w&nbsp;miejsce \(L^p(\mathbb T)\) bierzemy symetryczną przestrzeń Banacha \(X\). Wtedy \(H^\infty\hookrightarrow HX\hookrightarrow H^1\). Przestrzenie Dirichleta i&nbsp;Blocha — w&nbsp;[2] (widma \(uC_\varphi\)); w&nbsp;nich \(H^\infty\) nie zawiera się w&nbsp;algebrze mnożników.</p>
+  <p>Przestrzenie typu \(HX\) rozważali Bryskin oraz Fehér, Gaşpar i&nbsp;Johnen; przestrzenie Hardy’ego–Orlicza — Leśniewicz (1966).</p>
+  <p><strong>Źródło:</strong> Autoreferat, § 1, s. 2–3; [2, § 2].</p>
 </aside>
 </section>
-
 
 <!-- 04. Ciągi interpolacyjne · 1:05 · od 2:45 do 3:50 -->
 <section data-slide-topic="Ciągi interpolacyjne" data-duration-seconds="65">
@@ -197,7 +195,7 @@
     <div class="stack">
       <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Twierdzenie</span><span class="thm-ref">[6, Thm.&nbsp;7]</span></div>
-        <p>Niech \(1\le p&lt;q\le\infty\), \(\lambda\) — różnowartościowy ciąg w&nbsp;\(\mathbb D\) i&nbsp;\(X=F(L^p,L^q)\) — symetryczna, porządkowo ciągła, z&nbsp;własnością Fatou. Wówczas</p>
+        <p>Niech \(1\leqslant p&lt;q\leqslant\infty\), \(\lambda\) — różnowartościowy ciąg w&nbsp;\(\mathbb D\) i&nbsp;\(X=F(L^p,L^q)\) — symetryczna, porządkowo ciągła, z&nbsp;własnością Fatou. Wówczas</p>
         <div class="formula">\[\bigl\{(f(\lambda_n)):f\in HX\bigr\}=F\bigl(\ell^p(\nu),\ell^q(\nu)\bigr)\]</div>
         <p>wtedy i&nbsp;tylko wtedy, gdy \(\lambda\) jest jednostajnie oddzielony.</p>
         <p class="small muted">\(F\) — dokładny funktor interpolacyjny z&nbsp;funktorem dualnym w&nbsp;sensie Köthego, \(\nu(\{n\})=1-|\lambda_n|^2\).</p>
@@ -237,7 +235,7 @@
   <p><strong>Slajd 5/16 · Twierdzenie o śladach</strong></p>
   <p><strong>Czas:</strong> 1:20 · <strong>na zegarze:</strong> 3:50–5:10</p>
   <p>Ciąg \(\lambda\) nazywamy \(E\)-interpolacyjnym dla \(X\subset H(\mathbb D)\), gdy \(E\subseteq\{(f(\lambda_n)):f\in X\}\), czyli gdy \(T_\lambda\colon X\to E\) jest surjekcją. Twierdzenie daje warunek konieczny i&nbsp;dostateczny dla przestrzeni generowanych przez funktory interpolacyjne. Pojęcie funktora dualnego w&nbsp;sensie Köthego wprowadziliśmy w [6]; przykładami są \(K\)-metoda i&nbsp;\(J\)-metoda.</p>
-  <p>Diagram: strzałki boczne to twierdzenie Shapiro–Shieldsa dla \(H^p\) i&nbsp;\(H^q\); środkowa to wniosek dla \(HX\). Szczególne przypadki: \(H^{p,q}\) (\(1&lt;p&lt;\infty\), \(1\le q&lt;\infty\)) i&nbsp;\(H^\phi\) (\(\phi\in\Delta_2\)); dla \(HM_\phi\) ograniczoność \(T_\lambda\colon HM_\phi\to m_\phi(\nu)\) [6, Thm.&nbsp;14].</p>
+  <p>Diagram: strzałki boczne to twierdzenie Shapiro–Shieldsa dla \(H^p\) i&nbsp;\(H^q\); środkowa to wniosek dla \(HX\). Szczególne przypadki: \(H^{p,q}\) (\(1&lt;p&lt;\infty\), \(1\leqslant q&lt;\infty\)) i&nbsp;\(H^\phi\) (\(\phi\in\Delta_2\)); dla \(HM_\phi\) ograniczoność \(T_\lambda\colon HM_\phi\to m_\phi(\nu)\) [6, Thm.&nbsp;14].</p>
   <p><strong>Źródło:</strong> Autoreferat, § 2, s. 4–5; [6, Thm.&nbsp;7] (Twierdzenie 1 autoreferatu).</p>
 </aside>
 </section>
@@ -428,7 +426,7 @@
 <aside class="notes">
   <p><strong>Slajd 9/16 · Widma: paraboliczny i eliptyczny</strong></p>
   <p><strong>Czas:</strong> 1:15 · <strong>na zegarze:</strong> 8:10–9:25</p>
-  <p>Kontekst: Kamowitz (\(A(\mathbb D)\)); Hyvärinen, Lindström, Nieminen, Saukko (2013) — widma odwracalnych \(uC_\varphi\) na \(H^p\), wagowych przestrzeniach Bergmana i&nbsp;wagowych przestrzeniach funkcji ograniczonych, bez przestrzeni Blocha, Dirichleta i&nbsp;\(HX\). Na \(HX\) zamiast oszacowania \(|f(z)|\le\|f\|(1-|z|^2)^{-s}\) używamy oszacowania Mastyły i&nbsp;Rodrígueza-Piazzy \(|f(z)|\le C\|f\|_{HX}/\phi_X(1-|z|)\).</p>
+  <p>Kontekst: Kamowitz (\(A(\mathbb D)\)); Hyvärinen, Lindström, Nieminen, Saukko (2013) — widma odwracalnych \(uC_\varphi\) na \(H^p\), wagowych przestrzeniach Bergmana i&nbsp;wagowych przestrzeniach funkcji ograniczonych, bez przestrzeni Blocha, Dirichleta i&nbsp;\(HX\). Na \(HX\) zamiast oszacowania \(|f(z)|\leqslant\|f\|(1-|z|^2)^{-s}\) używamy oszacowania Mastyły i&nbsp;Rodrígueza-Piazzy \(|f(z)|\leqslant C\|f\|_{HX}/\phi_X(1-|z|)\).</p>
   <p>Animacja: zmienia się waga \(u\); szara krzywa to \(u(\mathbb T)\), złoty punkt to \(u(a)\). Widmo zależy wyłącznie od \(|u(a)|\).</p>
   <p>W dowodzie dla parabolicznego \(\varphi\) korzystamy z&nbsp;tego, że dla \(z\in\mathbb D\) ciąg \((\varphi_n(z))\) jest interpolacyjny dla \(H^\infty\).</p>
   <p><strong>Źródło:</strong> Autoreferat, § 4, s. 7–11; Twierdzenia 3, 4, 6, 7 autoreferatu.</p>
@@ -451,12 +449,12 @@
       <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Wniosek</span><span class="thm-ref">[3, Cor.&nbsp;1]</span></div>
         <p class="small">\(\varphi\) hiperboliczny z&nbsp;punktami stałymi \(a,b\), \(uC_\varphi\) odwracalny na \(H^{p,q}\):</p>
-        <div class="formula">\[\sigma_{H^{p,q}}(uC_\varphi)=\Bigl\{\lambda:\ r_-\le|\lambda|\le r_+\Bigr\},\]</div>
+        <div class="formula">\[\sigma_{H^{p,q}}(uC_\varphi)=\Bigl\{\lambda:\ r_-\leqslant|\lambda|\leqslant r_+\Bigr\},\]</div>
         <p class="small centerline">\(r_+\), \(r_-\) — największa i&nbsp;najmniejsza z&nbsp;liczb \(\dfrac{|u(a)|}{\varphi'(a)^{1/p}},\ \dfrac{|u(b)|}{\varphi'(b)^{1/p}}\).</p>
       </div>
       <div class="thm thm--quiet enter">
         <div class="thm-head"><span class="thm-label">\(X=\mathcal B,\ \mathcal D\)</span><span class="thm-ref">[2, Thm.&nbsp;4.6, 5.2]</span></div>
-        <p class="small">\(r_X(uC_\varphi)=\max(|u(a)|,|u(b)|)\), a&nbsp;widmo leży w&nbsp;pierścieniu \(\min(|u(a)|,|u(b)|)\le|\lambda|\le\max(|u(a)|,|u(b)|)\).</p>
+        <p class="small">\(r_X(uC_\varphi)=\max(|u(a)|,|u(b)|)\), a&nbsp;widmo leży w&nbsp;pierścieniu \(\min(|u(a)|,|u(b)|)\leqslant|\lambda|\leqslant\max(|u(a)|,|u(b)|)\).</p>
       </div>
     </div>
     <figure class="figure enter">
@@ -556,7 +554,7 @@
 <aside class="notes">
   <p><strong>Slajd 12/16 · Twierdzenie Beurlinga</strong></p>
   <p><strong>Czas:</strong> 0:55 · <strong>na zegarze:</strong> 12:10–13:05</p>
-  <p>Analogon dla \(H^p\), \(1\le p\le\infty\), jest znany (Helson). Punkt wyjścia: praca Redetta o&nbsp;przesunięciu na \(L^p\), \(1&lt;p&lt;\infty\), która korzysta z&nbsp;jawnej postaci funkcjonału wybierającego normę. Dla ogólnej jednostajnie wypukłej \(X\) takiej postaci nie ma.</p>
+  <p>Analogon dla \(H^p\), \(1\leqslant p\leqslant\infty\), jest znany (Helson). Punkt wyjścia: praca Redetta o&nbsp;przesunięciu na \(L^p\), \(1&lt;p&lt;\infty\), która korzysta z&nbsp;jawnej postaci funkcjonału wybierającego normę. Dla ogólnej jednostajnie wypukłej \(X\) takiej postaci nie ma.</p>
   <p>Na \(X\): gdy \(S(M)\ne M\), podprzestrzeń niezmiennicza ma postać \(M=\upsilon HX\), \(|\upsilon|=1\) p.w. [1, Thm.&nbsp;2.3]; stąd wersja dla \(HX\). Gdy \(S(M)=M\): \(M=\mathbf 1_EX\) dla mierzalnego \(E\subseteq\mathbb T\).</p>
   <p><strong>Źródło:</strong> Autoreferat, § 6, s. 14–15; Twierdzenia 15, 16 autoreferatu.</p>
 </aside>
@@ -636,7 +634,7 @@
   <p><strong>Slajd 14/16 · Obszary kołowe</strong></p>
   <p><strong>Czas:</strong> 1:05 · <strong>na zegarze:</strong> 14:30–15:35</p>
   <p>Obszar ograniczony, którego brzeg składa się z&nbsp;\(m+1\) rozłącznych analitycznych krzywych Jordana, jest konforemnie równoważny obszarowi kołowemu (Rudin, Sarason; monografia Fishera). Na dysku normę liczymy na okręgach o&nbsp;promieniu \(r\); na \(\Omega\) ich rolę pełnią brzegi \(\partial\Omega_n\) regularnego wyczerpania z&nbsp;miarami harmonicznymi. Dla \(L^p\) i&nbsp;\(L^\phi\) wystarcza wzór z&nbsp;tą samą funkcją; dla dowolnej \(X\) przenosimy normę do \(X\) przez izomorfizm zachowujący miarę \(\kappa\).</p>
-  <p>Animacja: krzywe \(\partial\Omega_n\) zbliżają się do brzegu; wyróżniona składowa \(\Gamma_k\) i&nbsp;obszar \(E_k\) (dla \(k\ge1\) — dopełnienie domkniętego dysku). Rozkład był znany dla \(H^p(\Omega)\) (Chalendar, Partington); wraz z&nbsp;twierdzeniem o&nbsp;interpolacji sum prostych (Mleczko, Szwedek) daje wersję twierdzenia Xu na \(\Omega\).</p>
+  <p>Animacja: krzywe \(\partial\Omega_n\) zbliżają się do brzegu; wyróżniona składowa \(\Gamma_k\) i&nbsp;obszar \(E_k\) (dla \(k\geqslant1\) — dopełnienie domkniętego dysku). Rozkład był znany dla \(H^p(\Omega)\) (Chalendar, Partington); wraz z&nbsp;twierdzeniem o&nbsp;interpolacji sum prostych (Mleczko, Szwedek) daje wersję twierdzenia Xu na \(\Omega\).</p>
   <p><strong>Źródło:</strong> Autoreferat, § 8, s. 18–20; [5, Thm.&nbsp;3.2, Cor.&nbsp;3.4].</p>
 </aside>
 </section>
@@ -651,7 +649,7 @@
     <figure class="figure enter">
       <svg class="anim" data-anim="carleson-windows" viewBox="0 0 600 330" role="img" aria-label="Okna Carlesona przy zewnętrznym i wewnętrznym brzegu obszaru kołowego oraz odpowiadające im okno w dysku"></svg>
       <div class="readout">
-        <span>\(\mu\) — miara Carlesona, gdy \(\rho_\mu(h)=\max_i\sup_{\zeta\in\Gamma_i}\mu\bigl(W^i(\zeta,h)\bigr)\le Ch\)</span><span class="sep">|</span>
+        <span>\(\mu\) — miara Carlesona, gdy \(\rho_\mu(h)=\max_i\sup_{\zeta\in\Gamma_i}\mu\bigl(W^i(\zeta,h)\bigr)\leqslant Ch\)</span><span class="sep">|</span>
         <span>\(h=\) <span class="val" data-out="h">0,20</span></span>
       </div>
     </figure>
