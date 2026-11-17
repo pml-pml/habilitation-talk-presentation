@@ -266,70 +266,167 @@
 
   /* ---------------- slajd 4: ciąg interpolacyjny ---------------- */
 
-  factories['carleson-seq'] = function (root) {
-    const cx = 160, cy = 165, R = 138, N = 11, delta = 0.22;
-    const lam = [];
-    for (let n = 0; n < N; n++) {
-      const rho = 1 - 0.9 * Math.pow(0.6, n);
-      const th = 0.5 + 2.39996 * n;
-      lam.push([rho * Math.cos(th), rho * Math.sin(th)]);
+  factories['carleson-zoom'] = function (root) {
+    // λ_n = 1 − 2^{−n}, n ⩾ 1; d_n = 1 − λ_n = 2^{−n}. Dyski {z : ρ(z, λ_n) < r}.
+    const r = 0.15, NMAX = 32, KMAX = 12;
+    const pts = [];
+    for (let n = 1; n <= NMAX; n++) {
+      const d = Math.pow(2, -n), a = 1 - d, q = 1 - r * r * a * a;
+      // Środek dysku 1 − dc, promień rad (euklidesowo).
+      pts.push({ n, d, a, dc: d * (1 + r * r * a) / q, rad: r * d * (2 - d) / q });
     }
-    svg('circle', { cx, cy, r: R, class: 'disk-fill' }, root);
-    svg('circle', { cx, cy, r: R, class: 'ink-line' }, root);
-    const items = lam.map((l, n) => {
-      const m2 = l[0] * l[0] + l[1] * l[1];
-      const k = (1 - delta * delta) / (1 - delta * delta * m2);
-      const rad = delta * (1 - m2) / (1 - delta * delta * m2);
-      const g = svg('g', { opacity: 0 }, root);
-      svg('circle', { cx: f1(cx + R * k * l[0]), cy: f1(cy - R * k * l[1]), r: (R * rad).toFixed(2), class: 'slate-line', 'stroke-width': 1.3, 'fill': 'rgba(65,107,134,.08)' }, g);
-      const r0 = n < 6 ? 5 : 3.6;
-      const dot = svg('circle', { cx: f1(cx + R * l[0]), cy: f1(cy - R * l[1]), r: r0, class: 'dot-slate' }, g);
-      return { g, dot, r0 };
-    });
-    const lab = rich(root, 0, 0, [['λ'], ['n', 'sub']]);
-    lab.setAttribute('opacity', 0);
+    const rho = (x, y) => Math.abs(x - y) / (1 - x * y);
+    const delta = k => pts.reduce((p, q) => (q.n === k ? p : p * rho(q.a, 1 - Math.pow(2, -k))), 1);
+    const deltas = pts.map(p => delta(p.n));
+    const SUP = { '-': '⁻', 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹' };
+    const sci = x => {
+      if (x >= 1e-3) return fmt(x, 5);
+      const e = Math.floor(Math.log10(x)), m = x / Math.pow(10, e);
+      return fmt(m, 2) + '·10' + String(e).split('').map(c => SUP[c]).join('');
+    };
 
-    // Wartości f(λ_n) jako słupki.
-    const bx0 = 352, base = 282, bw = 16, gap = 5, hmax = 200;
-    svg('path', { d: 'M' + (bx0 - 8) + ' ' + base + 'H' + (bx0 + N * (bw + gap) + 4), class: 'axis' }, root);
-    rich(root, bx0 - 6, 50, [['T'], ['λ', 'sub'], [' f = (f(λ', ''], ['n', 'sub'], ['))', '']]);
-    const bars = [];
-    for (let n = 0; n < N; n++) {
-      const h = hmax * (0.28 + 0.68 * Math.abs(Math.sin(1.9 * n + 0.7)));
-      const x = bx0 + n * (bw + gap);
-      const b = svg('rect', { x, y: base - h, width: bw, height: h, rx: 3, class: 'bar' }, root);
-      b.style.transformBox = 'fill-box';
-      b.style.transformOrigin = '50% 100%';
-      bars.push({ b, h });
-      if (n % 2 === 0) {
-        const tl = svg('text', { x: x + bw / 2, y: base + 20, class: 'lbl', 'text-anchor': 'middle' }, root);
-        tl.textContent = n;
+    const cx = 150, cy = 165, R = 128;
+    const PX0 = 330, PW = 256, PY0 = 26, PH = 278, PYc = PY0 + PH / 2, X1 = PX0 + 0.9 * PW;
+    const NS_ = { 'vector-effect': 'non-scaling-stroke' };
+    const diskSt = 'fill:rgba(65,107,134,.08);stroke:var(--slate);stroke-width:1.2';
+    const goldSt = 'fill:none;stroke:var(--gold);stroke-width:1.8';
+
+    // Lewy panel: cały dysk (skala stała, współrzędne płaszczyzny przez transform).
+    const left = svg('g', { transform: 'matrix(' + R + ' 0 0 ' + (-R) + ' ' + cx + ' ' + cy + ')' }, root);
+    svg('circle', Object.assign({ cx: 0, cy: 0, r: 1, style: 'fill:#fff;fill-opacity:.75;stroke:var(--ink);stroke-width:2.2' }, NS_), left);
+    svg('path', Object.assign({ d: 'M-1 0H1.2', class: 'grid-line', style: 'stroke-dasharray:none' }, NS_), left);
+    const lDisks = svg('g', { opacity: 0 }, left);
+    pts.forEach(p => svg('circle', Object.assign({ cx: 1 - p.dc, cy: 0, r: p.rad, style: diskSt }, NS_), lDisks));
+    const lDots = pts.map(p => svg('path', Object.assign({ d: 'M' + p.a + ' 0h0', style: 'stroke:var(--slate);stroke-linecap:round;stroke-width:6', opacity: 0 }, NS_), left));
+    const lGD = [0, 1].map(() => svg('circle', Object.assign({ cy: 0, style: goldSt, opacity: 0 }, NS_), left));
+    const lGold = svg('path', Object.assign({ style: 'stroke:var(--gold);stroke-linecap:round;stroke-width:10', opacity: 0 }, NS_), left);
+    rich(root, cx + R + 6, cy + 20, [['1', 'up']], 'lbl');
+    rich(root, cx - 4, cy + 20, [['0', 'up']], 'lbl', { 'text-anchor': 'end' });
+    svg('circle', { cx, cy, r: 2.5, style: 'fill:var(--ink)' }, root);
+
+    // Okno powiększenia na lewym rysunku i linie do prawego panelu.
+    const win = svg('rect', { style: 'fill:var(--gold);fill-opacity:.1;stroke:var(--gold);stroke-width:1.6' }, root);
+    const c1 = svg('path', { class: 'cursor-line' }, root);
+    const c2 = svg('path', { class: 'cursor-line' }, root);
+
+    // Prawy panel: otoczenie punktu 1, rysowane w pikselach (duże powiększenia).
+    const clip = svg('clipPath', { id: 'clip-carleson-zoom' }, svg('defs', {}, root));
+    svg('rect', { x: PX0, y: PY0, width: PW, height: PH, rx: 6 }, clip);
+    svg('rect', { x: PX0, y: PY0, width: PW, height: PH, rx: 6, style: 'fill:#fbf8f2;stroke:var(--ink);stroke-opacity:.25;stroke-width:1.2' }, root);
+    const right = svg('g', { 'clip-path': 'url(#clip-carleson-zoom)' }, root);
+    const inside = svg('path', { style: 'fill:#fff;fill-opacity:.75;stroke:none' }, right);
+    svg('path', { d: 'M' + (PX0 - 2) + ' ' + PYc + 'H' + (PX0 + PW + 2), class: 'grid-line', style: 'stroke-dasharray:none' }, right);
+    const arc = svg('path', { style: 'fill:none;stroke:var(--ink);stroke-width:2.2' }, right);
+    const rDisks = svg('g', { opacity: 0 }, right);
+    const rD = pts.map(() => svg('circle', { cy: PYc, style: diskSt }, rDisks));
+    const rDots = pts.map(() => svg('circle', { cy: PYc, r: 4, style: 'fill:var(--slate)', opacity: 0 }, right));
+    const rGD = [0, 1].map(() => svg('circle', { cy: PYc, style: goldSt, opacity: 0 }, right));
+    const rGold = svg('circle', { cy: PYc, r: 6.5, style: 'fill:var(--gold)', opacity: 0 }, right);
+    const zl = svg('text', { x: PX0 + 10, y: PY0 + 22, class: 'lbl' }, root);
+    const lab = rich(root, 0, PYc - 14, [['λ'], ['1', 'sub']], 'mth', { 'text-anchor': 'middle' });
+    const labSub = lab.lastChild;
+    rich(root, X1 + 6, PYc + 20, [['1', 'up']], 'lbl');
+
+    const oK = output(root, 'k'), oE = output(root, 'e'), oR = output(root, 'r'), oD = output(root, 'd');
+
+    const tDots = 0.4, dStep = 0.4, nFirst = 8, tDisk = tDots + nFirst * dStep + 0.3, tZoom = tDisk + 1.3, dZoom = 12;
+    const PHASE = tZoom + dZoom + 3, depth = KMAX - 1;
+    let manual = null, last = { u: 0 };
+
+    // Okno: d = 1 − Re z ∈ [−0,2 w, 1,8 w], skala s px na jednostkę; X(d) = X1 − s·d.
+    const zoomAt = u => depth * ease(clamp((u - tZoom) / dZoom));
+    const view = zs => { const w = 0.5 * Math.pow(2, -zs); return { w, s: PW / (2 * w) }; };
+    const X = (V, d) => X1 - V.s * d;
+
+    function draw(t) {
+      const u = manual ? manual.u : t % PHASE;
+      const fade = Math.min(clamp(u / 0.4), u > PHASE - 0.6 ? (PHASE - u) / 0.6 : 1);
+      const zs = zoomAt(u), V = view(zs);
+      setText(zl, '×' + Math.round(Math.pow(2, zs)).toLocaleString('pl-PL'));
+
+      // Brzeg dysku w oknie: d = 1 − √(1 − y²) = y²/(1 + √(1 − y²)).
+      let pa = '';
+      for (let j = 0; j <= 48; j++) {
+        const Y = PY0 - 4 + (PH + 8) * j / 48, y = (PYc - Y) / V.s;
+        const d = y * y / (1 + Math.sqrt(Math.max(0, 1 - y * y)));
+        pa += (j ? 'L' : 'M') + f1(Math.max(PX0 - 50, X(V, d))) + ' ' + f1(Y);
       }
+      arc.setAttribute('d', pa);
+      inside.setAttribute('d', pa + 'L' + (PX0 - 50) + ' ' + (PY0 + PH + 4) + 'L' + (PX0 - 50) + ' ' + (PY0 - 4) + 'Z');
+
+      const hh = V.w * PH / PW;
+      const rx1 = cx + R * (1 + 0.2 * V.w), rw = Math.max(4, 2 * R * V.w), rh = Math.max(4, 2 * R * hh);
+      set(win, { x: f1(rx1 - rw), y: f1(cy - rh / 2), width: f1(rw), height: f1(rh), opacity: fade.toFixed(2) });
+      set(c1, { d: 'M' + f1(rx1) + ' ' + f1(cy - rh / 2) + 'L' + PX0 + ' ' + PY0, opacity: fade.toFixed(2) });
+      set(c2, { d: 'M' + f1(rx1) + ' ' + f1(cy + rh / 2) + 'L' + PX0 + ' ' + (PY0 + PH), opacity: fade.toFixed(2) });
+
+      // Wyróżniony punkt: najnowszy przy pojawianiu się, potem najbliższy środka okna (d = 0,8 w).
+      const shownN = clamp(Math.floor((u - tDots) / dStep) + 1, 0, nFirst);
+      let i;
+      if (manual) i = manual.i;
+      else if (u < tDisk) i = Math.max(0, shownN - 1);
+      else i = clamp(Math.round(-Math.log2(0.8 * V.w)) - 1, 0, NMAX - 2);
+      const p = pts[i];
+
+      const rest = clamp((u - tDots - nFirst * dStep) / 0.5);
+      const diskOn = clamp((u - tDisk) / 1);
+      lDisks.setAttribute('opacity', (diskOn * fade).toFixed(3));
+      rDisks.setAttribute('opacity', (diskOn * fade).toFixed(3));
+      pts.forEach((q, j) => {
+        const op = ((j < nFirst ? ease(clamp((u - tDots - j * dStep) / 0.3)) : rest) * fade).toFixed(3);
+        lDots[j].setAttribute('opacity', op);
+        const xd = X(V, q.d), xc = X(V, q.dc), rr = V.s * q.rad;
+        const vis = xc + rr > PX0 - 5 && xc - rr < PX0 + PW + 5;
+        rD[j].style.display = vis ? '' : 'none';
+        if (vis) set(rD[j], { cx: f1(xc), r: f1(rr) });
+        const dv = xd > PX0 - 6 && xd < PX0 + PW + 6;
+        rDots[j].style.display = dv ? '' : 'none';
+        if (dv) set(rDots[j], { cx: f1(xd), opacity: op });
+      });
+
+      const on = (u >= tDots ? fade : 0).toFixed(2);
+      const dOn = (diskOn * fade).toFixed(2);
+      set(lGold, { d: 'M' + p.a + ' 0h0', opacity: on });
+      set(rGold, { cx: f1(X(V, p.d)), opacity: on });
+      [0, 1].forEach(m => {
+        const q = pts[i + m];
+        set(lGD[m], { cx: 1 - q.dc, r: q.rad, opacity: dOn });
+        set(rGD[m], { cx: f1(X(V, q.dc)), r: f1(V.s * q.rad), opacity: dOn });
+      });
+      const lx = X(V, p.d);
+      setText(labSub, String(p.n));
+      set(lab, { x: f1(lx - 4), opacity: lx > PX0 + 8 && lx < PX0 + PW - 8 ? on : 0 });
+      setText(oK, String(p.n));
+      setText(oE, sci(Math.pow(2, -p.n - 1)));
+      setText(oR, fmt(1 / (3 - Math.pow(2, -p.n)), 3));
+      setText(oD, fmt(deltas[i], 4));
+      return { u };
     }
-    const oN = output(root, 'n'), oD = output(root, 'dist');
-    const step = 0.62, first = 0.5, P = first + N * step + 3.2;
 
     return {
-      poster: P - 1,
-      frame(t) {
-        const u = t % P;
-        const fade = u > P - 0.7 ? (P - u) / 0.7 : 1;
-        const cur = clamp(Math.floor((u - first) / step), 0, N - 1);
-        for (let n = 0; n < N; n++) {
-          const e = ease(clamp((u - first - n * step) / 0.45));
-          items[n].g.setAttribute('opacity', (e * fade).toFixed(3));
-          const isCur = n === cur && u < first + N * step + 0.2;
-          items[n].dot.setAttribute('class', isCur ? 'dot-gold' : 'dot-slate');
-          items[n].dot.setAttribute('r', isCur ? 6.5 : items[n].r0);
-          bars[n].b.style.transform = 'scaleY(' + e.toFixed(3) + ')';
-          bars[n].b.setAttribute('opacity', fade.toFixed(3));
-          bars[n].b.setAttribute('class', isCur ? 'bar is-current' : 'bar');
-        }
-        const l = lam[cur];
-        set(lab, { x: f1(cx + R * l[0] + 9), y: f1(cy - R * l[1] - 9), opacity: (u > first ? fade : 0).toFixed(2) });
-        setText(oN, String(cur));
-        setText(oD, fmt(1 - cabs(l), 3));
-      }
+      poster: PHASE - 1,
+      pausable: true,
+      frame(t) { last = draw(t); },
+      // Kliknięcie w punkt: wyróżnienie go (animacja się zatrzymuje).
+      click(ev, t) {
+        const pt = root.createSVGPoint();
+        pt.x = ev.clientX; pt.y = ev.clientY;
+        const q = pt.matrixTransform(root.getScreenCTM().inverse());
+        const V = view(zoomAt(last.u));
+        const inRight = q.x >= PX0 && q.x <= PX0 + PW;
+        let best = -1, bd = 12;
+        pts.forEach((p, j) => {
+          if (j > NMAX - 2) return;
+          const x = inRight ? X(V, p.d) : cx + R * p.a, y = inRight ? PYc : cy;
+          const d = Math.hypot(q.x - x, q.y - y);
+          if (d < bd) { bd = d; best = j; }
+        });
+        if (best < 0) return false;
+        manual = { u: last.u, i: best };
+        draw(t);
+        return true;
+      },
+      resume() { manual = null; }
     };
   };
 
@@ -842,9 +939,27 @@
   let t0 = 0;
   let raf = 0;
 
+  let paused = false, pauseT = 0;
+
+  function now_() { return Math.max(0, (performance.now() - t0) / 1000); }
+
+  function setPaused(p) {
+    if (p === paused) return;
+    if (p) pauseT = now_();
+    else {
+      t0 = performance.now() - pauseT * 1000;
+      for (const inst of running) if (inst.anim.resume) inst.anim.resume();
+    }
+    paused = p;
+    for (const inst of running) {
+      const fig = inst.el.closest('.figure');
+      if (fig) fig.classList.toggle('is-paused', p);
+    }
+  }
+
   function loop(now) {
     // Znacznik czasu klatki może być wcześniejszy niż t0.
-    const t = Math.max(0, (now - t0) / 1000);
+    const t = paused ? pauseT : Math.max(0, (now - t0) / 1000);
     for (const inst of running) {
       try { inst.anim.frame(t); } catch (e) { console.error('Animacja', inst.name, e); }
     }
@@ -858,6 +973,7 @@
 
   function activate(section) {
     stop();
+    setPaused(false);
     running = instances.filter(i => i.section === section);
     for (const inst of running) if (inst.anim.start) inst.anim.start();
     if (!running.length) return;
@@ -880,8 +996,20 @@
       try {
         const anim = make(el);
         const section = el.closest('.slides > section');
-        instances.push({ name, el, section, anim });
+        const inst = { name, el, section, anim };
+        instances.push(inst);
         anim.frame(anim.poster || 0);
+        // Kliknięcie rysunku zatrzymuje i wznawia animację; anim.click może wyróżnić element.
+        if (anim.pausable) {
+          el.style.cursor = 'pointer';
+          el.addEventListener('click', ev => {
+            if (!running.includes(inst) || REDUCED || PRINT) return;
+            const wasPaused = paused;
+            if (!paused) setPaused(true);
+            if (anim.click && anim.click(ev, pauseT)) return;
+            if (wasPaused) setPaused(false);
+          });
+        }
       } catch (e) { console.error('Animacja', name, e); }
     });
     activate(window.Reveal.getCurrentSlide());

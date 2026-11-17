@@ -150,37 +150,52 @@
 <!-- 04. Ciągi interpolacyjne · 1:05 · od 2:45 do 3:50 -->
 <section data-slide-topic="Ciągi interpolacyjne" data-duration-seconds="65">
 <div class="slide-content">
-  <p class="eyebrow">§ 2 · Operatory Carlesona</p>
+  <p class="eyebrow">Suriektywność operatora Carlesona</p>
   <h2>Ciągi interpolacyjne i&nbsp;operator Carlesona</h2>
-  <div class="split">
-    <figure class="figure enter">
-      <svg class="anim" data-anim="carleson-seq" viewBox="0 0 600 330" role="img" aria-label="Punkty ciągu w dysku z kołami pseudohiperbolicznymi i odpowiadające im wartości funkcji"></svg>
-      <div class="readout">
-        <span>\(1-|\lambda_{n+1}|=0{,}6\,(1-|\lambda_n|)\)</span><span class="sep">|</span>
-        <span>\(n=\) <span class="val" data-out="n">0</span></span>
-        <span>\(1-|\lambda_n|=\) <span class="val" data-out="dist">0,900</span></span>
-      </div>
-    </figure>
+  <p class="definition enter">Ciąg \(\lambda=(\lambda_n)\subset\mathbb D\) jest <em>interpolacyjny</em> dla \(H^\infty\), gdy dla każdego \(w\in\ell^\infty\) istnieje \(f\in H^\infty\), że \(f(\lambda_n)=w_n\) dla \(n\in\mathbb N\), tzn. operator Carlesona \(T_\lambda\colon H^\infty\to\ell^\infty\), \(T_\lambda f=\bigl(f(\lambda_n)\bigr)\), jest surjekcją.</p>
+  <div class="split split--text-left split--interp">
     <div class="stack">
-      <div class="card enter">
-        <p>Ciąg \(\lambda=(\lambda_n)\subset\mathbb D\) jest <em>interpolacyjny</em> dla \(H^\infty\), gdy dla każdego \(w\in\ell^\infty\) istnieje \(f\in H^\infty\), że \(f(\lambda_n)=w_n\). Równoważnie: operator Carlesona</p>
-        <div class="formula">\[T_\lambda f=\bigl(f(\lambda_n)\bigr),\qquad T_\lambda\colon H^\infty\to\ell^\infty,\]</div>
-        <p>jest surjekcją.</p>
-      </div>
       <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Twierdzenie Carlesona</span><span class="thm-ref">1958</span></div>
-        <p>\(\lambda\) jest interpolacyjny dla \(H^\infty\) wtedy i&nbsp;tylko wtedy, gdy jest jednostajnie oddzielony:</p>
-        <div class="formula">\[\inf_{k}\prod_{n\ne k}\Bigl|\frac{\lambda_n-\lambda_k}{1-\overline{\lambda_k}\lambda_n}\Bigr|&gt;0.\]</div>
+        <p>Ciąg \(\lambda\subset\mathbb D\) jest interpolacyjny dla \(H^\infty\) wtedy i&nbsp;tylko wtedy, gdy jest jednostajnie oddzielony:</p>
+        <div class="formula">\[\inf_k\delta_k&gt;0,\qquad \delta_k=\prod\nolimits_{n\ne k}\rho(\lambda_n,\lambda_k),\]</div>
+        <p class="small">gdzie \(\rho(z,w)=|z-w|/|1-\overline{w}z|\) — odległość pseudohiperboliczna.</p>
       </div>
-      <p class="note enter">Dla \(H^p\): Shapiro i&nbsp;Shields (1961).</p>
+      <div class="thm enter">
+        <div class="thm-head"><span class="thm-label">Twierdzenie Shapiro–Shieldsa</span><span class="thm-ref">1961</span></div>
+        <p>Niech \(1\leqslant p&lt;\infty\), \(\nu(\{n\})=1-|\lambda_n|^2\), a&nbsp;\(\lambda\subset\mathbb D\) — ciąg różnowartościowy. Wówczas</p>
+        <div class="formula">\[\bigl\{(f(\lambda_n)):f\in H^p\bigr\}=\ell^p(\nu)\]</div>
+        <p>wtedy i&nbsp;tylko wtedy, gdy \(\lambda\) jest jednostajnie oddzielony.</p>
+      </div>
+      <div class="thm research-q enter">
+        <div class="thm-head"><span class="thm-label">Pytanie badawcze</span></div>
+        <p>Czy bycie ciągiem interpolacyjnym jest własnością interpolacyjną?</p>
+      </div>
     </div>
+    <figure class="figure enter">
+      <svg class="anim" data-anim="carleson-zoom" viewBox="0 0 600 330" role="img" aria-label="Punkty ciągu 1 − 2^(−n) na promieniu dysku, dyski pseudohiperboliczne o promieniu 0,15 i powiększenie otoczenia punktu 1"></svg>
+      <div class="readout readout--tight">
+        <span class="readout-seq">\(\lambda_n=1-2^{-n}\)</span>
+        <span>\(k=\) <span class="val" data-out="k">1</span></span>
+        <span>\(\delta_k=\) <span class="val" data-out="d">0,1817</span></span>
+        <span class="readout-break"></span>
+        <span>\(|\lambda_{k+1}-\lambda_k|=\) <span class="val" data-out="e">0,25000</span></span>
+        <span>\(\rho(\lambda_k,\lambda_{k+1})=\) <span class="val" data-out="r">0,400</span></span>
+      </div>
+    </figure>
   </div>
 </div>
 <aside class="notes">
   <p><strong>Slajd 4/16 · Ciągi interpolacyjne</strong></p>
   <p><strong>Czas:</strong> 1:05 · <strong>na zegarze:</strong> 2:45–3:50</p>
-  <p>Animacja: kolejne punkty \(\lambda_n\) z kołami pseudohiperbolicznymi o tym samym promieniu i wartości \(f(\lambda_n)\) po prawej. Ciąg na rysunku spełnia \(1-|\lambda_{n+1}|=0{,}6\,(1-|\lambda_n|)\), więc jest jednostajnie oddzielony.</p>
-  <p>Shapiro i&nbsp;Shields: wagowy operator \(T_\lambda f=((1-|\lambda_n|^2)f(\lambda_n))\) z \(H^p\) w \(\ell^p\) jest surjekcją wtedy i&nbsp;tylko wtedy, gdy \(\lambda\) jest jednostajnie oddzielony. W [6] podaliśmy nowy dowód tego twierdzenia przez interpolację operatorów (formuła Jonesa) i&nbsp;przenieśliśmy go na \(HX\).</p>
+  <p><strong>Po co ta animacja.</strong> Warunek Carlesona jest warunkiem geometrii hiperbolicznej dysku, a&nbsp;nie euklidesowej. Ciąg \(\lambda_n=1-2^{-n}\) zbiega do \(1\) i&nbsp;euklidesowo się zagęszcza, a&nbsp;mimo to jest jednostajnie oddzielony, więc interpolacyjny. Rozstrzyga odległość pseudohiperboliczna \(\rho\), która mierzy odległość w&nbsp;skali \(1-|z|\): dyski \(\{z:\rho(z,\lambda_n)&lt;0{,}15\}\) mają ten sam promień pseudohiperboliczny, choć euklidesowo maleją jak \(1-|\lambda_n|\).</p>
+  <p><strong>Dwie odległości w&nbsp;pasku odczytów.</strong> Dla kolejnych punktów \(|\lambda_{k+1}-\lambda_k|=2^{-k-1}\to0\) (przy \(k=6\): \(0{,}0078\)), natomiast \(\rho(\lambda_k,\lambda_{k+1})=\frac{2^{-k-1}}{1-(1-2^{-k})(1-2^{-k-1})}=\frac1{3-2^{-k}}\to\frac13\) (\(0{,}400;\ 0{,}364;\ 0{,}348;\ \dots\)). Odległość euklidesowa jest zawsze połową odległości \(1-\lambda_k\) do brzegu, więc w&nbsp;skali brzegu punkty pozostają w&nbsp;stałych odstępach.</p>
+  <p><strong>Powiększenie.</strong> Prawy panel powiększa otoczenie punktu \(1\) od ×1 do ×2048, \(k\) od \(1\) do \(12\) (złota ramka na lewym dysku pokazuje okno). Zmiana skali \(1-z\mapsto(1-z)/2\) przeprowadza \(\lambda_n\) na \(\lambda_{n+1}\), więc przy każdym powiększeniu obraz jest taki sam: te same odstępy między dyskami, dyski rozłączne. To jest „jednostajność” oddzielenia — ciąg jest rozłożony równomiernie w&nbsp;metryce hiperbolicznej, mimo że euklidesowo gromadzi się przy \(1\). W&nbsp;pasku w&nbsp;tym czasie odległość euklidesowa maleje do zera, a&nbsp;\(\rho\) stoi przy \(1/3\).</p>
+  <p><strong>Złote okręgi.</strong> To dyski wokół dwóch kolejnych punktów \(\lambda_k\) i&nbsp;\(\lambda_{k+1}\), przy czym \(\lambda_k\) (złoty punkt) to punkt najbliższy środka okna — w&nbsp;trakcie powiększania \(k\) rośnie. Obie odległości w&nbsp;pasku odnoszą się dokładnie do tej pary. Dyski o&nbsp;promieniu \(r=0{,}15\) są rozłączne wtedy i&nbsp;tylko wtedy, gdy \(\rho&gt;2r/(1+r^2)\approx0{,}293\); ponieważ \(\rho(\lambda_k,\lambda_{k+1})\geqslant1/3\), złote okręgi są rozłączne przy ×2048 tak samo jak przy ×1, choć euklidesowo są ponad 2000 razy mniejsze.</p>
+  <p><strong>\(\delta_k\).</strong> \(\delta_k=\prod_{n\ne k}\rho(\lambda_n,\lambda_k)\), a&nbsp;\(1/\delta_k\) to najmniejsza norma \(f\in H^\infty\) z&nbsp;\(f(\lambda_k)=1\), \(f(\lambda_n)=0\) dla \(n\ne k\) (minimum daje \(B_k/B_k(\lambda_k)\), \(B_k\) — iloczyn Blaschkego o&nbsp;zerach \(\lambda_n\), \(n\ne k\)). Jeśli \(T_\lambda\) jest surjekcją, to z&nbsp;twierdzenia o&nbsp;odwzorowaniu otwartym \(1/\delta_k\leqslant M\) — stąd konieczność warunku. Tutaj \(\delta_k\) maleje od \(0{,}18\) do \(\bigl(\prod_{m\geqslant1}\frac{2^m-1}{2^m+1}\bigr)^2\approx0{,}0147&gt;0\), bo \(\rho(\lambda_k,\lambda_n)\geqslant\frac{2^{|n-k|}-1}{2^{|n-k|}+1}\).</p>
+  <p><strong>Oddzielenie a&nbsp;warunek Carlesona.</strong> Rozłączność dysków to oddzielenie parami (\(\inf_{n\ne k}\rho(\lambda_n,\lambda_k)&gt;0\)); warunek Carlesona jest ogólnie mocniejszy. Dla ciągów leżących w&nbsp;kącie Stolza, jak tutaj, oba warunki są równoważne, więc obraz dysków oddaje warunek Carlesona.</p>
+  <p><strong>Sterowanie.</strong> Animacja około 20 s: punkty, dyski, powiększenie (12 s). Kliknięcie rysunku zatrzymuje i&nbsp;wznawia; kliknięcie punktu wyróżnia go (wartości w&nbsp;pasku). Proponowany przebieg: zatrzymać na końcu (×2048, \(k=12\)) i&nbsp;pokazać, że obraz się nie zmienił, a&nbsp;w&nbsp;pasku \(|\lambda_{13}-\lambda_{12}|=2^{-13}\approx1{,}22\cdot10^{-4}\), \(\rho(\lambda_{12},\lambda_{13})\approx0{,}333\).</p>
+  <p>Shapiro i&nbsp;Shields: równoważnie operator \(f\mapsto\bigl((1-|\lambda_n|^2)^{1/p}f(\lambda_n)\bigr)\) przeprowadza \(H^p\) na \(\ell^p\) wtedy i&nbsp;tylko wtedy, gdy \(\lambda\) jest jednostajnie oddzielony; dla \(p=\infty\) to twierdzenie Carlesona. Pytanie badawcze: czy dla przestrzeni \(X\) leżących „między” \(L^p\) i&nbsp;\(L^q\) surjektywność \(T_\lambda\) przenosi się z \(H^p\), \(H^q\) na \(HX\) — odpowiedź na następnym slajdzie. W [6] podaliśmy nowy dowód tego twierdzenia przez interpolację operatorów (formuła Jonesa) i&nbsp;przenieśliśmy go na \(HX\).</p>
   <p><strong>Źródło:</strong> Autoreferat, § 2, s. 3–4.</p>
 </aside>
 </section>
