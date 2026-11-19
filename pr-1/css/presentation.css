@@ -462,7 +462,7 @@ html, body {
   right: 150px;
   bottom: 20px;
   margin: 0;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.3;
   color: rgba(23, 51, 80, 0.72);
   display: flex;
@@ -574,6 +574,9 @@ html, body {
 .reveal svg.diagram .arrow--dash { stroke-dasharray: 6 6; }
 .reveal svg.diagram .head { fill: var(--ink); fill-opacity: 0.7; }
 .reveal svg.diagram .head--gold { fill: var(--gold); fill-opacity: 1; }
+/* Delikatny grot: otwarta strzałka zamiast wypełnionego trójkąta. */
+.reveal svg.diagram .head--open { fill: none; stroke: var(--ink); stroke-opacity: 0.7; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.reveal svg.diagram .head--open.head--gold { fill: none; stroke: var(--gold); stroke-opacity: 1; stroke-width: 2.4; }
 .reveal svg.diagram .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
 .reveal .slides section.present svg.diagram .draw {
   animation: draw-in 0.9s var(--enter-ease) forwards;
@@ -627,7 +630,11 @@ html, body {
 .reveal .spaces-examples { margin-top: 22px; }
 .reveal .spaces-examples ul { list-style: none; margin: 0.5em 0 0.2em; padding: 0; }
 .reveal .spaces-examples li { position: relative; margin: 0.7em 0; padding-left: 30px; }
-.reveal .spaces-examples li::before {
+.reveal .gold-list { list-style: none; margin: 0.3em 0 0.1em; padding: 0; }
+.reveal .gold-list li { position: relative; margin: 0.32em 0; padding-left: 26px; }
+.reveal .gold-list .ref { color: rgba(23, 51, 80, 0.72); white-space: nowrap; }
+.reveal .spaces-examples li::before,
+.reveal .gold-list li::before {
   content: "";
   position: absolute;
   left: 4px;
@@ -902,6 +909,7 @@ html, body {
     transform: none !important;
     stroke-dashoffset: 0 !important;
   }
+  .reveal .slides section .diagram-wrap .node.pop { transform: translate(-50%, -50%) !important; }
 }
 @media print {
   .disk-diagram .elliptic-particle,
@@ -918,6 +926,7 @@ html, body {
     transform: none !important;
     stroke-dashoffset: 0 !important;
   }
+  .reveal .slides section .diagram-wrap .node.pop { transform: translate(-50%, -50%) !important; }
 }
 
 @media (max-width: 720px) {
@@ -951,3 +960,19 @@ html, body {
 .reveal .split--interp .stack > .thm:nth-child(1)::before { width: calc((100% - 40px) / 3); }
 .reveal .split--interp .stack > .thm:nth-child(2)::before { width: calc((100% - 40px) * 2 / 3); }
 .reveal .split--interp .stack > .thm:nth-child(3)::before { width: calc(100% - 40px); }
+
+/* ---------- Slajd 5: ciągi interpolacyjne przestrzeni interpolacyjnych ---------- */
+.reveal .split--hx { grid-template-columns: minmax(0, 1.32fr) minmax(0, 0.68fr); }
+.reveal .split--hx .figure .diagram-wrap { margin: auto 0; }
+.reveal .split--hx .thm-label { letter-spacing: 0.1em; }
+.reveal .split--hx .thm { font-size: 18px; line-height: 1.36; padding-top: 12px; padding-bottom: 10px; }
+.reveal .split--hx .thm p { margin: 0.2em 0; }
+.reveal .split--hx .thm .formula mjx-container[display="true"] { margin: 0.18em auto !important; }
+.reveal .split--hx .gold-list { font-size: 17px; }
+.reveal .split--hx .gold-list li { margin: 0.18em 0; }
+.reveal .split--hx .diagram-wrap .node { font-size: 19px; padding: 4px 8px; }
+.reveal .split--hx .diagram-wrap .node--wide { font-size: 17px; padding: 4px 7px; }
+/* Diagram budowany wolniej niż domyślnie. */
+.reveal .slides section.present .diagram--slow svg.diagram .draw { animation-duration: 1.6s; }
+.reveal .slides section.present .diagram--slow svg.diagram .pop,
+.reveal .slides section.present .diagram--slow.diagram-wrap .pop { animation-duration: 0.9s; }

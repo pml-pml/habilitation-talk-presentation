@@ -267,22 +267,52 @@
   /* ---------------- slajd 4: ciąg interpolacyjny ---------------- */
 
   factories['carleson-zoom'] = function (root) {
-    // λ_n = 1 − 2^{−n}, n ⩾ 1; d_n = 1 − λ_n = 2^{−n}. Dyski {z : ρ(z, λ_n) < r}.
-    const r = 0.15, NMAX = 32, KMAX = 12;
-    const pts = [];
-    for (let n = 1; n <= NMAX; n++) {
-      const d = Math.pow(2, -n), a = 1 - d, q = 1 - r * r * a * a;
-      // Środek dysku 1 − dc, promień rad (euklidesowo).
-      pts.push({ n, d, a, dc: d * (1 + r * r * a) / q, rad: r * d * (2 - d) / q });
-    }
-    const rho = (x, y) => Math.abs(x - y) / (1 - x * y);
-    const delta = k => pts.reduce((p, q) => (q.n === k ? p : p * rho(q.a, 1 - Math.pow(2, -k))), 1);
-    const deltas = pts.map(p => delta(p.n));
+    // Dwa ciągi na odcinku (0, 1), d_n = 1 − λ_n; dyski {z : ρ(z, λ_n) < r}.
+    // Najpierw λ_n = 1 − 2^{−n} (jednostajnie oddzielony), potem λ_n = 1 − 2^{−√n}:
+    // ciąg Blaschkego, ale ρ(λ_n, λ_{n+1}) → 0, więc nie jest oddzielony.
+    // nDraw — punkty rysowane (dalsze leżą poniżej piksela od 1 przy ×2048),
+    // nDelta — wyrazy iloczynu δ_k.
+    const r = 0.15, KMAX = 12;
+    const SEQS = [
+      { d: n => Math.pow(2, -n), nDraw: 32, nDelta: 80 },
+      // Dyski nachodzą na siebie wielokrotnie: bez wypełnienia, cieńsze linie.
+      { d: n => Math.pow(2, -Math.sqrt(n)), nDraw: 361, nDelta: 4000,
+        diskSt: 'fill:none;stroke:var(--slate);stroke-opacity:.45;stroke-width:.7' }
+    ];
+    // ρ dla punktów 1 − x, 1 − y odcinka (0, 1), liczone przez x, y (precyzja przy 1).
+    const rhoD = (x, y) => Math.abs(x - y) / (x + y - x * y);
+    SEQS.forEach(S => {
+      S.pts = [];
+      for (let n = 1; n <= S.nDraw; n++) {
+        const d = S.d(n), a = 1 - d, q = 1 - r * r * a * a;
+        // Środek dysku 1 − dc, promień rad (euklidesowo).
+        S.pts.push({ n, d, a, dc: d * (1 + r * r * a) / q, rad: r * d * (2 - d) / q });
+      }
+      S.dAll = [];
+      for (let n = 1; n <= S.nDelta; n++) S.dAll.push(S.d(n));
+      S.memo = {};
+      // log10 δ_k (iloczyn liczony w logarytmach — dla drugiego ciągu δ_k jest bardzo małe).
+      S.logDelta = i => {
+        if (!(i in S.memo)) {
+          const dk = S.dAll[i];
+          let L = 0;
+          S.dAll.forEach((x, j) => { if (j !== i) L += Math.log10(rhoD(x, dk)); });
+          S.memo[i] = L;
+        }
+        return S.memo[i];
+      };
+    });
     const SUP = { '-': '⁻', 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹' };
+    const pow10 = (m, e) => fmt(m, 2) + '·10' + String(e).split('').map(c => SUP[c]).join('');
     const sci = x => {
       if (x >= 1e-3) return fmt(x, 5);
-      const e = Math.floor(Math.log10(x)), m = x / Math.pow(10, e);
-      return fmt(m, 2) + '·10' + String(e).split('').map(c => SUP[c]).join('');
+      const e = Math.floor(Math.log10(x));
+      return pow10(x / Math.pow(10, e), e);
+    };
+    const sciLog = L => {
+      if (L >= -3) return fmt(Math.pow(10, L), 4);
+      const e = Math.floor(L);
+      return pow10(Math.pow(10, L - e), e);
     };
 
     const cx = 150, cy = 165, R = 128;
@@ -295,9 +325,12 @@
     const left = svg('g', { transform: 'matrix(' + R + ' 0 0 ' + (-R) + ' ' + cx + ' ' + cy + ')' }, root);
     svg('circle', Object.assign({ cx: 0, cy: 0, r: 1, style: 'fill:#fff;fill-opacity:.75;stroke:var(--ink);stroke-width:2.2' }, NS_), left);
     svg('path', Object.assign({ d: 'M-1 0H1.2', class: 'grid-line', style: 'stroke-dasharray:none' }, NS_), left);
-    const lDisks = svg('g', { opacity: 0 }, left);
-    pts.forEach(p => svg('circle', Object.assign({ cx: 1 - p.dc, cy: 0, r: p.rad, style: diskSt }, NS_), lDisks));
-    const lDots = pts.map(p => svg('path', Object.assign({ d: 'M' + p.a + ' 0h0', style: 'stroke:var(--slate);stroke-linecap:round;stroke-width:6', opacity: 0 }, NS_), left));
+    SEQS.forEach(S => {
+      S.lG = svg('g', {}, left);
+      S.lDisks = svg('g', { opacity: 0 }, S.lG);
+      S.pts.forEach(p => svg('circle', Object.assign({ cx: 1 - p.dc, cy: 0, r: p.rad, style: S.diskSt || diskSt }, NS_), S.lDisks));
+      S.lDots = S.pts.map(p => svg('path', Object.assign({ d: 'M' + p.a + ' 0h0', style: 'stroke:var(--slate);stroke-linecap:round;stroke-width:6', opacity: 0 }, NS_), S.lG));
+    });
     const lGD = [0, 1].map(() => svg('circle', Object.assign({ cy: 0, style: goldSt, opacity: 0 }, NS_), left));
     const lGold = svg('path', Object.assign({ style: 'stroke:var(--gold);stroke-linecap:round;stroke-width:10', opacity: 0 }, NS_), left);
     rich(root, cx + R + 6, cy + 20, [['1', 'up']], 'lbl');
@@ -317,9 +350,12 @@
     const inside = svg('path', { style: 'fill:#fff;fill-opacity:.75;stroke:none' }, right);
     svg('path', { d: 'M' + (PX0 - 2) + ' ' + PYc + 'H' + (PX0 + PW + 2), class: 'grid-line', style: 'stroke-dasharray:none' }, right);
     const arc = svg('path', { style: 'fill:none;stroke:var(--ink);stroke-width:2.2' }, right);
-    const rDisks = svg('g', { opacity: 0 }, right);
-    const rD = pts.map(() => svg('circle', { cy: PYc, style: diskSt }, rDisks));
-    const rDots = pts.map(() => svg('circle', { cy: PYc, r: 4, style: 'fill:var(--slate)', opacity: 0 }, right));
+    SEQS.forEach(S => {
+      S.rG = svg('g', {}, right);
+      S.rDisks = svg('g', { opacity: 0 }, S.rG);
+      S.rD = S.pts.map(() => svg('circle', { cy: PYc, style: S.diskSt || diskSt }, S.rDisks));
+      S.rDots = S.pts.map(() => svg('circle', { cy: PYc, r: 4, style: 'fill:var(--slate)', opacity: 0 }, S.rG));
+    });
     const rGD = [0, 1].map(() => svg('circle', { cy: PYc, style: goldSt, opacity: 0 }, right));
     const rGold = svg('circle', { cy: PYc, r: 6.5, style: 'fill:var(--gold)', opacity: 0 }, right);
     const zl = svg('text', { x: PX0 + 10, y: PY0 + 22, class: 'lbl' }, root);
@@ -328,18 +364,36 @@
     rich(root, X1 + 6, PYc + 20, [['1', 'up']], 'lbl');
 
     const oK = output(root, 'k'), oE = output(root, 'e'), oR = output(root, 'r'), oD = output(root, 'd');
+    const oSeq = [output(root, 'seq0'), output(root, 'seq1')];
 
     const tDots = 0.4, dStep = 0.4, nFirst = 8, tDisk = tDots + nFirst * dStep + 0.3, tZoom = tDisk + 1.3, dZoom = 12;
     const PHASE = tZoom + dZoom + 3, depth = KMAX - 1;
-    let manual = null, last = { u: 0 };
+    let manual = null, last = { u: 0, s: 0 };
 
     // Okno: d = 1 − Re z ∈ [−0,2 w, 1,8 w], skala s px na jednostkę; X(d) = X1 − s·d.
     const zoomAt = u => depth * ease(clamp((u - tZoom) / dZoom));
     const view = zs => { const w = 0.5 * Math.pow(2, -zs); return { w, s: PW / (2 * w) }; };
     const X = (V, d) => X1 - V.s * d;
+    // Punkt najbliższy (w skali logarytmicznej) środka okna d = 0,8 w.
+    const nearest = (S, w) => {
+      const L = Math.log(0.8 * w);
+      let best = 0, bd = Infinity;
+      for (let j = 0; j <= S.nDraw - 2; j++) {
+        const e = Math.abs(Math.log(S.pts[j].d) - L);
+        if (e < bd) { bd = e; best = j; }
+      }
+      return best;
+    };
 
     function draw(t) {
+      const sIdx = manual ? manual.s : Math.floor(t / PHASE) % SEQS.length;
       const u = manual ? manual.u : t % PHASE;
+      const S = SEQS[sIdx];
+      SEQS.forEach((Q, m) => {
+        const disp = m === sIdx ? '' : 'none';
+        Q.lG.style.display = disp; Q.rG.style.display = disp;
+        if (oSeq[m]) oSeq[m].style.display = m === sIdx ? '' : 'none';
+      });
       const fade = Math.min(clamp(u / 0.4), u > PHASE - 0.6 ? (PHASE - u) / 0.6 : 1);
       const zs = zoomAt(u), V = view(zs);
       setText(zl, '×' + Math.round(Math.pow(2, zs)).toLocaleString('pl-PL'));
@@ -360,28 +414,28 @@
       set(c1, { d: 'M' + f1(rx1) + ' ' + f1(cy - rh / 2) + 'L' + PX0 + ' ' + PY0, opacity: fade.toFixed(2) });
       set(c2, { d: 'M' + f1(rx1) + ' ' + f1(cy + rh / 2) + 'L' + PX0 + ' ' + (PY0 + PH), opacity: fade.toFixed(2) });
 
-      // Wyróżniony punkt: najnowszy przy pojawianiu się, potem najbliższy środka okna (d = 0,8 w).
+      // Wyróżniony punkt: najnowszy przy pojawianiu się, potem najbliższy środka okna.
       const shownN = clamp(Math.floor((u - tDots) / dStep) + 1, 0, nFirst);
       let i;
       if (manual) i = manual.i;
       else if (u < tDisk) i = Math.max(0, shownN - 1);
-      else i = clamp(Math.round(-Math.log2(0.8 * V.w)) - 1, 0, NMAX - 2);
-      const p = pts[i];
+      else i = nearest(S, V.w);
+      const p = S.pts[i];
 
       const rest = clamp((u - tDots - nFirst * dStep) / 0.5);
       const diskOn = clamp((u - tDisk) / 1);
-      lDisks.setAttribute('opacity', (diskOn * fade).toFixed(3));
-      rDisks.setAttribute('opacity', (diskOn * fade).toFixed(3));
-      pts.forEach((q, j) => {
+      S.lDisks.setAttribute('opacity', (diskOn * fade).toFixed(3));
+      S.rDisks.setAttribute('opacity', (diskOn * fade).toFixed(3));
+      S.pts.forEach((q, j) => {
         const op = ((j < nFirst ? ease(clamp((u - tDots - j * dStep) / 0.3)) : rest) * fade).toFixed(3);
-        lDots[j].setAttribute('opacity', op);
+        S.lDots[j].setAttribute('opacity', op);
         const xd = X(V, q.d), xc = X(V, q.dc), rr = V.s * q.rad;
         const vis = xc + rr > PX0 - 5 && xc - rr < PX0 + PW + 5;
-        rD[j].style.display = vis ? '' : 'none';
-        if (vis) set(rD[j], { cx: f1(xc), r: f1(rr) });
+        S.rD[j].style.display = vis ? '' : 'none';
+        if (vis) set(S.rD[j], { cx: f1(xc), r: f1(rr) });
         const dv = xd > PX0 - 6 && xd < PX0 + PW + 6;
-        rDots[j].style.display = dv ? '' : 'none';
-        if (dv) set(rDots[j], { cx: f1(xd), opacity: op });
+        S.rDots[j].style.display = dv ? '' : 'none';
+        if (dv) set(S.rDots[j], { cx: f1(xd), opacity: op });
       });
 
       const on = (u >= tDots ? fade : 0).toFixed(2);
@@ -389,18 +443,19 @@
       set(lGold, { d: 'M' + p.a + ' 0h0', opacity: on });
       set(rGold, { cx: f1(X(V, p.d)), opacity: on });
       [0, 1].forEach(m => {
-        const q = pts[i + m];
+        const q = S.pts[i + m];
         set(lGD[m], { cx: 1 - q.dc, r: q.rad, opacity: dOn });
         set(rGD[m], { cx: f1(X(V, q.dc)), r: f1(V.s * q.rad), opacity: dOn });
       });
       const lx = X(V, p.d);
       setText(labSub, String(p.n));
       set(lab, { x: f1(lx - 4), opacity: lx > PX0 + 8 && lx < PX0 + PW - 8 ? on : 0 });
+      const q1 = S.pts[i + 1];
       setText(oK, String(p.n));
-      setText(oE, sci(Math.pow(2, -p.n - 1)));
-      setText(oR, fmt(1 / (3 - Math.pow(2, -p.n)), 3));
-      setText(oD, fmt(deltas[i], 4));
-      return { u };
+      setText(oE, sci(p.d - q1.d));
+      setText(oR, fmt(rhoD(p.d, q1.d), 3));
+      setText(oD, sciLog(S.logDelta(i)));
+      return { u, s: sIdx };
     }
 
     return {
@@ -414,15 +469,16 @@
         const q = pt.matrixTransform(root.getScreenCTM().inverse());
         const V = view(zoomAt(last.u));
         const inRight = q.x >= PX0 && q.x <= PX0 + PW;
+        const S = SEQS[last.s];
         let best = -1, bd = 12;
-        pts.forEach((p, j) => {
-          if (j > NMAX - 2) return;
+        S.pts.forEach((p, j) => {
+          if (j > S.nDraw - 2) return;
           const x = inRight ? X(V, p.d) : cx + R * p.a, y = inRight ? PYc : cy;
           const d = Math.hypot(q.x - x, q.y - y);
           if (d < bd) { bd = d; best = j; }
         });
         if (best < 0) return false;
-        manual = { u: last.u, i: best };
+        manual = { u: last.u, s: last.s, i: best };
         draw(t);
         return true;
       },
@@ -691,8 +747,8 @@
       return { b, lb };
     });
     rich(root, x0 - 14, 40, [['S'], ['k', 'sup'], ['f', '']]);
-    svg('path', { d: 'M' + (x0 + 30) + ' 34h70', class: 'gold-line' }, root);
-    svg('path', { d: 'M' + (x0 + 100) + ' 34l-9 -5v10z', fill: '#c39457' }, root);
+    svg('path', { d: 'M' + (x0 + 30) + ' 34h69', class: 'gold-line' }, root);
+    svg('path', { d: 'M' + (x0 + 92) + ' 29L' + (x0 + 100) + ' 34L' + (x0 + 92) + ' 39', class: 'gold-line' }, root);
 
     const oK = output(root, 'k');
     const per = 1.5, M = 5, T = (M + 1) * per + 1.2;
