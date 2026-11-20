@@ -969,7 +969,7 @@ html, body {
 .reveal .slides section.present .diagram--slow svg.diagram .pop,
 .reveal .slides section.present .diagram--slow.diagram-wrap .pop { animation-duration: 0.9s; }
 
-/* ---------- Slajd 6: zagadnienie dualne ---------- */
+/* ---------- Slajd 6: zagadnienie odwrotne ---------- */
 /* Dwie karty po lewej na wysokość okna z diagramem; karta twierdzenia wypełnia resztę. */
 .reveal .split--dual { align-items: stretch; }
 .reveal .split--dual .stack { display: flex; flex-direction: column; gap: 16px; }
