@@ -976,3 +976,46 @@ html, body {
 .reveal .slides section.present .diagram--slow svg.diagram .draw { animation-duration: 1.6s; }
 .reveal .slides section.present .diagram--slow svg.diagram .pop,
 .reveal .slides section.present .diagram--slow.diagram-wrap .pop { animation-duration: 0.9s; }
+
+/* ---------- Slajd 6: zagadnienie dualne ---------- */
+/* Dwie karty po lewej na wysokość okna z diagramem; karta twierdzenia wypełnia resztę. */
+.reveal .split--dual { align-items: stretch; }
+.reveal .split--dual .stack { display: flex; flex-direction: column; gap: 16px; }
+.reveal .split--dual .stack > .thm:first-child { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.reveal .split--dual .figure { display: flex; flex-direction: column; justify-content: center; }
+.reveal .split--dual .research-q p { font-size: 20px; font-weight: 400; }
+/* Złote kreski nad kartami: 1/2 i cała szerokość. */
+.reveal .split--dual .stack > .thm:nth-child(1)::before { width: calc((100% - 44px) / 2); }
+.reveal .split--dual .stack > .thm:nth-child(2)::before { width: calc(100% - 44px); }
+
+/* ---------- Slajd 7: rys historyczny ---------- */
+/* Dwie kolumny ramek (operator złożenia, wagowy operator złożenia), pod nimi monografie. */
+.reveal .history { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 22px; margin-top: 6px; }
+.reveal .history-col { display: grid; grid-template-rows: auto repeat(3, 1fr); gap: 12px; }
+.reveal .history-head { margin: 0 0 2px; font-size: 21px; font-weight: 600; color: var(--ink); }
+.reveal .history .thm { font-size: 18px; line-height: 1.36; padding: 11px 18px 9px; }
+.reveal .history .thm::before { left: 18px; width: calc(100% - 36px); }
+.reveal .history .thm p { margin: 0.15em 0 0; }
+.reveal .history .thm-label { letter-spacing: 0.06em; }
+.reveal .history-books { grid-column: 1 / -1; }
+.reveal .history-books i { font-style: italic; }
+.reveal .history-books .gold-list { font-size: 16px; columns: 2; column-gap: 28px; }
+.reveal .history-books .gold-list li { break-inside: avoid; margin: 0.12em 0 0.3em; }
+/* Ramki wchodzą kolejno, wolniej niż na innych slajdach. */
+.reveal .slides section.present .history .enter { animation-duration: 0.9s; animation-delay: calc(var(--i, 0) * 0.8s + 0.3s); }
+
+/* ---------- Slajd 8: zagadnienia ---------- */
+/* Dwie ramki równej wysokości: po lewej wzór i iteracje, po prawej zagadnienia; pod nimi prace w jednej kolumnie. */
+.reveal .scope { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: stretch; margin-top: 4px; }
+.reveal .scope .thm { font-size: 21px; line-height: 1.4; padding: 14px 22px 12px; }
+.reveal .scope .thm p { margin: 0.2em 0; }
+.reveal .scope .gold-list { font-size: 20.5px; }
+.reveal .scope .gold-list li { margin: 0.5em 0; }
+.reveal .scope .thm::before { left: 20px; width: calc(100% - 40px); }
+.reveal .scope-def { border-color: rgba(176, 138, 72, 0.55); display: flex; flex-direction: column; justify-content: space-between; }
+.reveal .scope-key { margin: 0.35em -8px 0.5em; padding: 6px 0; border-radius: 10px; background: rgba(176, 138, 72, 0.09); font-size: 1.1em; }
+.reveal .scope .thm p.scope-sub { margin-top: 0.6em; }
+.reveal .scope-papers { list-style: none; margin: 16px 0 0; padding: 10px 0 0; border-top: 1px solid var(--hairline); font-size: 17px; line-height: 1.36; color: rgba(23, 51, 80, 0.8); }
+.reveal .scope-papers li { margin: 0 0 0.25em; }
+.reveal .scope-papers i { font-style: italic; }
+.reveal .nowrap { white-space: nowrap; }
