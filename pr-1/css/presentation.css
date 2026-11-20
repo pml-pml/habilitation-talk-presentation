@@ -990,14 +990,19 @@ html, body {
 
 /* ---------- Slajd 7: rys historyczny ---------- */
 /* Dwie kolumny ramek (operator złożenia, wagowy operator złożenia), pod nimi monografie. */
-.reveal .history { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 22px; margin-top: 6px; }
-.reveal .history-col { display: grid; grid-template-rows: auto repeat(3, 1fr); gap: 12px; }
+.reveal .history { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(5, auto); gap: 12px 22px; margin-top: 6px; }
+.reveal .history-col { grid-row: 1 / span 4; display: grid; grid-template-rows: subgrid; }
 .reveal .history-head { margin: 0 0 2px; font-size: 21px; font-weight: 600; color: var(--ink); }
 .reveal .history .thm { font-size: 18px; line-height: 1.36; padding: 11px 18px 9px; }
-.reveal .history .thm::before { left: 18px; width: calc(100% - 36px); }
+/* Złote kreski rosną od góry: wiersze kolumn 1/4, 2/4, 3/4, monografie — cała szerokość. */
+.reveal .history .thm::before { left: 18px; }
+.reveal .history-col > .thm:nth-child(2)::before { width: calc((100% - 36px) / 4); }
+.reveal .history-col > .thm:nth-child(3)::before { width: calc((100% - 36px) / 2); }
+.reveal .history-col > .thm:nth-child(4)::before { width: calc((100% - 36px) * 3 / 4); }
+.reveal .history-books::before { width: calc(100% - 36px); }
 .reveal .history .thm p { margin: 0.15em 0 0; }
 .reveal .history .thm-label { letter-spacing: 0.06em; }
-.reveal .history-books { grid-column: 1 / -1; }
+.reveal .history-books { grid-column: 1 / -1; grid-row: 5; margin-top: 2px; }
 .reveal .history-books i { font-style: italic; }
 .reveal .history-books .gold-list { font-size: 16px; columns: 2; column-gap: 28px; }
 .reveal .history-books .gold-list li { break-inside: avoid; margin: 0.12em 0 0.3em; }
@@ -1011,7 +1016,9 @@ html, body {
 .reveal .scope .thm p { margin: 0.2em 0; }
 .reveal .scope .gold-list { font-size: 20.5px; }
 .reveal .scope .gold-list li { margin: 0.5em 0; }
+/* Złote kreski: lewa ramka połowa, prawa cała szerokość. */
 .reveal .scope .thm::before { left: 20px; width: calc(100% - 40px); }
+.reveal .scope > .thm:nth-child(1)::before { width: calc((100% - 40px) / 2); }
 .reveal .scope-def { border-color: rgba(176, 138, 72, 0.55); display: flex; flex-direction: column; justify-content: space-between; }
 .reveal .scope-key { margin: 0.35em -8px 0.5em; padding: 6px 0; border-radius: 10px; background: rgba(176, 138, 72, 0.09); font-size: 1.1em; }
 .reveal .scope .thm p.scope-sub { margin-top: 0.6em; }
