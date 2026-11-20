@@ -31,6 +31,11 @@
   const tauInv = (w, a) => div(sub(w, a), sub(one, mul(conj(a), w)));
   const cayley = w => div(add(one, w), sub(one, w));
   const cayleyInv = w => div(sub(w, one), add(w, one));
+  // Hiperboliczny: rodzina H_q(z)=(z+q)/(1+qz) sprzężona z M_c, c=i/3.
+  // Punkty stałe a=M_c(1)=4/5+3i/5 (przyciągający), b=M_c(-1)=-4/5+3i/5.
+  const hyperbolicConjugator = z(0, 1 / 3);
+  const hyperbolicAttracting = tau(z(1), hyperbolicConjugator);
+  const hyperbolicRepelling = tau(z(-1), hyperbolicConjugator);
 
   // Każda transformacja jest dokładnym automorfizmem dysku, a nie
   // ręcznie interpolowanym przesunięciem rysunku.
@@ -46,10 +51,13 @@
       const s = 2 * Math.sqrt(1 / (rest * rest) - 1);
       return cayleyInv(add(cayley(w), z(0, s)));
     }
-    // q=tanh(s/2), więc (z+q)/(1+qz) jest grupą hiperboliczną.
+    // Φ_q = M_c ∘ H_q ∘ M_c^{-1}; q=tanh(s/2), więc H_q jest grupą
+    // hiperboliczną. Przy q=0 identyczność (nieruchoma klatka początkowa).
     // Parametryzacja utrzymuje ruch aż do końca przewidzianych 90 s.
     const q = 0.995 * phase;
-    return div(add(w, z(q)), add(one, mul(z(q), w)));
+    const x = tauInv(w, hyperbolicConjugator);
+    const hx = div(add(x, z(q)), add(one, mul(z(q), x)));
+    return tau(hx, hyperbolicConjugator);
   }
 
   const pixel = w => [cx + R * w.re, cy - R * w.im];
@@ -78,11 +86,11 @@
     })
   }));
   const grid = [...circles, ...rays];
-  const seeds = {elliptic: z(.52, -.23), parabolic: z(-.36, .09), hyperbolic: z(-.46, .16)};
+  const seeds = {elliptic: z(.52, -.23), parabolic: z(-.36, .09), hyperbolic: z(0)};
   const descriptions = {
     elliptic: 'Automorfizm obraca siatkę wokół punktu stałego wewnątrz dysku',
-    parabolic: 'Paraboliczny automorfizm zagęszcza siatkę w pobliżu jedynego brzegowego punktu stałego 1',
-    hyperbolic: 'Hiperboliczny automorfizm przesuwa siatkę od odpychającego punktu -1 ku przyciągającemu 1'
+    parabolic: 'Paraboliczny automorfizm zagęszcza siatkę w pobliżu jedynego brzegowego punktu stałego a',
+    hyperbolic: 'Automorfizmy hiperboliczne przesuwają siatkę od odpychającego punktu stałego b ku przyciągającemu punktowi stałemu a na brzegu dysku; obraz środka biegnie po łuku'
   };
   const instances = [];
 
@@ -131,21 +139,23 @@
     const moving = node('circle', {r: 7.5, class: 'disk-auto-moving'}, picture);
 
     const marks = node('g', {}, picture);
-    function mark(w, label, repelling = false) {
+    function mark(w, label, repelling = false, outside = false) {
       const [x, y] = pixel(w);
       node('circle', {cx: x, cy: y, r: 10,
         class: 'disk-auto-fixed-halo' + (repelling ? ' disk-auto-repelling' : '')}, marks);
       node('circle', {cx: x, cy: y, r: 5.5,
         class: 'disk-auto-fixed' + (repelling ? ' disk-auto-repelling' : '')}, marks);
-      const txt = node('text', {x: w.re === -1 ? x + 10 : x - 14,
-        y: y - 16, class: 'disk-auto-label'}, marks);
+      // Etykieta punktu brzegowego na zewnątrz dysku, wzdłuż promienia.
+      const [lx, ly] = outside ? pixel(z(w.re * 1.13, w.im * 1.13)) : [w.re === -1 ? x + 10 : x - 14, y - 16];
+      const txt = node('text', {x: lx, y: ly, class: 'disk-auto-label',
+        'text-anchor': outside ? 'middle' : 'start', 'dominant-baseline': outside ? 'middle' : 'auto'}, marks);
       txt.textContent = label;
     }
     if (type === 'elliptic') mark(fixedElliptic, 'a');
-    else {
-      if (type === 'hyperbolic') mark(z(-1), '−1', true);
-      mark(z(1), '1');
-    }
+    else if (type === 'hyperbolic') {
+      mark(hyperbolicRepelling, 'b', true, true);
+      mark(hyperbolicAttracting, 'a', false, true);
+    } else mark(z(1), 'a', false, true);
 
     function render(phase, elapsed) {
       const p = type === 'elliptic' ? phase % 1 : Math.max(0, Math.min(1, phase));
@@ -245,7 +255,7 @@
     document.addEventListener('visibilitychange', () => {
       for (const inst of instances) inst.last = null;
     });
-    window.DiskAutomorphismGrids = {instances, transform};
+    window.DiskAutomorphismGrids = {instances, transform, hyperbolicAttracting, hyperbolicRepelling};
   }
   if (window.Reveal) {
     if (window.Reveal.isReady?.()) init();

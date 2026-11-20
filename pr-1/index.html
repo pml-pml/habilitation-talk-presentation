@@ -390,7 +390,7 @@
   <h2>Wagowe operatory złożenia</h2>
   <div class="scope">
     <div class="thm scope-def enter">
-      <p>Niech \(X\) będzie przestrzenią funkcji holomorficznych na \(\mathbb D\), \(u\in H(\mathbb D)\) i&nbsp;\(\varphi\colon\mathbb D\to\mathbb D\) holomorficzna.</p>
+      <p>Niech \(X\) będzie przestrzenią funkcji holomorficznych na \(\mathbb D\), \(u\in H(\mathbb D)\) i&nbsp;\(\varphi\colon\mathbb D\to\mathbb D\) holomorficzna. Zakładamy, że \(uC_\varphi\) jest dobrze określony i&nbsp;ograniczony na \(X\).</p>
       <div class="formula formula--lead scope-key">\[uC_\varphi\colon X\to X,\qquad uC_\varphi f=u\cdot(f\circ\varphi)\]</div>
       <p class="scope-sub">Iteracje:</p>
       <div class="formula">\[C_\varphi^{\,n}=C_{\varphi_n},\]</div>
@@ -420,6 +420,7 @@
   <p><strong>Czas:</strong> 1:00 · <strong>na zegarze:</strong> 6:55–7:55</p>
   <p>Przestrzenie \(\mathcal B\), \(\mathcal D\), \(HX\) zdefiniowane na slajdzie 3. Cztery zagadnienia z&nbsp;rozprawy, omawiane na kolejnych slajdach: widma [2], [3] (po klasyfikacji automorfizmów na slajdzie 9: slajdy 10–11), porządkowa ograniczoność [4] (slajd 12), twierdzenie Beurlinga [1] (slajd 13), asymptotyczne operatory Toeplitza [7] (slajd 14).</p>
   <p><strong>Dlaczego \(uC_\varphi\) jest trudniejszy niż \(C_\varphi\).</strong> Iteracje \(C_\varphi\) są znów operatorami złożenia: \(C_\varphi^{\,n}=C_{\varphi_n}\). Iteracje \(uC_\varphi\) niosą iloczyn wartości wagi wzdłuż orbity: \((uC_\varphi)^n=u_{(n)}C_{\varphi_n}\), \(u_{(n)}=u\cdot(u\circ\varphi_1)\cdots(u\circ\varphi_{n-1})\). Promień spektralny \(\lim\|(uC_\varphi)^n\|^{1/n}\) wymaga więc kontroli \(|u_{(n)}|^{1/n}\), a&nbsp;ta zależy od wartości \(u\) w&nbsp;punktach stałych \(\varphi\).</p>
+  <p>Założenie na slajdzie: \(uC_\varphi\) jest dobrze określony i&nbsp;ograniczony na \(X\) — nie wynika to z&nbsp;samej holomorficzności \(u\) i&nbsp;\(\varphi\). W&nbsp;twierdzeniach spektralnych na slajdach 9–11 zakładamy dodatkowo, że \(uC_\varphi\) jest odwracalny.</p>
   <p>Odwracalność: \(uC_\varphi\) jest odwracalny na \(\mathcal B\), \(\mathcal D\), \(HX\) wtedy i&nbsp;tylko wtedy, gdy \(\varphi\in\mathrm{Aut}(\mathbb D)\), \(u\) jest multiplikatorem i&nbsp;\(|u|&gt;0\) na \(\mathbb D\) (z&nbsp;\(1/u\) multiplikatorem); wtedy \((uC_\varphi)^{-1}=\frac1{u\circ\varphi^{-1}}C_{\varphi^{-1}}\).</p>
   <p><strong>Źródło:</strong> wykład przedhabilitacyjny (24.02.2026), s. 6 i&nbsp;10; Autoreferat, § 3.</p>
 </aside>
@@ -439,7 +440,7 @@
         <p>Automorfizm \(\varphi\) jest <em>eliptyczny</em>, gdy <span class="auto-cond">\(|w|&lt;\sin\tfrac{\theta}{2}\)</span>. Równoważnie, \(\varphi\) ma dokładnie jeden punkt stały \(a\in\mathbb D\).</p>
       </div>
       <div class="thm enter">
-        <div class="thm-head"><span class="thm-label">Twierdzenie</span><span class="thm-ref">[2, Thm.&nbsp;4.8], [3, Thm.&nbsp;4]</span></div>
+        <div class="thm-head"><span class="thm-label">Twierdzenie</span></div>
         <p>Niech \(u\in A(\mathbb D)\), \(\varphi\) będzie automorfizmem eliptycznym z&nbsp;punktem stałym \(a\in\mathbb D\), \(X=\mathcal B\) lub \(X=HX\), a&nbsp;\(uC_\varphi\colon X\to X\) niech będzie odwracalny.</p>
         <ul class="gold-list">
           <li>Jeśli \(\varphi_j\ne\mathrm{id}\) dla \(j\in\mathbb N\), to \(\sigma_X(uC_\varphi)=\{\lambda\in\mathbb C:|\lambda|=|u(a)|\}\).</li>
@@ -449,7 +450,6 @@
     </div>
     <figure class="disk-auto-figure enter" data-disk-automorphism="elliptic"></figure>
   </div>
-  <p class="paper-foot paper-foot--lines"><span>[2] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, <i>Spectral properties of weighted composition operators on the Bloch and Dirichlet spaces</i>, Studia Math. 232 (2016)<br>[3] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, M.&nbsp;Rzeczkowski, <i>Spectra of weighted composition operators on abstract Hardy spaces</i>, RACSAM 113 (2019)</span></p>
 </div>
 <aside class="notes">
   <p><strong>Slajd 9/17 · Automorfizmy eliptyczne</strong></p>
@@ -459,6 +459,7 @@
   <p>Animacja: obrót siatki wokół punktu stałego \(a\approx-0{,}19+0{,}16i\), pełny cykl co 16 s; złota przerywana krzywa to orbita punktu, kliknięcie zatrzymuje animację.</p>
   <p>Klasyczne wyniki dla \(C_\varphi\) na \(H^2\) (Nordgren 1968): dla parabolicznego \(\varphi\) widmo jest okręgiem jednostkowym, dla hiperbolicznego — pierścieniem o promieniach zależnych od punktów stałych.</p>
   <p><strong>Źródło:</strong> Autoreferat, § 3–4, s. 6–7.</p>
+  <p><strong>Twierdzenia na slajdzie:</strong> [2, Thm.&nbsp;4.8], [3, Thm.&nbsp;4]. Prace: [2] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, Studia Math. 232 (2016); [3] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, M.&nbsp;Rzeczkowski, RACSAM 113 (2019).</p>
 </aside>
 </section>
 
@@ -476,22 +477,22 @@
         <p>Automorfizm \(\varphi\) jest <em>paraboliczny</em>, gdy <span class="auto-cond">\(|w|=\sin\tfrac{\theta}{2}&gt;0\)</span>. Równoważnie, \(\varphi\) ma w&nbsp;\(\overline{\mathbb D}\) dokładnie jeden punkt stały \(a\), przy czym \(a\in\mathbb T\).</p>
       </div>
       <div class="thm enter">
-        <div class="thm-head"><span class="thm-label">Twierdzenie</span><span class="thm-ref">[2, Thm.&nbsp;4.3], [3, Thm.&nbsp;3]</span></div>
+        <div class="thm-head"><span class="thm-label">Twierdzenie</span></div>
         <p>Niech \(u\in A(\mathbb D)\), \(\varphi\) będzie automorfizmem parabolicznym z&nbsp;punktem stałym \(a\in\mathbb T\), \(X=\mathcal B\) lub \(X=HX\), a&nbsp;\(uC_\varphi\colon X\to X\) niech będzie odwracalny. Wtedy</p>
         <div class="formula formula--lead">\[\sigma_X(uC_\varphi)=\bigl\{\lambda\in\mathbb C:|\lambda|=|u(a)|\bigr\}.\]</div>
       </div>
     </div>
     <figure class="disk-auto-figure enter" data-disk-automorphism="parabolic"></figure>
   </div>
-  <p class="paper-foot paper-foot--lines"><span>[2] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, <i>Spectral properties of weighted composition operators on the Bloch and Dirichlet spaces</i>, Studia Math. 232 (2016)<br>[3] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, M.&nbsp;Rzeczkowski, <i>Spectra of weighted composition operators on abstract Hardy spaces</i>, RACSAM 113 (2019)</span></p>
 </div>
 <aside class="notes">
   <p><strong>Slajd 10/17 · Automorfizmy paraboliczne</strong></p>
   <p><strong>Czas:</strong> 1:15 · <strong>na zegarze:</strong> 9:10–10:25</p>
   <p>Kontekst: Kamowitz (\(A(\mathbb D)\)); Hyvärinen, Lindström, Nieminen, Saukko (2013) — widma odwracalnych \(uC_\varphi\) na \(H^p\), wagowych przestrzeniach Bergmana i&nbsp;wagowych przestrzeniach funkcji ograniczonych, bez przestrzeni Blocha, Dirichleta i&nbsp;\(HX\). Na \(HX\) zamiast oszacowania \(|f(z)|\leqslant\|f\|(1-|z|^2)^{-s}\) używamy oszacowania Mastyły i&nbsp;Rodrígueza-Piazzy \(|f(z)|\leqslant C\|f\|_{HX}/\phi_X(1-|z|)\).</p>
-  <p>Animacja: zmienia się waga \(u\); szara krzywa to \(u(\mathbb T)\), złoty punkt to \(u(a)\). Widmo zależy wyłącznie od \(|u(a)|\).</p>
+  <p>Animacja: siatka (okręgi i&nbsp;promienie) deformowana przez automorfizmy paraboliczne o&nbsp;jedynym punkcie stałym \(a=1\) na brzegu; ruch w&nbsp;półpłaszczyźnie (przez przekształcenie Cayleya) jest przesunięciem pionowym, siatka zagęszcza się przy \(a\). Złota przerywana krzywa to tor wyróżnionego punktu, licznik i&nbsp;pasek pokazują postęp (75 s); kliknięcie zatrzymuje animację. Widmo zależy wyłącznie od \(|u(a)|\).</p>
   <p>W dowodzie dla parabolicznego \(\varphi\) korzystamy z&nbsp;tego, że dla \(z\in\mathbb D\) ciąg \((\varphi_n(z))\) jest interpolacyjny dla \(H^\infty\).</p>
   <p><strong>Źródło:</strong> Autoreferat, § 4, s. 7–11; Twierdzenia 3, 4, 6, 7 autoreferatu.</p>
+  <p><strong>Twierdzenia na slajdzie:</strong> [2, Thm.&nbsp;4.3], [3, Thm.&nbsp;3]. Prace: [2] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, Studia Math. 232 (2016); [3] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, M.&nbsp;Rzeczkowski, RACSAM 113 (2019).</p>
 </aside>
 </section>
 
@@ -509,12 +510,12 @@
         <p>Automorfizm \(\varphi\) jest <em>hiperboliczny</em>, gdy <span class="auto-cond">\(|w|&gt;\sin\tfrac{\theta}{2}\)</span>. Równoważnie, \(\varphi\) ma dokładnie dwa punkty stałe \(a,b\in\mathbb T\).</p>
       </div>
       <div class="thm enter">
-        <div class="thm-head"><span class="thm-label">Twierdzenie</span><span class="thm-ref">[2, Thm.&nbsp;5.2]</span></div>
+        <div class="thm-head"><span class="thm-label">Twierdzenie</span></div>
         <p>Niech \(u\in A(\mathbb D)\), \(\varphi\) będzie automorfizmem hiperbolicznym z&nbsp;punktami stałymi \(a,b\in\mathbb T\), a&nbsp;\(uC_\varphi\colon\mathcal D\to\mathcal D\) niech będzie odwracalny. Wtedy \(r_{\mathcal D}(uC_\varphi)=\max(|u(a)|,|u(b)|)\) oraz</p>
         <div class="formula">\[\sigma_{\mathcal D}(uC_\varphi)\subseteq\bigl\{\lambda\in\mathbb C:\ \min(|u(a)|,|u(b)|)\leqslant|\lambda|\leqslant\max(|u(a)|,|u(b)|)\bigr\}.\]</div>
       </div>
       <div class="thm enter">
-        <div class="thm-head"><span class="thm-label">Przestrzenie Hardy’ego–Lorentza</span><span class="thm-ref">[3, Thm.&nbsp;5, Cor.&nbsp;1]</span></div>
+        <div class="thm-head"><span class="thm-label">Przestrzenie Hardy’ego–Lorentza</span></div>
         <p>Przy tych założeniach o&nbsp;\(u\) i&nbsp;\(\varphi\), dla \(p,q\in(1,\infty)\) i&nbsp;odwracalnego \(uC_\varphi\colon H^{p,q}\to H^{p,q}\)</p>
         <div class="formula">\[\sigma_{H^{p,q}}(uC_\varphi)=\sigma_{H^{p}}(uC_\varphi)=\bigl\{\lambda\in\mathbb C:\ r_-\leqslant|\lambda|\leqslant r_+\bigr\},\]</div>
         <p class="small">gdzie \(r_+\), \(r_-\) to największa i&nbsp;najmniejsza z&nbsp;liczb \(|u(a)|\,\varphi'(a)^{-1/p}\), \(|u(b)|\,\varphi'(b)^{-1/p}\).</p>
@@ -522,15 +523,16 @@
     </div>
     <figure class="disk-auto-figure enter" data-disk-automorphism="hyperbolic"></figure>
   </div>
-  <p class="paper-foot paper-foot--lines"><span>[2] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, <i>Spectral properties of weighted composition operators on the Bloch and Dirichlet spaces</i>, Studia Math. 232 (2016)<br>[3] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, M.&nbsp;Rzeczkowski, <i>Spectra of weighted composition operators on abstract Hardy spaces</i>, RACSAM 113 (2019)</span></p>
 </div>
 <aside class="notes">
   <p><strong>Slajd 11/17 · Automorfizmy hiperboliczne</strong></p>
   <p><strong>Czas:</strong> 1:30 · <strong>na zegarze:</strong> 10:25–11:55</p>
   <p>Przypadek hiperboliczny jest najtrudniejszy. Na \(HX\) ogólnie widma nie opisaliśmy; dla \(X=L^{p,q}\) wynika ono z równości \(\sigma_{H^{p,q}}=\sigma_{H^p}\), dowodzonej przez stabilność widm na przestrzeniach interpolacyjnych (Asekritova, Kruglyak, Mastyło), i&nbsp;znanego opisu na \(H^p\). Równość nie wymaga, by \(\varphi\) był automorfizmem.</p>
-  <p>Animacja: \(a=1\) (przyciągający, \(\varphi'(1)\approx0{,}38\)), \(b=-1\) (\(\varphi'(-1)\approx2{,}64\)), \(|u(a)|=1\), \(|u(b)|=0{,}6\). Pierścień dla \(H^{p,q}\) zmienia się z&nbsp;\(p\), nie zależy od \(q\). Przerywane okręgi o promieniach \(|u(a)|\), \(|u(b)|\) — pierścień zawierający widmo na \(\mathcal B\) i&nbsp;\(\mathcal D\).</p>
+  <p>Animacja: rodzina \(\Phi_q=M_c\circ H_q\circ M_c^{-1}\), gdzie \(H_q(z)=\frac{z+q}{1+qz}\), \(M_c(z)=\frac{z+c}{1+\overline cz}\), \(c=i/3\), \(q\) rośnie od \(0\) do \(0{,}995\) w&nbsp;ciągu 90 s (przy \(q=0\) identyczność — klatka początkowa). Punkty stałe: \(a=M_c(1)=\frac45+\frac35i\) (przyciągający) i&nbsp;\(b=M_c(-1)=-\frac45+\frac35i\) (odpychający). Siatka spływa ku \(a\); złota przerywana krzywa to zakrzywiony tor obrazu środka \(\Phi_q(0)\), który zbliża się do \(a\), nie osiągając brzegu.</p>
+  <p>Wynik dla \(H^{p,q}\) jest pełnym opisem widma; dla \(\mathcal D\) w&nbsp;[2] mamy promień spektralny i&nbsp;inkluzję widma w&nbsp;pierścieniu.</p>
   <p>Na przestrzeni Blocha przy \(|u(a)|=|u(b)|\) widmo to okrąg \(|\lambda|=|u(a)|\) [2, Thm.&nbsp;4.6]. Dla \(\mathcal D\) Chalendar, Gallardo-Gutiérrez i&nbsp;Partington mieli oszacowania z&nbsp;czynnikiem \(\xi&gt;1\). W [2] postawiliśmy hipotezę równości w&nbsp;inkluzji; równość udowodnili Abadias, Galé, Miana i&nbsp;Oliva-Maza (Adv. Math. 455 (2024), Thm.&nbsp;7.2).</p>
   <p><strong>Źródło:</strong> Autoreferat, § 4, s. 9–11; Twierdzenia 5, 8, 9 autoreferatu.</p>
+  <p><strong>Twierdzenia na slajdzie:</strong> [2, Thm.&nbsp;5.2]; [3, Thm.&nbsp;5, Cor.&nbsp;1]. Prace: [2] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, Studia Math. 232 (2016); [3] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, M.&nbsp;Rzeczkowski, RACSAM 113 (2019).</p>
 </aside>
 </section>
 

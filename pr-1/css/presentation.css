@@ -1039,3 +1039,6 @@ html, body {
 .reveal .split--auto3 .stack > .thm:nth-child(2)::before { width: calc((100% - 44px) * 2 / 3); }
 .reveal .split--auto3 .stack > .thm:nth-child(3)::before { width: calc(100% - 44px); }
 .reveal .paper-foot--lines { font-size: 14.5px; right: 90px; white-space: nowrap; }
+/* Slajd 8: ramki i lista prac wchodzą kolejno, co 0,8 s (jak na slajdzie 7) */
+.reveal .slides section.present .scope .enter,
+.reveal .slides section.present .scope-papers.enter { animation-duration: 0.9s; animation-delay: calc(var(--i, 0) * 0.8s + 0.3s); }
