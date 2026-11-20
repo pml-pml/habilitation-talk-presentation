@@ -80,11 +80,10 @@
   const grid = [...circles, ...rays];
   const seeds = {elliptic: z(.52, -.23), parabolic: z(-.36, .09), hyperbolic: z(-.46, .16)};
   const descriptions = {
-    elliptic: 'Eliptyczny automorfizm obraca siatkę wokół punktu stałego wewnątrz dysku',
+    elliptic: 'Automorfizm obraca siatkę wokół punktu stałego wewnątrz dysku',
     parabolic: 'Paraboliczny automorfizm zagęszcza siatkę w pobliżu jedynego brzegowego punktu stałego 1',
     hyperbolic: 'Hiperboliczny automorfizm przesuwa siatkę od odpychającego punktu -1 ku przyciągającemu 1'
   };
-  const captions = {elliptic: 'ELIPTYCZNY', parabolic: 'PARABOLICZNY', hyperbolic: 'HIPERBOLICZNY'};
   const instances = [];
 
   function create(figure) {
@@ -105,13 +104,11 @@
     frame.appendChild(picture);
     const caption = document.createElement('div');
     caption.className = 'disk-auto-meta';
-    const kind = document.createElement('span');
-    kind.className = 'disk-auto-kind';
-    kind.textContent = captions[type];
     const time = document.createElement('span');
     time.className = 'disk-auto-time';
     time.setAttribute('aria-live', 'off');
-    caption.append(kind, time);
+    caption.append(time);
+    if (type === 'elliptic') caption.style.display = 'none';
     const bar = document.createElement('div');
     bar.className = 'disk-auto-track';
     const fill = document.createElement('div');
@@ -164,9 +161,7 @@
       moving.setAttribute('cx', fmt(mx));
       moving.setAttribute('cy', fmt(my));
       fill.style.width = (p * 100).toFixed(1) + '%';
-      time.textContent = type === 'elliptic'
-        ? 'obrót · ' + Math.round(p * 360) + '°'
-        : Math.min(duration, Math.round(elapsed)) + ' / ' + duration + ' s';
+      if (type !== 'elliptic') time.textContent = Math.min(duration, Math.round(elapsed)) + ' / ' + duration + ' s';
       figure.dataset.diskProgress = p.toFixed(5);
     }
 

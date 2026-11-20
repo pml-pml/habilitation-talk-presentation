@@ -426,53 +426,67 @@
 </section>
 
 
-<!-- 09. Automorfizmy dysku · 1:15 · od 7:55 do 9:10 -->
-<section data-slide-topic="Automorfizmy dysku" data-duration-seconds="75">
+<!-- 09. Automorfizmy eliptyczne · 1:15 · od 7:55 do 9:10 -->
+<section data-slide-topic="Automorfizmy eliptyczne" data-duration-seconds="75">
 <div class="slide-content">
-  <p class="eyebrow">§ 3 · Automorfizmy dysku</p>
-  <h2>Klasyfikacja według punktów stałych</h2>
-  <div class="split split--even">
+  <p class="eyebrow">Widma wagowych operatorów złożenia</p>
+  <h2>Automorfizmy eliptyczne</h2>
+  <div class="split split--auto">
     <div class="stack">
-      <!-- Miejsce na tekst o automorfizmie eliptycznym do edycji lokalnej. -->
+      <div class="thm auto-def enter">
+        <div class="thm-head"><span class="thm-label">Automorfizmy eliptyczne</span></div>
+        <div class="formula">\[\varphi(z)=e^{i\theta}\,\frac{z-w}{1-\overline{w}z},\qquad w\in\mathbb D,\ \theta\in[0,2\pi).\]</div>
+        <p>Automorfizm \(\varphi\) jest <em>eliptyczny</em>, gdy <span class="auto-cond">\(|w|&lt;\sin\tfrac{\theta}{2}\)</span>. Równoważnie, \(\varphi\) ma dokładnie jeden punkt stały \(a\in\mathbb D\).</p>
+      </div>
+      <div class="thm enter">
+        <div class="thm-head"><span class="thm-label">Twierdzenie</span><span class="thm-ref">[2, Thm.&nbsp;4.8], [3, Thm.&nbsp;4]</span></div>
+        <p>Niech \(u\in A(\mathbb D)\), \(\varphi\) będzie automorfizmem eliptycznym z&nbsp;punktem stałym \(a\in\mathbb D\), \(X=\mathcal B\) lub \(X=HX\), a&nbsp;\(uC_\varphi\colon X\to X\) niech będzie odwracalny.</p>
+        <ul class="gold-list">
+          <li>Jeśli \(\varphi_j\ne\mathrm{id}\) dla \(j\in\mathbb N\), to \(\sigma_X(uC_\varphi)=\{\lambda\in\mathbb C:|\lambda|=|u(a)|\}\).</li>
+          <li>Jeśli \(\varphi_j=\mathrm{id}\) dla pewnego \(j\), to \(\sigma_X(uC_\varphi)=\overline{\{\lambda\in\mathbb C:\lambda^n\in u_{(n)}(\mathbb D)\}}\),<br>gdzie \(n=\min\{j:\varphi_j=\mathrm{id}\}\), \(u_{(n)}=u\cdot(u\circ\varphi_1)\cdots(u\circ\varphi_{n-1})\).</li>
+        </ul>
+      </div>
     </div>
+    <figure class="disk-auto-figure enter" data-disk-automorphism="elliptic"></figure>
   </div>
-  <figure class="disk-auto-figure enter" data-disk-automorphism="elliptic"></figure>
+  <p class="paper-foot paper-foot--lines"><span>[2] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, <i>Spectral properties of weighted composition operators on the Bloch and Dirichlet spaces</i>, Studia Math. 232 (2016)<br>[3] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, M.&nbsp;Rzeczkowski, <i>Spectra of weighted composition operators on abstract Hardy spaces</i>, RACSAM 113 (2019)</span></p>
 </div>
 <aside class="notes">
-  <p><strong>Slajd 9/17 · Automorfizmy dysku</strong></p>
+  <p><strong>Slajd 9/17 · Automorfizmy eliptyczne</strong></p>
   <p><strong>Czas:</strong> 1:15 · <strong>na zegarze:</strong> 7:55–9:10</p>
   <p>Każdy automorfizm dysku jest automorfizmem sfery Riemanna i&nbsp;ma punkt stały. Eliptyczny: jeden punkt stały w&nbsp;\(\mathbb D\), drugi poza domknięciem dysku. Hiperboliczny: dwa punkty stałe na brzegu. Paraboliczny: jeden podwójny punkt stały na brzegu. Innych możliwości nie ma (Cowen, MacCluer).</p>
-  <p>Animacje: obrót wokół \(0\); ruch po horocyklu stycznym w&nbsp;\(1\); iteracje \(x\mapsto(x+0{,}45)/(1+0{,}45x)\) od \(x=0\), zbiegające do przyciągającego punktu \(1\). Linie w&nbsp;tle: okręgi współśrodkowe, horocykle styczne w&nbsp;\(1\) i&nbsp;łuki okręgów przez \(\pm1\).</p>
+  <p>Postać \(\varphi(z)=e^{i\theta}\frac{z-w}{1-\overline wz}\) (litera \(w\), bo \(a\) to punkt stały). Równanie \(\varphi(z)=z\): \(\overline wz^2+(e^{i\theta}-1)z-e^{i\theta}w=0\), wyróżnik \(\Delta=4e^{i\theta}\bigl(|w|^2-\sin^2\frac\theta2\bigr)\). Iloczyn pierwiastków ma moduł 1, więc albo jeden punkt stały w&nbsp;\(\mathbb D\) i&nbsp;drugi poza domknięciem (\(|w|&lt;\sin\frac\theta2\), eliptyczny), albo podwójny na \(\mathbb T\) (\(=\), paraboliczny; \(w=0,\theta=0\) to identyczność), albo dwa różne na \(\mathbb T\) (\(&gt;\), hiperboliczny).</p>
+  <p>Animacja: obrót siatki wokół punktu stałego \(a\approx-0{,}19+0{,}16i\), pełny cykl co 16 s; złota przerywana krzywa to orbita punktu, kliknięcie zatrzymuje animację.</p>
   <p>Klasyczne wyniki dla \(C_\varphi\) na \(H^2\) (Nordgren 1968): dla parabolicznego \(\varphi\) widmo jest okręgiem jednostkowym, dla hiperbolicznego — pierścieniem o promieniach zależnych od punktów stałych.</p>
   <p><strong>Źródło:</strong> Autoreferat, § 3–4, s. 6–7.</p>
 </aside>
 </section>
 
 
-<!-- 10. Widma: paraboliczny i eliptyczny · 1:15 · od 9:10 do 10:25 -->
-<section data-slide-topic="Widma — paraboliczny i eliptyczny" data-duration-seconds="75">
+<!-- 10. Automorfizmy paraboliczne · 1:15 · od 9:10 do 10:25 -->
+<section data-slide-topic="Automorfizmy paraboliczne" data-duration-seconds="75">
 <div class="slide-content">
-  <p class="eyebrow">§ 4 · Widma wagowych operatorów złożenia · prace [2], [3]</p>
-  <h2>Automorfizm paraboliczny i&nbsp;eliptyczny</h2>
-  <div class="split split--even">
+  <p class="eyebrow">Widma wagowych operatorów złożenia</p>
+  <h2>Automorfizmy paraboliczne</h2>
+  <div class="split split--auto">
     <div class="stack">
+      <div class="thm auto-def enter">
+        <div class="thm-head"><span class="thm-label">Automorfizmy paraboliczne</span></div>
+        <div class="formula">\[\varphi(z)=e^{i\theta}\,\frac{z-w}{1-\overline{w}z},\qquad w\in\mathbb D,\ \theta\in[0,2\pi).\]</div>
+        <p>Automorfizm \(\varphi\) jest <em>paraboliczny</em>, gdy <span class="auto-cond">\(|w|=\sin\tfrac{\theta}{2}&gt;0\)</span>. Równoważnie, \(\varphi\) ma w&nbsp;\(\overline{\mathbb D}\) dokładnie jeden punkt stały \(a\), przy czym \(a\in\mathbb T\).</p>
+      </div>
       <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Twierdzenie</span><span class="thm-ref">[2, Thm.&nbsp;4.3], [3, Thm.&nbsp;3]</span></div>
-        <p>Niech \(u\in A(\mathbb D)\), \(\varphi\) — automorfizm paraboliczny z&nbsp;punktem stałym \(a\), \(X=\mathcal B\) lub \(X=HX\), a \(uC_\varphi\colon X\to X\) — odwracalny. Wtedy</p>
+        <p>Niech \(u\in A(\mathbb D)\), \(\varphi\) będzie automorfizmem parabolicznym z&nbsp;punktem stałym \(a\in\mathbb T\), \(X=\mathcal B\) lub \(X=HX\), a&nbsp;\(uC_\varphi\colon X\to X\) niech będzie odwracalny. Wtedy</p>
         <div class="formula formula--lead">\[\sigma_X(uC_\varphi)=\bigl\{\lambda\in\mathbb C:|\lambda|=|u(a)|\bigr\}.\]</div>
-      </div>
-      <div class="thm thm--quiet enter">
-        <div class="thm-head"><span class="thm-label">Eliptyczny \(\varphi\)</span><span class="thm-ref">[2, Thm.&nbsp;4.8], [3, Thm.&nbsp;4]</span></div>
-        <p class="small">Gdy \(\varphi_j\ne\mathrm{id}\) dla wszystkich \(j\) — ten sam okrąg. Gdy \(n=\min\{j:\varphi_j=\mathrm{id}\}\):</p>
-        <div class="formula">\[\sigma_X(uC_\varphi)=\overline{\{\lambda:\ \lambda^n\in u_{(n)}(\mathbb D)\}}.\]</div>
       </div>
     </div>
     <figure class="disk-auto-figure enter" data-disk-automorphism="parabolic"></figure>
   </div>
-  <p class="paper-foot"><span>[2] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, Studia Math. 232 (2016) · [3] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, M.&nbsp;Rzeczkowski, RACSAM 113 (2019)</span></p>
+  <p class="paper-foot paper-foot--lines"><span>[2] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, <i>Spectral properties of weighted composition operators on the Bloch and Dirichlet spaces</i>, Studia Math. 232 (2016)<br>[3] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, M.&nbsp;Rzeczkowski, <i>Spectra of weighted composition operators on abstract Hardy spaces</i>, RACSAM 113 (2019)</span></p>
 </div>
 <aside class="notes">
-  <p><strong>Slajd 10/17 · Widma: paraboliczny i eliptyczny</strong></p>
+  <p><strong>Slajd 10/17 · Automorfizmy paraboliczne</strong></p>
   <p><strong>Czas:</strong> 1:15 · <strong>na zegarze:</strong> 9:10–10:25</p>
   <p>Kontekst: Kamowitz (\(A(\mathbb D)\)); Hyvärinen, Lindström, Nieminen, Saukko (2013) — widma odwracalnych \(uC_\varphi\) na \(H^p\), wagowych przestrzeniach Bergmana i&nbsp;wagowych przestrzeniach funkcji ograniczonych, bez przestrzeni Blocha, Dirichleta i&nbsp;\(HX\). Na \(HX\) zamiast oszacowania \(|f(z)|\leqslant\|f\|(1-|z|^2)^{-s}\) używamy oszacowania Mastyły i&nbsp;Rodrígueza-Piazzy \(|f(z)|\leqslant C\|f\|_{HX}/\phi_X(1-|z|)\).</p>
   <p>Animacja: zmienia się waga \(u\); szara krzywa to \(u(\mathbb T)\), złoty punkt to \(u(a)\). Widmo zależy wyłącznie od \(|u(a)|\).</p>
@@ -482,34 +496,36 @@
 </section>
 
 
-<!-- 11. Widma: hiperboliczny · 1:30 · od 10:25 do 11:55 -->
-<section data-slide-topic="Widma — hiperboliczny" data-duration-seconds="90">
+<!-- 11. Automorfizmy hiperboliczne · 1:30 · od 10:25 do 11:55 -->
+<section data-slide-topic="Automorfizmy hiperboliczne" data-duration-seconds="90">
 <div class="slide-content">
-  <p class="eyebrow">§ 4 · Widma wagowych operatorów złożenia · prace [2], [3]</p>
-  <h2>Automorfizm hiperboliczny</h2>
-  <div class="split split--text-left">
+  <p class="eyebrow">Widma wagowych operatorów złożenia</p>
+  <h2>Automorfizmy hiperboliczne</h2>
+  <div class="split split--auto split--auto3">
     <div class="stack">
-      <div class="thm enter">
-        <div class="thm-head"><span class="thm-label">Twierdzenie</span><span class="thm-ref">[3, Thm.&nbsp;5]</span></div>
-        <p>Dla \(u\in A(\mathbb D)\), dowolnego \(\varphi\colon\mathbb D\to\mathbb D\) i&nbsp;\(p,q\in(1,\infty)\):
-        \(\ \sigma_{H^{p,q}}(uC_\varphi)=\sigma_{H^p}(uC_\varphi)\).</p>
+      <div class="thm auto-def enter">
+        <div class="thm-head"><span class="thm-label">Automorfizmy hiperboliczne</span></div>
+        <div class="formula">\[\varphi(z)=e^{i\theta}\,\frac{z-w}{1-\overline{w}z},\qquad w\in\mathbb D,\ \theta\in[0,2\pi).\]</div>
+        <p>Automorfizm \(\varphi\) jest <em>hiperboliczny</em>, gdy <span class="auto-cond">\(|w|&gt;\sin\tfrac{\theta}{2}\)</span>. Równoważnie, \(\varphi\) ma dokładnie dwa punkty stałe \(a,b\in\mathbb T\).</p>
       </div>
       <div class="thm enter">
-        <div class="thm-head"><span class="thm-label">Wniosek</span><span class="thm-ref">[3, Cor.&nbsp;1]</span></div>
-        <p class="small">\(\varphi\) hiperboliczny z&nbsp;punktami stałymi \(a,b\), \(uC_\varphi\) odwracalny na \(H^{p,q}\):</p>
-        <div class="formula">\[\sigma_{H^{p,q}}(uC_\varphi)=\Bigl\{\lambda:\ r_-\leqslant|\lambda|\leqslant r_+\Bigr\},\]</div>
-        <p class="small centerline">\(r_+\), \(r_-\) — największa i&nbsp;najmniejsza z&nbsp;liczb \(\dfrac{|u(a)|}{\varphi'(a)^{1/p}},\ \dfrac{|u(b)|}{\varphi'(b)^{1/p}}\).</p>
+        <div class="thm-head"><span class="thm-label">Twierdzenie</span><span class="thm-ref">[2, Thm.&nbsp;5.2]</span></div>
+        <p>Niech \(u\in A(\mathbb D)\), \(\varphi\) będzie automorfizmem hiperbolicznym z&nbsp;punktami stałymi \(a,b\in\mathbb T\), a&nbsp;\(uC_\varphi\colon\mathcal D\to\mathcal D\) niech będzie odwracalny. Wtedy \(r_{\mathcal D}(uC_\varphi)=\max(|u(a)|,|u(b)|)\) oraz</p>
+        <div class="formula">\[\sigma_{\mathcal D}(uC_\varphi)\subseteq\bigl\{\lambda\in\mathbb C:\ \min(|u(a)|,|u(b)|)\leqslant|\lambda|\leqslant\max(|u(a)|,|u(b)|)\bigr\}.\]</div>
       </div>
-      <div class="thm thm--quiet enter">
-        <div class="thm-head"><span class="thm-label">\(X=\mathcal B,\ \mathcal D\)</span><span class="thm-ref">[2, Thm.&nbsp;4.6, 5.2]</span></div>
-        <p class="small">\(r_X(uC_\varphi)=\max(|u(a)|,|u(b)|)\), a&nbsp;widmo leży w&nbsp;pierścieniu \(\min(|u(a)|,|u(b)|)\leqslant|\lambda|\leqslant\max(|u(a)|,|u(b)|)\).</p>
+      <div class="thm enter">
+        <div class="thm-head"><span class="thm-label">Przestrzenie Hardy’ego–Lorentza</span><span class="thm-ref">[3, Thm.&nbsp;5, Cor.&nbsp;1]</span></div>
+        <p>Przy tych założeniach o&nbsp;\(u\) i&nbsp;\(\varphi\), dla \(p,q\in(1,\infty)\) i&nbsp;odwracalnego \(uC_\varphi\colon H^{p,q}\to H^{p,q}\)</p>
+        <div class="formula">\[\sigma_{H^{p,q}}(uC_\varphi)=\sigma_{H^{p}}(uC_\varphi)=\bigl\{\lambda\in\mathbb C:\ r_-\leqslant|\lambda|\leqslant r_+\bigr\},\]</div>
+        <p class="small">gdzie \(r_+\), \(r_-\) to największa i&nbsp;najmniejsza z&nbsp;liczb \(|u(a)|\,\varphi'(a)^{-1/p}\), \(|u(b)|\,\varphi'(b)^{-1/p}\).</p>
       </div>
     </div>
     <figure class="disk-auto-figure enter" data-disk-automorphism="hyperbolic"></figure>
   </div>
+  <p class="paper-foot paper-foot--lines"><span>[2] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, <i>Spectral properties of weighted composition operators on the Bloch and Dirichlet spaces</i>, Studia Math. 232 (2016)<br>[3] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, M.&nbsp;Rzeczkowski, <i>Spectra of weighted composition operators on abstract Hardy spaces</i>, RACSAM 113 (2019)</span></p>
 </div>
 <aside class="notes">
-  <p><strong>Slajd 11/17 · Widma: hiperboliczny</strong></p>
+  <p><strong>Slajd 11/17 · Automorfizmy hiperboliczne</strong></p>
   <p><strong>Czas:</strong> 1:30 · <strong>na zegarze:</strong> 10:25–11:55</p>
   <p>Przypadek hiperboliczny jest najtrudniejszy. Na \(HX\) ogólnie widma nie opisaliśmy; dla \(X=L^{p,q}\) wynika ono z równości \(\sigma_{H^{p,q}}=\sigma_{H^p}\), dowodzonej przez stabilność widm na przestrzeniach interpolacyjnych (Asekritova, Kruglyak, Mastyło), i&nbsp;znanego opisu na \(H^p\). Równość nie wymaga, by \(\varphi\) był automorfizmem.</p>
   <p>Animacja: \(a=1\) (przyciągający, \(\varphi'(1)\approx0{,}38\)), \(b=-1\) (\(\varphi'(-1)\approx2{,}64\)), \(|u(a)|=1\), \(|u(b)|=0{,}6\). Pierścień dla \(H^{p,q}\) zmienia się z&nbsp;\(p\), nie zależy od \(q\). Przerywane okręgi o promieniach \(|u(a)|\), \(|u(b)|\) — pierścień zawierający widmo na \(\mathcal B\) i&nbsp;\(\mathcal D\).</p>
