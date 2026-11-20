@@ -1,0 +1,65 @@
+/*
+ * Osobny moduł trzech automorfizmów dysku. Wykresy w prawej połowie
+ * slajdów, bez zmian treści po lewej stronie.
+ */
+.reveal .disk-auto-figure {
+  position: absolute;
+  z-index: 4;
+  top: 140px;
+  right: 25px;
+  width: min(47%, 610px);
+  margin: 0;
+  padding: 16px 18px 14px;
+  box-sizing: border-box;
+  border: 1px solid rgba(44, 75, 102, .23);
+  border-radius: 20px;
+  background: #fffefa;
+  box-shadow: 0 12px 34px rgba(13, 40, 70, .09);
+  cursor: pointer;
+  isolation: isolate;
+}
+.reveal .disk-auto-figure .disk-auto-frame { width: 100%; aspect-ratio: 560 / 540; }
+.reveal .disk-auto-figure svg.disk-auto-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  overflow: visible;
+  background: transparent;
+}
+.reveal .disk-auto-ghost {
+  stroke: #A7B8BE; stroke-width: 1.05;
+  stroke-dasharray: 4 6; opacity: .22;
+}
+.reveal .disk-auto-circle { stroke: #638A9E; stroke-width: 1.5; opacity: .83; }
+.reveal .disk-auto-ray { stroke: #668397; stroke-width: 1.25; opacity: .72; }
+.reveal .disk-auto-mainline { stroke: #C49A5A; stroke-width: 2.6; opacity: .98; }
+.reveal .disk-auto-orbit {
+  stroke: #C49A5A; stroke-width: 2.7; stroke-linecap: round;
+  stroke-dasharray: 3 6; opacity: .92;
+}
+.reveal .disk-auto-moving { fill: #2E708F; stroke: #fffefa; stroke-width: 3.3; }
+.reveal .disk-auto-fixed-halo { fill: none; stroke: #CAA16B; stroke-width: 1.5; opacity: .5; }
+.reveal .disk-auto-fixed { fill: #CAA16B; stroke: #fffefa; stroke-width: 2; }
+.reveal .disk-auto-fixed.disk-auto-repelling { fill: #AA765E; }
+.reveal .disk-auto-fixed-halo.disk-auto-repelling { stroke: #AA765E; }
+.reveal .disk-auto-label { font-family: Georgia, 'Times New Roman', serif; font-size: 20px; fill: #274660; }
+.reveal .disk-auto-meta {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  font-family: Inter, 'Segoe UI', sans-serif;
+  font-size: 15px; font-weight: 600; letter-spacing: .04em;
+  color: #34516B; margin: 0 12px 10px;
+}
+.reveal .disk-auto-time {
+  font-weight: 500; color: #788896;
+  font-variant-numeric: tabular-nums; letter-spacing: 0;
+}
+.reveal .disk-auto-track {
+  height: 3px; border-radius: 3px; background: #E8E9E5;
+  overflow: hidden; margin: 0 12px 2px;
+}
+.reveal .disk-auto-fill { height: 100%; width: 0; background: #C49A5A; transition: none; }
+.reveal .disk-auto-figure.disk-auto-paused { outline: 2px solid rgba(196,154,90,.55); outline-offset: 2px; }
+@media print { .reveal .disk-auto-figure { box-shadow: none; } }

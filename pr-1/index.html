@@ -20,6 +20,7 @@
     }
   </script>
   <link rel="stylesheet" href="css/presentation.css">
+  <link rel="stylesheet" href="css/disk-automorphisms.css">
 </head>
 <body>
 <div class="reveal">
@@ -430,61 +431,12 @@
 <div class="slide-content">
   <p class="eyebrow">§ 3 · Automorfizmy dysku</p>
   <h2>Klasyfikacja według punktów stałych</h2>
-  <div class="layout-three diagram-grid">
-    <figure class="diagram-card enter">
-      <h3>Eliptyczny</h3>
-      <svg class="disk-diagram" viewBox="0 0 260 260" role="img" aria-label="Orbita okrąża wewnętrzny punkt stały">
-        <circle class="disk-outline" cx="130" cy="130" r="103"/>
-        <circle class="flow" cx="130" cy="130" r="30"/>
-        <circle class="flow" cx="130" cy="130" r="88"/>
-        <circle class="guide" cx="130" cy="130" r="65"/>
-        <circle class="fixed-point" cx="130" cy="130" r="8"/>
-        <text class="math-label" x="140" y="117">0</text>
-        <circle class="moving-point elliptic-particle" cx="195" cy="130" r="7"/>
-      </svg>
-      <p class="formula--small">\(z\mapsto e^{i\theta}z\)</p>
-      <figcaption class="diagram-caption">jeden punkt stały w&nbsp;\(\mathbb D\)</figcaption>
-    </figure>
-    <figure class="diagram-card enter">
-      <h3>Paraboliczny</h3>
-      <svg class="disk-diagram" viewBox="0 0 260 260" role="img" aria-label="Orbita przesuwa się po horocyklu do brzegowego punktu stałego">
-        <circle class="disk-outline" cx="130" cy="130" r="103"/>
-        <circle class="flow" cx="207.25" cy="130" r="25.75"/>
-        <circle class="flow" cx="155.75" cy="130" r="77.25"/>
-        <circle class="flow" cx="139" cy="130" r="94"/>
-        <circle class="guide" cx="181.5" cy="130" r="51.5"/>
-        <circle class="fixed-point" cx="233" cy="130" r="8"/>
-        <text class="math-label" x="239" y="118">1</text>
-        <circle class="moving-point parabolic-still" cx="130" cy="130" r="7"/>
-        <circle class="moving-point parabolic-particle" r="7">
-          <animateMotion path="M 130 130 A 51.5 51.5 0 0 1 222.7 99.1"
-                         dur="7s" repeatCount="indefinite" calcMode="paced"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.92;1" dur="7s" repeatCount="indefinite"/>
-        </circle>
-      </svg>
-      <p class="formula--small">\(\varphi_t=c^{-1}\circ(c+it)\)</p>
-      <figcaption class="diagram-caption">jeden (podwójny) punkt stały na \(\partial\mathbb D\)</figcaption>
-    </figure>
-    <figure class="diagram-card enter">
-      <h3>Hiperboliczny</h3>
-      <svg class="disk-diagram" viewBox="0 0 260 260" role="img" aria-label="Iteracje punktu 0 zbliżają się do przyciągającego punktu 1; drugi brzegowy punkt stały jest w minus jeden">
-        <circle class="disk-outline" cx="130" cy="130" r="103"/>
-        <path class="flow" d="M 27 130 A 120.4 120.4 0 0 1 233 130"/>
-        <path class="flow" d="M 27 130 A 120.4 120.4 0 0 0 233 130"/>
-        <path class="flow" d="M 27 130 A 182.1 182.1 0 0 1 233 130"/>
-        <path class="flow" d="M 27 130 A 182.1 182.1 0 0 0 233 130"/>
-        <path class="guide" d="M 27 130 H 233"/>
-        <circle class="fixed-point" cx="27" cy="130" r="8"/>
-        <circle class="fixed-point" cx="233" cy="130" r="8"/>
-        <text class="math-label" x="6" y="116">−1</text>
-        <text class="math-label" x="239" y="116">1</text>
-        <circle class="moving-point hyperbolic-particle" cx="130" cy="130" r="7"/>
-      </svg>
-      <p class="formula--small">\(\varphi(z)=\frac{z+s}{1+sz},\ 0&lt;s&lt;1\)</p>
-      <figcaption class="diagram-caption">dwa punkty stałe na \(\partial\mathbb D\)</figcaption>
-    </figure>
+  <div class="split split--even">
+    <div class="stack">
+      <!-- Miejsce na tekst o automorfizmie eliptycznym do edycji lokalnej. -->
+    </div>
   </div>
-  <p class="note enter" style="margin-top:14px">Linie przerywane: krzywe, po których poruszają się iteracje. \(c(z)=\frac{1+z}{1-z}\), \(t&gt;0\).</p>
+  <figure class="disk-auto-figure enter" data-disk-automorphism="elliptic"></figure>
 </div>
 <aside class="notes">
   <p><strong>Slajd 9/17 · Automorfizmy dysku</strong></p>
@@ -515,13 +467,7 @@
         <div class="formula">\[\sigma_X(uC_\varphi)=\overline{\{\lambda:\ \lambda^n\in u_{(n)}(\mathbb D)\}}.\]</div>
       </div>
     </div>
-    <figure class="figure enter">
-      <svg class="anim" data-anim="spectrum-parabolic" viewBox="0 0 560 360" role="img" aria-label="Płaszczyzna zespolona: obraz okręgu jednostkowego przez wagę i okrąg o promieniu modułu wagi w punkcie stałym"></svg>
-      <div class="readout">
-        <span>\(a=1\), \(u(z)=1-0{,}2z+0{,}45e^{is}z^2\)</span><span class="sep">|</span>
-        <span>\(|u(a)|=\) <span class="val" data-out="ua">1,00</span></span>
-      </div>
-    </figure>
+    <figure class="disk-auto-figure enter" data-disk-automorphism="parabolic"></figure>
   </div>
   <p class="paper-foot"><span>[2] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, Studia Math. 232 (2016) · [3] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, M.&nbsp;Rzeczkowski, RACSAM 113 (2019)</span></p>
 </div>
@@ -559,15 +505,7 @@
         <p class="small">\(r_X(uC_\varphi)=\max(|u(a)|,|u(b)|)\), a&nbsp;widmo leży w&nbsp;pierścieniu \(\min(|u(a)|,|u(b)|)\leqslant|\lambda|\leqslant\max(|u(a)|,|u(b)|)\).</p>
       </div>
     </div>
-    <figure class="figure enter">
-      <svg class="anim" data-anim="spectrum-hyperbolic" viewBox="0 0 560 420" role="img" aria-label="Pierścień spektralny na H^{p,q} zmieniający się wraz z p oraz pierścień dla przestrzeni Blocha i Dirichleta"></svg>
-      <div class="readout">
-        <span>\(\varphi(z)=\frac{z+0{,}45}{1+0{,}45z}\), \(u(z)=0{,}8+0{,}2z\)</span><span class="sep">|</span>
-        <span>\(p=\) <span class="val" data-out="p">2,00</span></span>
-        <span>\(r_-=\) <span class="val" data-out="rm">0,00</span></span>
-        <span>\(r_+=\) <span class="val" data-out="rp">0,00</span></span>
-      </div>
-    </figure>
+    <figure class="disk-auto-figure enter" data-disk-automorphism="hyperbolic"></figure>
   </div>
 </div>
 <aside class="notes">
@@ -894,5 +832,6 @@
   });
 </script>
 <script src="js/animations.js"></script>
+<script src="js/disk-automorphisms.js"></script>
 </body>
 </html>
