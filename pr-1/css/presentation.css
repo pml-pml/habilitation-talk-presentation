@@ -1144,3 +1144,9 @@ html, body {
 .reveal .papers .num { font-size: 18px; }
 .reveal .papers cite { font-size: 17.5px; line-height: 1.2; }
 .reveal .papers .meta { font-size: 13.5px; margin-top: 3px; }
+.reveal .papers .num { font-weight: 400; }
+/* Tematy blisko siebie, blok wyśrodkowany w pionie względem listy prac */
+.reveal .topics { justify-content: center; gap: 18px; }
+/* Nagłówek „Tematy” tuż nad blokiem tematów; blok wyśrodkowany w pionie w kolumnie */
+.reveal .overview > div:last-of-type { justify-content: center; }
+.reveal .overview > div:last-of-type .topics { flex: 0 0 auto; }
