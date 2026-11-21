@@ -773,72 +773,249 @@
     };
   };
 
-  /* ---------------- slajd 13: macierze B^n T S^n ---------------- */
+  /* ---------------- slajd 13: jednostajna wypukłość kuli ℓ^{3/2} ---------------- */
+
+  // Kula jednostkowa ℓ^{3/2} w ℝ²; cięciwy o długości (w tej normie) co najmniej ε,
+  // ich środki leżą w kuli (1 − δ)B, δ = δ(ε) — moduł wypukłości liczony numerycznie.
+  factories['uniform-convexity'] = function (root) {
+    const cx = 200, cy = 192, S = 162;
+    const p = 1.5, q = 1 / p * 2;                      // q = 4/3: |cos u|^q, |sin u|^q leżą na sferze
+    const EPS = 1.3;
+    const P = u => {
+      const c = Math.cos(u), s = Math.sin(u);
+      return [Math.sign(c) * Math.pow(Math.abs(c), q), Math.sign(s) * Math.pow(Math.abs(s), q)];
+    };
+    const norm = v => Math.pow(Math.pow(Math.abs(v[0]), p) + Math.pow(Math.abs(v[1]), p), 1 / p);
+    const dist = (a, b) => norm([a[0] - b[0], a[1] - b[1]]);
+    // Parametr v > u punktu sfery w odległości L od P(u) (bisekcja; odległość rośnie do 2 przy v = u + π).
+    const ahead = (u, L) => {
+      const x = P(u);
+      let lo = u, hi = u + Math.PI;
+      for (let k = 0; k < 48; k++) {
+        const m = (lo + hi) / 2;
+        if (dist(P(m), x) < L) lo = m; else hi = m;
+      }
+      return hi;
+    };
+    // δ(ε) i parametr początku cięciwy, przy której środek jest najdalej od środka kuli.
+    let delta = 1, uMin = 0;
+    for (let k = 0; k <= 900; k++) {
+      const u = (Math.PI / 2) * k / 900;
+      const x = P(u), y = P(ahead(u, EPS));
+      const g = 1 - norm([(x[0] + y[0]) / 2, (x[1] + y[1]) / 2]);
+      if (g < delta) { delta = g; uMin = u; }
+    }
+    const X = v => cx + S * v[0], Y = v => cy - S * v[1];
+    const ballPath = r => {
+      let d = '';
+      for (let k = 0; k < 720; k++) {
+        const v = P(TAU * k / 720);
+        d += (k ? 'L' : 'M') + f1(cx + S * r * v[0]) + ' ' + f1(cy - S * r * v[1]);
+      }
+      return d + 'Z';
+    };
+
+    // Kolory i grubości jak w animacjach automorfizmów (slajdy 9–11).
+    const C = { ink: '#254765', blue: '#638A9E', move: '#2E708F', gold: '#C49A5A', paper: '#fffefa' };
+    const disk = svg('g', { opacity: 0 }, root);
+    svg('path', { d: ballPath(1), fill: '#fcfbf7', stroke: 'none' }, disk);
+    const layer = svg('path', { d: ballPath(1) + ballPath(1 - delta), fill: C.blue, 'fill-opacity': 0.12, 'fill-rule': 'evenodd' }, root);
+    const inner = svg('path', { d: ballPath(1 - delta), fill: 'none', stroke: C.gold, 'stroke-width': 1.5, 'stroke-dasharray': '6 6' }, root);
+    svg('path', { d: ballPath(1), fill: 'none', stroke: C.ink, 'stroke-width': 2 }, disk);
+    // Podpis δ w pierścieniu, na dole kuli (w kierunku osi szerokość pierścienia to dokładnie δ).
+    const dGroup = svg('g', { opacity: 0 }, root);
+    const yb0 = cy + S, yb1 = cy + S * (1 - delta);
+    rich(dGroup, cx, f1((yb0 + yb1) / 2 + 6), [['δ']], 'mth', { 'text-anchor': 'middle' });
+
+    const chord = svg('path', { fill: 'none', stroke: C.blue, 'stroke-width': 1.6, opacity: 0 }, root);
+    const gauge = svg('path', { fill: 'none', stroke: C.gold, 'stroke-width': 3, 'stroke-linecap': 'round', opacity: 0 }, root);
+    const g1 = svg('circle', { r: 2.6, fill: C.gold, stroke: C.paper, 'stroke-width': 1.2, opacity: 0 }, root);
+    const g2 = svg('circle', { r: 2.6, fill: C.gold, stroke: C.paper, 'stroke-width': 1.2, opacity: 0 }, root);
+    const epsLbl = rich(root, 0, 0, [['ε']], 'mth mth-gold', { 'text-anchor': 'middle', opacity: 0 });
+    const dx = svg('circle', { r: 4.3, fill: C.move, stroke: C.paper, 'stroke-width': 2.2, opacity: 0 }, root);
+    const dy = svg('circle', { r: 4.3, fill: C.move, stroke: C.paper, 'stroke-width': 2.2, opacity: 0 }, root);
+    const halo = svg('circle', { r: 7, fill: 'none', stroke: '#CAA16B', 'stroke-width': 1.2, opacity: 0 }, root);
+    const mid = svg('circle', { r: 3.8, fill: '#CAA16B', stroke: C.paper, 'stroke-width': 1.6, opacity: 0 }, root);
+
+    // Ruch: początek cięciwy obiega sferę (ćwiartka w QT s), długość L ⩾ ε wraca do ε,
+    // gdy cięciwa jest symetryczna względem przekątnej (tam środek dotyka (1 − δ)B).
+    const T0 = 5, QT = 7;
+    const amp = [0.4, 0.2, 0.58, 0.3];
+    const state = tau => {
+      const k = Math.floor(tau / QT), f = tau / QT - k;
+      const g = f - 0.55 / TAU * Math.sin(TAU * f);      // zwolnienie przy cięciwach granicznych
+      const u = uMin + (Math.PI / 2) * (k + g);
+      const L = EPS + amp[((k % 4) + 4) % 4] * Math.pow(Math.sin(Math.PI * g), 2);
+      const x = P(u), y = P(ahead(u, L));
+      return { x, y, L, m: [(x[0] + y[0]) / 2, (x[1] + y[1]) / 2] };
+    };
+
+    return {
+      poster: T0 + 4 * QT,
+      frame(t) {
+        const a1 = ease(clamp(t / 1.2)), a2 = ease(clamp((t - 0.8) / 1.2));
+        const a3 = ease(clamp((t - 2) / 0.8)), a4 = ease(clamp((t - 3) / 1.4));
+        set(disk, { opacity: a1.toFixed(2) });
+        set(dGroup, { opacity: a2.toFixed(2) });
+        const st = state(Math.max(0, t - T0));
+        const gap = 1 - norm(st.m) - delta;              // ⩾ 0; zero przy cięciwach granicznych
+        const glow = clamp(1 - gap / 0.03);
+        set(layer, { opacity: (a2 * (0.7 + 0.3 * glow)).toFixed(2) });
+        set(inner, { opacity: (a2 * (0.6 + 0.4 * glow)).toFixed(2) });
+        const { x, y, m } = st;
+        set(chord, { d: 'M' + f1(X(x)) + ' ' + f1(Y(x)) + 'L' + f1(lerp(X(x), X(y), a3)) + ' ' + f1(lerp(Y(x), Y(y), a3)), opacity: a3.toFixed(2) });
+        set(dx, { cx: f1(X(x)), cy: f1(Y(x)), opacity: a3.toFixed(2) });
+        set(dy, { cx: f1(X(y)), cy: f1(Y(y)), opacity: a3.toFixed(2) });
+        const am = clamp((t - 2.6) / 0.4);
+        set(mid, { cx: f1(X(m)), cy: f1(Y(m)), opacity: am.toFixed(2) });
+        set(halo, { cx: f1(X(m)), cy: f1(Y(m)), opacity: (am * (0.3 + 0.5 * glow)).toFixed(2) });
+        // Wzorzec ε: odcinek długości ε (w normie ℓ^{3/2}) na cięciwie, symetrycznie wokół jej środka.
+        const h = EPS / st.L / 2 * a4;
+        const e1 = [lerp(m[0], x[0], 2 * h), lerp(m[1], x[1], 2 * h)];
+        const e2 = [lerp(m[0], y[0], 2 * h), lerp(m[1], y[1], 2 * h)];
+        set(gauge, { d: 'M' + f1(X(e1)) + ' ' + f1(Y(e1)) + 'L' + f1(X(e2)) + ' ' + f1(Y(e2)), opacity: a4 > 0 ? 1 : 0 });
+        set(g1, { cx: f1(X(e1)), cy: f1(Y(e1)), opacity: a4.toFixed(2) });
+        set(g2, { cx: f1(X(e2)), cy: f1(Y(e2)), opacity: a4.toFixed(2) });
+        // Podpis ε obok odcinka, po stronie środka kuli.
+        const vx = X(y) - X(x), vy = Y(y) - Y(x), vl = Math.hypot(vx, vy) || 1;
+        let nx = -vy / vl, ny = vx / vl;
+        if (nx * (X(m) - cx) + ny * (Y(m) - cy) > 0) { nx = -nx; ny = -ny; }
+        const lx = lerp(X(m), X(e2), 0.55) + 17 * nx, ly = lerp(Y(m), Y(e2), 0.55) + 17 * ny + 6;
+        set(epsLbl, { x: f1(lx), y: f1(ly), opacity: a4.toFixed(2) });
+      }
+    };
+  };
+
+  /* ---------------- slajd 14: macierz Toeplitza, S*T_aS = T_a ---------------- */
 
   factories['toeplitz-matrix'] = function (root) {
-    const N = 15, cell = 13, W = 6, zc = 15;
-    const uco = [1, 0.6, 0.3];
-    function polymul(a, b) {
-      const r = new Array(Math.min(a.length + b.length - 1, N + 2)).fill(0);
-      for (let i = 0; i < a.length; i++) for (let j = 0; j < b.length; j++) if (i + j < r.length) r[i + j] += a[i] * b[j];
-      return r;
-    }
-    // Macierz M_u: kolumna j to współczynniki u(z) z^j.
-    const A = [], B = [];
-    for (let i = 0; i < N; i++) { A.push(new Array(N).fill(0)); B.push(new Array(N).fill(0)); }
-    for (let j = 0; j < N; j++) for (let k = 0; k < uco.length; k++) if (j + k < N) A[j + k][j] = uco[k];
-    // Macierz uC_φ, φ(z) = (1+z)/2,5: kolumna j to współczynniki u·φ^j.
-    let pw = [1];
-    for (let j = 0; j < N; j++) {
-      const col = polymul(uco, pw);
-      for (let i = 0; i < N; i++) B[i][j] = col[i] || 0;
-      pw = polymul(pw, [0.4, 0.4]);
-    }
-    const inten = v => Math.min(1, Math.sqrt(Math.abs(v)));
+    // Symbol a(e^{it}) = 0,9 + 0,72e^{it} − 0,48e^{−it} + 0,34e^{2it} + 0,20e^{−2it} + 0,22e^{3it} + 0,14e^{−3it}
+    //                    + 0,12e^{4it} + 0,06e^{−4it};
+    // macierz T_a na H² w bazie 1, z, z², …: (T_a)_{ij} = â(i − j); po 4 niezerowe przekątne z każdej strony.
+    const coef = { 0: 0.9, 1: 0.72, '-1': -0.48, 2: 0.34, '-2': 0.2, 3: 0.22, '-3': 0.14, 4: 0.12, '-4': 0.06 };
+    const ahat = k => coef[k] || 0;
+    const N = 15, cell = 16, ox = 4, oy = 4;            // widoczny fragment N×N
+    // Powiększenie tuż przy prawym górnym rogu macierzy, wyrównane do jej górnego brzegu.
+    const W = 5, zc = 30, zp = 5, zx = ox + N * cell + 26 + zp, zy = oy + zp;
+    const STOPS = [0, 2, 4, 6, 8];                       // pozycje ramki: n wierszy i n kolumn
+    const C = { ink: '#0d2846', blue: '#416b86', rose: '#AA765E', gold: '#c39457', paper: '#fffefa' };
+    // Kolory przekątnych: główna granatowa; poniżej odcienie niebieskiego (nasycenie wg |â(d)|),
+    // powyżej odcienie różowego, coraz słabsze z odległością od głównej przekątnej.
+    const ROSE = { '-1': 0.55, '-2': 0.38, '-3': 0.26, '-4': 0.17 };
+    const look = d => {
+      const v = ahat(d);
+      if (d === 0) return { fill: C.ink, op: 0.95 };
+      if (d > 0) return { fill: C.blue, op: 0.85 * (0.25 + 0.75 * Math.min(1, Math.abs(v) / 0.9)) };
+      return { fill: C.rose, op: ROSE[d] };
+    };
+    const edge = (i, j) => clamp((N - 0.4 - Math.max(i, j)) / 2.6);   // zanikanie na brzegu: macierz jest nieskończona
 
-    function panel(M, ox, oy, zx, zy, title) {
-      svg('rect', { x: ox - 1, y: oy - 1, width: N * cell + 2, height: N * cell + 2, class: 'cell-frame' }, root);
-      for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) {
-        const v = inten(M[i][j]);
-        if (v > 0.02) svg('rect', { x: ox + j * cell + 0.5, y: oy + i * cell + 0.5, width: cell - 1, height: cell - 1, rx: 2, class: 'cell', 'fill-opacity': (0.85 * v).toFixed(3) }, root);
-      }
-      title(ox, oy - 16);
-      const win = svg('rect', { width: W * cell, height: W * cell, rx: 3, class: 'window' }, root);
-      const c1 = svg('path', { class: 'cursor-line' }, root);
-      const c2 = svg('path', { class: 'cursor-line' }, root);
-      svg('rect', { x: zx - 1, y: zy - 1, width: W * zc + 2, height: W * zc + 2, rx: 4, fill: '#fff', stroke: '#c39457', 'stroke-width': 2 }, root);
-      const zcells = [];
-      for (let i = 0; i < W; i++) for (let j = 0; j < W; j++) zcells.push(svg('rect', { x: zx + j * zc + 0.5, y: zy + i * zc + 0.5, width: zc - 1, height: zc - 1, rx: 2, class: 'cell', 'fill-opacity': 0 }, root));
-      rich(root, zx, zy - 10, [['B'], ['n', 'sup'], ['TS', ''], ['n', 'sup']], 'mth', { 'font-size': 17 });
-      return { M, ox, oy, zx, zy, win, c1, c2, zcells, lastN: -1 };
+
+    // Macierz: komórki pogrupowane według przekątnych d = i − j.
+    const diag = new Map();
+    for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) {
+      const d = i - j, v = ahat(d);
+      if (!diag.has(d)) diag.set(d, svg('g', { opacity: 0 }, root));
+      const g = diag.get(d);
+      const e = edge(i, j);
+      if (v === 0) svg('rect', { x: ox + j * cell + 1, y: oy + i * cell + 1, width: cell - 2, height: cell - 2, rx: 2,
+        fill: 'none', stroke: C.ink, 'stroke-opacity': (0.1 * e).toFixed(3), 'stroke-width': 0.8 }, g);
+      else svg('rect', { x: ox + j * cell + 1, y: oy + i * cell + 1, width: cell - 2, height: cell - 2, rx: 2,
+        fill: look(d).fill, 'fill-opacity': (look(d).op * e).toFixed(3), 'data-v': v }, g);
     }
-    const P1 = panel(A, 18, 70, 228, 116, (x, y) => rich(root, x, y, [['T = M'], ['u', 'sub'], [',  φ = id', '']]));
-    const P2 = panel(B, 346, 70, 556, 116, (x, y) => rich(root, x, y, [['T = uC'], ['φ', 'sub'], [',  ‖φ‖', ''], ['∞', 'sub'], [' < 1', '']]));
+
+    // Ramka, linie łączące i powiększenie (zawartość: [â(i − j)], 0 ⩽ i, j < W).
+    const ghost = svg('rect', { x: ox, y: oy, width: W * cell, height: W * cell, rx: 3, fill: 'none', stroke: C.gold,
+      'stroke-width': 1.4, 'stroke-dasharray': '4 3', opacity: 0 }, root);
+    const win = svg('rect', { width: W * cell, height: W * cell, rx: 3, class: 'window', opacity: 0 }, root);
+    win.style.strokeWidth = '2';
+    win.style.fill = 'none';
+    // Podświetlenie przekątnej: złote obwódki komórek w ramce i w powiększeniu.
+    const band = svg('path', { fill: 'none', stroke: C.gold, 'stroke-width': 1.6, opacity: 0 }, root);
+    const c1 = svg('path', { class: 'cursor-line', opacity: 0 }, root);
+    const c2 = svg('path', { class: 'cursor-line', opacity: 0 }, root);
+    const zoom = svg('g', { opacity: 0 }, root);
+    const zframe = svg('rect', { x: zx - zp, y: zy - zp, width: W * zc + 2 * zp, height: W * zc + 2 * zp, rx: 6,
+      fill: C.paper, stroke: C.gold, 'stroke-width': 2 }, zoom);
+    const zcells = [];
+    for (let i = 0; i < W; i++) for (let j = 0; j < W; j++) {
+      const r = svg('rect', { x: zx + j * zc + 2, y: zy + i * zc + 2, width: zc - 4, height: zc - 4, rx: 3 }, zoom);
+      const lb = rich(zoom, zx + j * zc + zc / 2 - 1.5, zy + i * zc + zc / 2 + 5, [['a'], ['', 'sub']], 'mth',
+        { 'text-anchor': 'middle' });
+      lb.style.fontSize = '14px';
+      zcells.push({ r, lb, sub: lb.lastChild });
+    }
+    let lastK = -1;
+    // Powiększenie: elementy (T_a)_{i+k, j+k}, liczone z tej samej funkcji â.
+    function fillZoom(k) {
+      if (k === lastK) return;
+      lastK = k;
+      for (let i = 0; i < W; i++) for (let j = 0; j < W; j++) {
+        const d = (i + k) - (j + k), v = ahat(d), z = zcells[i * W + j];
+        if (v === 0) set(z.r, { fill: 'none', stroke: C.ink, 'stroke-opacity': 0.12, 'stroke-width': 1, 'fill-opacity': 1, 'data-v': 0 });
+        else set(z.r, { fill: look(d).fill, stroke: 'none', 'fill-opacity': look(d).op.toFixed(3), 'data-v': v });
+        z.lb.setAttribute('opacity', v === 0 ? 0 : 1);
+        z.lb.style.fill = v !== 0 && look(d).op > 0.6 ? '#ffffff' : C.ink;
+        z.sub.textContent = String(d).replace('-', '−');
+      }
+    }
+    fillZoom(0);
+    const zband = svg('path', { fill: 'none', stroke: C.gold, 'stroke-width': 1.8, opacity: 0 }, zoom);
 
     const oN = output(root, 'n');
-    const per = 1.1, nMax = N - W, T = nMax * per + 2.6;
-    function update(P, n) {
-      const x = P.ox + n * cell, y = P.oy + n * cell, s = W * cell;
-      set(P.win, { x: f1(x), y: f1(y) });
-      set(P.c1, { d: 'M' + f1(x + s) + ' ' + f1(y) + 'L' + P.zx + ' ' + P.zy });
-      set(P.c2, { d: 'M' + f1(x + s) + ' ' + f1(y + s) + 'L' + P.zx + ' ' + (P.zy + W * zc) });
-      const k = Math.round(n);
-      if (k !== P.lastN) {
-        for (let i = 0; i < W; i++) for (let j = 0; j < W; j++) {
-          const v = inten(P.M[i + k] ? P.M[i + k][j + k] || 0 : 0);
-          P.zcells[i * W + j].setAttribute('fill-opacity', (0.85 * v).toFixed(3));
-        }
-        P.lastN = k;
+    // Fazy: 0–4 s macierz, 4–8 s ramka i powiększenie, 8–18 s przesunięcia, 18–23 s porównanie.
+    const T = 23, MOVE = 1.2, STEP = 2.5;
+    const HL = [0, 1, -1, -2];                            // przekątne podświetlane po kolejnych przesunięciach
+    function pos(w) {
+      if (w < 8) return { n: 0, hold: -1 };
+      const s = Math.floor((w - 8) / STEP), u = (w - 8) - s * STEP;
+      if (s >= STOPS.length - 1) return { n: STOPS[STOPS.length - 1], hold: STOPS.length - 2 };
+      if (u < MOVE) return { n: lerp(STOPS[s], STOPS[s + 1], ease(u / MOVE)), hold: -1 };
+      return { n: STOPS[s + 1], hold: s };
+    }
+    function bandPath(x0, y0, c, d, from, to, m) {        // komórki przekątnej d w kwadracie from..to−1
+      const i0 = from + Math.max(0, d), len = to - from - Math.abs(d);
+      let p = '';
+      for (let k = 0; k < len; k++) {
+        const i = i0 + k, j = i - d;
+        p += 'M' + f1(x0 + j * c + m) + ' ' + f1(y0 + i * c + m) + 'h' + (c - 2 * m) + 'v' + (c - 2 * m) + 'h' + (2 * m - c) + 'Z';
       }
+      return p;
     }
     return {
-      poster: T - 1.5,
+      poster: 20.5,
       frame(t) {
         const w = t % T;
-        const m = Math.floor(w / per);
-        const n = m >= nMax ? nMax : m + ease(clamp((w - m * per) / 0.6));
-        update(P1, n);
-        update(P2, n);
+        diag.forEach((g, d) => {
+          const order = ahat(d) !== 0 ? Math.abs(d) : 5;
+          g.setAttribute('opacity', ease(clamp((w - 0.3 - 0.75 * order) / 0.8)).toFixed(2));
+        });
+        const aw = ease(clamp((w - 4.2) / 0.9)), az = ease(clamp((w - 5) / 1.2));
+        const { n, hold } = pos(w);
+        const x = ox + n * cell, y = oy + n * cell, s = W * cell;
+        set(win, { x: f1(x), y: f1(y), opacity: aw.toFixed(2) });
+        // Styczne zewnętrzne: lewy górny róg ramki z lewym górnym rogiem powiększenia, prawy dolny z prawym dolnym.
+        set(c1, { d: 'M' + f1(x) + ' ' + f1(y) + 'L' + (zx - zp) + ' ' + (zy - zp), opacity: az.toFixed(2) });
+        set(c2, { d: 'M' + f1(x + s) + ' ' + f1(y + s) + 'L' + (zx + W * zc + zp) + ' ' + (zy + W * zc + zp), opacity: az.toFixed(2) });
+        set(zoom, { opacity: az.toFixed(2) });
+        fillZoom(Math.round(n));
+        // Podświetlenie tej samej przekątnej w ramce i w powiększeniu podczas postoju.
+        let hk = null, ha = 0;
+        if (hold >= 0 && w < 18) {
+          const u = (w - 8) - (hold + 1) * STEP + STEP - MOVE;      // czas od zatrzymania
+          hk = HL[hold % HL.length]; ha = Math.sin(Math.PI * clamp(u / (STEP - MOVE)));
+        }
+        if (hk !== null) {
+          const k = Math.round(n);
+          band.setAttribute('d', bandPath(ox, oy, cell, hk, k, k + W, 1));
+          zband.setAttribute('d', bandPath(zx, zy, zc, hk, 0, W, 2));
+        }
+        band.setAttribute('opacity', (0.95 * ha).toFixed(2));
+        zband.setAttribute('opacity', (0.95 * ha).toFixed(2));
+        // Faza IV: ramka początkowa (przerywana) obok końcowej, wyróżnione obramowanie powiększenia.
+        const a4 = ease(clamp((w - 18.3) / 0.9)) * (1 - ease(clamp((w - 22.4) / 0.6)));
+        ghost.setAttribute('opacity', a4.toFixed(2));
+        zframe.setAttribute('stroke-width', (1.6 + 1 * a4).toFixed(2));
         setText(oN, String(Math.round(n)));
       }
     };
