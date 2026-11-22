@@ -986,6 +986,16 @@ html, body {
 .reveal .split--hm { align-items: stretch; }
 .reveal .split--hm .figure { display: flex; flex-direction: column; justify-content: center; }
 
+/* ---------- Slajd 16: miary Carlesona i operatory złożenia na Ω ---------- */
+/* Dwie kolumny równej wysokości; w każdej dwie ramki, druga wypełnia resztę. */
+.reveal .split--omega { align-items: stretch; }
+.reveal .split--omega .stack { display: flex; flex-direction: column; gap: 16px; }
+.reveal .split--omega .stack > .thm:not(.research-q) { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.reveal .split--omega .research-q p { font-weight: 400; }
+/* Złote kreski: w każdej kolumnie 1/2 i cała szerokość. */
+.reveal .split--omega .stack > :nth-child(1)::before { width: calc((100% - 44px) / 2); }
+.reveal .split--omega .stack > :nth-child(2)::before { width: calc(100% - 44px); }
+
 /* ---------- Slajd 7: rys historyczny ---------- */
 /* Dwie kolumny ramek (operator złożenia, wagowy operator złożenia), pod nimi monografie. */
 .reveal .history { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(5, auto); gap: 12px 22px; margin-top: 6px; }

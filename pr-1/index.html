@@ -710,19 +710,16 @@
 <section data-slide-topic="Miary Carlesona na obszarach kołowych" data-duration-seconds="70">
 <div class="slide-content">
   <p class="eyebrow">Obszary kołowe</p>
-  <h2>Miary Carlesona i&nbsp;zanurzenie \(HX(\Omega)\hookrightarrow X(\Omega,\mu)\)</h2>
-  <div class="split">
-    <figure class="figure enter">
-      <svg class="anim" data-anim="carleson-windows" viewBox="0 0 600 330" role="img" aria-label="Okna Carlesona przy zewnętrznym i wewnętrznym brzegu obszaru kołowego oraz odpowiadające im okno w dysku"></svg>
-      <div class="readout">
-        <span>\(\mu\) — miara Carlesona, gdy \(\rho_\mu(h)=\max_i\sup_{\zeta\in\Gamma_i}\mu\bigl(W^i(\zeta,h)\bigr)\leqslant Ch\)</span><span class="sep">|</span>
-        <span>\(h=\) <span class="val" data-out="h">0,20</span></span>
-      </div>
-    </figure>
+  <h2>Miary Carlesona i&nbsp;operatory złożenia na \(HX(\Omega)\)</h2>
+  <div class="split split--even split--omega">
     <div class="stack">
       <div class="thm enter">
+        <div class="thm-head"><span class="thm-label">Definicja</span></div>
+        <p class="small">Miara \(\mu\) na \(\Omega\) jest miarą Carlesona, gdy \(\rho_\mu(h)=\max_i\sup_{\zeta\in\Gamma_i}\mu\bigl(W^i(\zeta,h)\bigr)\leqslant Ch\), gdzie \(W^i(\zeta,h)\) — okna Carlesona przy \(\Gamma_i\). Miara \(\widetilde\mu\) na \(\mathbb D\) powstaje z&nbsp;\(\mu\) przez odwzorowania \(\eta_i\colon\mathbb D\to E_i\).</p>
+      </div>
+      <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Twierdzenie</span></div>
-        <p class="small">\(\mu\) — bezatomowa miara probabilistyczna na \(\Omega\), \(X(\Omega,\mu)\) — maksymalna przestrzeń symetryczna, \(\phi_X\) — regularna. Równoważne są:</p>
+        <p class="small">Niech \(\mu\) będzie bezatomową miarą probabilistyczną na \(\Omega\), \(X(\Omega,\mu)\) maksymalną przestrzenią symetryczną, a&nbsp;\(\phi_X\) funkcją regularną. Równoważne są:</p>
         <ol class="equiv-list small">
           <li><span>\(\mu\) jest miarą Carlesona na \(\Omega\),</span></li>
           <li><span>\(j_\mu\colon HX(\Omega)\to X(\Omega,\mu)\) jest ograniczony,</span></li>
@@ -730,18 +727,33 @@
           <li><span>\(\widetilde\mu\) jest miarą Carlesona na \(\mathbb D\).</span></li>
         </ol>
       </div>
-      <p class="note enter">\(\widetilde\mu\) — miara na \(\mathbb D\) zbudowana z&nbsp;\(\mu\) przez odwzorowania \(\eta_i\colon\mathbb D\to E_i\). Porządkowo ograniczone \(\widetilde C_\varphi\) na \(HX(\Omega)\): [5, Thm.&nbsp;5.1].</p>
+    </div>
+    <div class="stack">
+      <div class="thm enter">
+        <div class="thm-head"><span class="thm-label">Twierdzenie</span></div>
+        <p class="small">Niech \(X\neq L^\infty\) będzie maksymalną przestrzenią symetryczną na \([0,1)\), \(\varphi\in H(\Omega)\), \(\varphi(\Omega)\subseteq\Omega\). Równoważne są:</p>
+        <ol class="equiv-list small">
+          <li><span>operator \(\widetilde C_\varphi\colon HX(\Omega)\to HX(\partial\Omega)\) jest porządkowo ograniczony,</span></li>
+          <li><span>\(\operatorname{dist}(\widetilde\varphi,\partial\Omega)&gt;0\) \(\omega_z\)-prawie wszędzie oraz \(1/\phi_X\bigl(\operatorname{dist}(\widetilde\varphi,\partial\Omega)\bigr)\in X(\partial\Omega,\omega_z)\).</span></li>
+        </ol>
+      </div>
+      <div class="thm research-q enter">
+        <div class="thm-head"><span class="thm-label">Dalsze badania</span></div>
+        <p class="small">Mleczko, Rzeczkowski, <i>Compactness transfer for Hardy spaces on circular domains</i>, praca wysłana do czasopisma.</p>
+      </div>
     </div>
   </div>
 </div>
 <aside class="notes">
-  <p><strong>Slajd 16/17 · Miary Carlesona na obszarach kołowych</strong></p>
+  <p><strong>Slajd 16/17 · Miary Carlesona i&nbsp;operatory złożenia na obszarach kołowych</strong></p>
   <p><strong>Czas:</strong> 1:10 · <strong>na zegarze:</strong> 16:35–17:45</p>
-  <p>Okna Carlesona: przy brzegu zewnętrznym \(W^0(\zeta,h)=\{1-h&lt;|z|,\ |\arg(\bar\xi z)|&lt;h\}\), przy \(\Gamma_i\) — analogiczne sektory pierścieni wokół dziury. Animacja: okna przy \(\Gamma_0\) i&nbsp;\(\Gamma_1\) oraz odpowiadające im okno w&nbsp;dysku; \(\eta_i(W^0(\zeta,h))=W^i(\eta_i(\zeta),h)\).</p>
+  <p>Okna Carlesona: przy brzegu zewnętrznym \(W^0(\zeta,h)=\{1-h&lt;|z|,\ |\arg(\bar\xi z)|&lt;h\}\), przy \(\Gamma_i\) — analogiczne sektory pierścieni wokół dziury; \(\eta_i(W^0(\zeta,h))=W^i(\eta_i(\zeta),h)\). Miara \(\widetilde\mu=\frac1{m+1}\sum_{i=0}^m\mu_i\circ\eta_i\), gdzie \(\mu_i\) — obcięcie \(\mu\) do otoczenia \(\Gamma_i\). Regularność \(\phi_X\): \(2\phi_X(t/C)\leqslant\phi_X(t)\).</p>
   <p>Klasyczne: Carleson dla \(H^p(\mathbb D)\), Qiu dla \(H^p(\Omega)\). Qiu podał, że \(\mu\) jest miarą Carlesona na \(\Omega\) wtedy i&nbsp;tylko wtedy, gdy \(\mu\circ\eta_i\) jest miarą Carlesona na \(\mathbb D\) dla każdego \(i\); w [5, Ex.&nbsp;4.1] podaliśmy kontrprzykład. Twierdzenie dowodzimy przez interpolację, nie powtarzając dowodu Qiu.</p>
-  <p>Wyniki w&nbsp;ramkach: [5, Thm.&nbsp;4.2].</p>
+  <p>Operatory złożenia: \(C_\varphi\) jest ograniczony na \(HX(\Omega)\) dla każdej przestrzeni symetrycznej \(X\) (nierówność Harnacka dla \(H^1(\Omega)\), potem interpolacja). \(\widetilde C_\varphi f=(C_\varphi f)^\sim\) — funkcja brzegowa, \(HX(\partial\Omega)=\{\widetilde f:f\in HX(\Omega)\}\subset X(\partial\Omega,\omega_z)\), jak na slajdzie 12 dla dysku. Wcześniej: Boyd, Fisher i&nbsp;Shapiro, Tran (\(H^p(\Omega)\)), Rzeczkowski (Hardy–Orlicz).</p>
+  <p>Dalsze badania: praca z&nbsp;M.&nbsp;Rzeczkowskim <i>Compactness transfer for Hardy spaces on circular domains</i>, wysłana do czasopisma.</p>
+  <p>Wyniki w&nbsp;ramkach: [5, Thm.&nbsp;4.2]; [5, Thm.&nbsp;5.1].</p>
   <p><strong>Praca:</strong> [5] P.&nbsp;Mleczko, M.&nbsp;Rzeczkowski, <i>Carleson measures on circular domains and canonical embeddings of Hardy spaces into function lattices</i>, Banach J.&nbsp;Math. Anal. 13 (2019).</p>
-  <p><strong>Źródło:</strong> Autoreferat, § 8, s. 20–21; [5, Thm.&nbsp;4.2] (Twierdzenie 21 autoreferatu).</p>
+  <p><strong>Źródło:</strong> Autoreferat, § 8, s. 20–21; [5, Thm.&nbsp;4.2, Thm.&nbsp;5.1] (Twierdzenia 21 i&nbsp;22 autoreferatu).</p>
 </aside>
 </section>
 
