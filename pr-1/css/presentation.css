@@ -470,6 +470,8 @@ html, body {
   align-items: baseline;
 }
 .reveal .paper-foot i { font-style: italic; }
+/* Tytuły prac w ramkach (np. „Dalsze badania”) kursywą; reset reveal.js zdejmuje kursywę z <i>. */
+.reveal .thm i { font-style: italic; }
 
 /* ---------- Wzory i drobne elementy ---------- */
 .reveal .formula { text-align: center; margin: 0.3em 0; }
