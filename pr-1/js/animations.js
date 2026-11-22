@@ -1062,7 +1062,7 @@
     void memb;
     const ek = rich(root, tx, 215, [['E'], ['0', 'sub'], [' = 𝔻', 'up']], 'mth', { 'font-size': 18 });
     const ekAlt = svg('g', {}, root);
-    rich(ekAlt, tx, 215, [['E'], ['k', 'sub'], [' — dopełnienie', 'up']], 'mth', { 'font-size': 18 });
+    rich(ekAlt, tx, 215, [['E'], ['k', 'sub'], [' – dopełnienie', 'up']], 'mth', { 'font-size': 18 });
     rich(ekAlt, tx, 240, [['domkniętego dysku', 'up']], 'mth', { 'font-size': 18 });
     const out = output(root, 'k');
 
