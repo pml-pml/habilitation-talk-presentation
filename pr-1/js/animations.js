@@ -1095,6 +1095,280 @@
     };
   };
 
+  /* ---------------- slajd 15: miara harmoniczna i izomorfizm θ ---------------- */
+
+  // Ω: dysk jednostkowy bez trzech dysków (a_k, r_k), jak na wykładzie przedhabilitacyjnym.
+  // ω_z liczona torami ruchu Browna metodą spacerów po kołach (Muller 1956);
+  // θ(ζ) = Σ_{i<k} ω_z(Γ_i) + ω_z((x^k, ζ)), ζ ∈ Γ_k — wzór (3.1) w [5].
+  factories['harmonic-measure'] = function (root) {
+    const HM = [[-1 / 3, 0, 1 / 3], [1 / 3, 1 / 3, 1 / 6], [1 / 3, -5 / 12, 1 / 4]];
+    const COMPS = [[0, 0, 1]].concat(HM);
+    const ZX = 0.4, ZY = 0;
+    const NS = 100000, BUDGET = 4, BINS = 720, NTR = 400, SLOW = 4;
+
+    // Odległość od brzegu i najbliższa składowa.
+    const near = (x, y) => {
+      let d = 1 - Math.hypot(x, y), k = 0;
+      for (let j = 0; j < 3; j++) {
+        const e = Math.hypot(x - HM[j][0], y - HM[j][1]) - HM[j][2];
+        if (e < d) { d = e; k = j + 1; }
+      }
+      return [d, k];
+    };
+    // Spacer po kołach z z; wynik: składowa k, położenie s ∈ [0, 1) od x^k = a_k + r_k
+    // w orientacji dodatniej względem Ω (Γ_0 przeciwnie do ruchu wskazówek zegara, dziury zgodnie).
+    const walk = (R, eps, steps) => {
+      let x = ZX, y = ZY;
+      for (;;) {
+        const [d, k] = near(x, y);
+        if (d < eps) {
+          const [a, b] = COMPS[k];
+          const ang = Math.atan2(y - b, x - a);
+          let s = (k === 0 ? ang : -ang) / TAU;
+          s -= Math.floor(s);
+          return { k, s, ang };
+        }
+        if (steps) steps.push([x, y, d]);
+        const u = TAU * R();
+        x += d * Math.cos(u); y += d * Math.sin(u);
+      }
+    };
+
+    // Tory rysowane (ε = 10⁻³): cztery wolne, potem szybkie; ziarno 138 — wolne kończą się na różnych składowych.
+    const RT = rng(138);
+    const tracks = [];
+    for (let i = 0; i < NTR; i++) {
+      const steps = i < SLOW ? [] : null;
+      const w = walk(RT, 1e-3, steps);
+      tracks.push(Object.assign(w, { steps }));
+    }
+
+    // Próbka do θ (ε = 10⁻⁴), liczona porcjami w kolejnych klatkach.
+    const RS = rng(20190867);
+    const hist = [0, 1, 2, 3].map(() => new Float64Array(BINS));
+    const cnt = [0, 0, 0, 0];
+    let done = 0;
+    let om = null, off = null, cum = null;
+    // ms — czas na porcję w jednej klatce (Infinity: całość od razu).
+    const sampleStep = ms => {
+      const tEnd = performance.now() + ms;
+      while (done < NS) {
+        for (const end = Math.min(NS, done + 500); done < end; done++) {
+          const w = walk(RS, 1e-4);
+          cnt[w.k]++;
+          hist[w.k][Math.min(BINS - 1, Math.floor(w.s * BINS))]++;
+        }
+        if (performance.now() > tEnd) break;
+      }
+      if (done === NS && !om) finish();
+    };
+    const theta = (k, s) => {
+      const c = cum[k], x = s * BINS, j = Math.min(BINS - 1, Math.floor(x));
+      return off[k] + lerp(c[j], c[j + 1], x - j);
+    };
+    // θ^{-1}: t ∈ [0, 1) → (k, s); odwrócenie dystrybuanty z interpolacją liniową.
+    const thetaInv = t => {
+      let k = 3;
+      while (k > 0 && t < off[k]) k--;
+      const c = cum[k], v = t - off[k];
+      let lo = 0, hi = BINS;
+      while (hi - lo > 1) { const m = (lo + hi) >> 1; if (c[m] <= v) lo = m; else hi = m; }
+      const w = c[lo + 1] - c[lo];
+      return { k, s: (lo + (w > 0 ? clamp((v - c[lo]) / w) : 0)) / BINS };
+    };
+    const onComp = (k, s) => {
+      const [a, b, r] = COMPS[k], ang = (k === 0 ? 1 : -1) * TAU * s;
+      return [a + r * Math.cos(ang), b + r * Math.sin(ang)];
+    };
+    // |f| dla f(w) = Σ_{k=1}^{3} 1/(w − a_k).
+    const fabs = (x, y) => {
+      let re = 0, im = 0;
+      for (const [a, b] of HM) { const dx = x - a, dy = y - b, q = dx * dx + dy * dy; re += dx / q; im -= dy / q; }
+      return Math.hypot(re, im);
+    };
+
+    // Geometria rysunku.
+    const cx = 165, cy = 170, R = 140;
+    const PX = x => cx + R * x, PY = y => cy - R * y;
+    const X0 = 345, X1 = 575, W = X1 - X0, YB = 300, VS = 250 / 8.5;
+    const C = { ink: '#0d2846', blue: '#638A9E', move: '#2E708F', gold: '#C49A5A', paper: '#fffefa' };
+    const CC = ['#0d2846', '#416b86', '#7596ab', '#a6bccb'];
+
+    // Lewa część: Ω, składowe brzegu, punkt z.
+    let dOm = circlePath(cx, cy, R);
+    HM.forEach(([a, b, r]) => { dOm += circlePath(PX(a), PY(b), R * r); });
+    svg('path', { d: dOm, class: 'omega-fill' }, root);
+    const walkG = svg('g', {}, root);
+    const rings = COMPS.map(([a, b, r], k) => svg('circle', { cx: f1(PX(a)), cy: f1(PY(b)), r: f1(R * r), fill: 'none', stroke: CC[k], 'stroke-width': 2.2 }, root));
+    const lblAt = [[cx - R * 0.8 - 12, cy - R * 0.8 - 4], [PX(-1 / 3), PY(0) + 6], [PX(1 / 3), PY(1 / 3) + 6], [PX(1 / 3), PY(-5 / 12) + 6]];
+    lblAt.forEach(([x, y], k) => rich(root, f1(x), f1(y), [['Γ', 'up'], [String(k), 'sub']], 'mth', { 'font-size': 16, 'text-anchor': 'middle' }));
+    const massTicks = svg('path', { fill: 'none', stroke: C.gold, 'stroke-width': 1.5, 'stroke-opacity': 0.6 }, root);
+    const slowTicks = svg('path', { fill: 'none', stroke: C.gold, 'stroke-width': 2.2, 'stroke-linecap': 'round' }, root);
+    const zx = PX(ZX), zy = PY(ZY);
+    svg('circle', { cx: f1(zx), cy: f1(zy), r: 4.3, fill: C.gold, stroke: C.paper, 'stroke-width': 2.2 }, root);
+    rich(root, f1(zx + 9), f1(zy + 5), [['z']], 'mth', { 'font-size': 17 });
+
+    // Elementy toru: koła spaceru, odcinek skoku, bieżący punkt.
+    const jump = svg('path', { fill: 'none', stroke: C.blue, 'stroke-width': 1.2 }, root);
+    const cur = svg('circle', { r: 2.8, fill: C.ink, stroke: C.paper, 'stroke-width': 1.2 }, root);
+
+    // Prawa część: odcinek [0, 1), kawałki ω_z(Γ_k), kreski θ(ζ), wykres |f∘θ^{-1}|.
+    const right = svg('g', {}, root);
+    const axis = svg('g', { opacity: 0 }, right);
+    svg('path', { d: 'M' + X0 + ' ' + YB + 'V46', class: 'axis' }, axis);
+    [4, 8].forEach(v => {
+      const y = f1(YB - v * VS);
+      svg('path', { d: 'M' + (X0 - 4) + ' ' + y + 'h4', class: 'axis' }, axis);
+      svg('text', { x: X0 - 8, y: +y + 5, class: 'lbl', 'text-anchor': 'end', 'font-size': 13 }, axis).textContent = String(v);
+    });
+    const bar = svg('g', { opacity: 0 }, right);
+    const pieces = CC.map(c => svg('rect', { y: YB - 3, height: 6, fill: c }, bar));
+    const plab = [0, 1, 2, 3].map(k => rich(bar, 0, YB + 24, [['Γ', 'up'], [String(k), 'sub']], 'mth', { 'text-anchor': 'middle' }));
+    svg('text', { x: X0 - 8, y: YB + 5, class: 'lbl', 'text-anchor': 'end' }, bar).textContent = '0';
+    svg('text', { x: X1 + 8, y: YB + 5, class: 'lbl' }, bar).textContent = '1';
+    const landTicks = svg('path', { fill: 'none', stroke: C.gold, 'stroke-width': 1, 'stroke-opacity': 0.5 }, right);
+    const flyTicks = svg('path', { fill: 'none', stroke: C.gold, 'stroke-width': 1.4, 'stroke-opacity': 0.75 }, root);
+    const clip = svg('clipPath', { id: 'clip-harmonic-measure' }, svg('defs', {}, root));
+    const clipR = svg('rect', { x: X0 - 2, y: 30, height: YB - 28, width: 0 }, clip);
+    const graph = svg('path', { fill: 'none', stroke: C.gold, 'stroke-width': 2.2, 'stroke-linejoin': 'round', 'clip-path': 'url(#clip-harmonic-measure)' }, right);
+    const gLbl = svg('g', { opacity: 0 }, right);
+    rich(gLbl, X1, 64, [['|f ∘ θ', ''], ['−1', 'sup'], ['|', '']], 'mth mth-gold', { 'text-anchor': 'end', 'font-size': 18 });
+
+    const oN = output(root, 'n'), oW = [0, 1, 2, 3].map(k => output(root, 'w' + k)), oF = output(root, 'frow');
+
+    // Po zebraniu próbki: kawałki odcinka, położenia kresek θ(ζ), wykres.
+    function finish() {
+      om = cnt.map(c => c / NS);
+      off = [0, om[0], om[0] + om[1], om[0] + om[1] + om[2]];
+      cum = hist.map(h => { const c = new Float64Array(BINS + 1); for (let j = 0; j < BINS; j++) c[j + 1] = c[j] + h[j] / NS; return c; });
+      om.forEach((w, k) => {
+        set(pieces[k], { x: f1(X0 + W * off[k]), width: f1(W * w) });
+        // Wąskie kawałki Γ_0, Γ_1: mniejsza czcionka, podpisy rozsunięte.
+        const xm = X0 + W * (off[k] + w / 2) + (k === 0 ? 3 : k === 1 ? -3 : 0);
+        set(plab[k], { x: f1(xm), 'font-size': w < 0.12 ? 13 : 17, 'text-anchor': k === 0 ? 'end' : k === 1 ? 'start' : 'middle' });
+      });
+      tracks.forEach(tr => { tr.th = theta(tr.k, tr.s); });
+      const order = tracks.map((tr, i) => i).sort((i, j) => tracks[i].th - tracks[j].th);
+      order.forEach((i, r) => { tracks[i].rank = r; });
+      let d = '', prevK = -1;
+      for (let j = 0; j <= 920; j++) {
+        const t = Math.min(j / 920, 1 - 1e-9), q = thetaInv(t), p = onComp(q.k, q.s);
+        d += (q.k !== prevK ? 'M' : 'L') + f1(X0 + W * t) + ' ' + f1(YB - VS * fabs(p[0], p[1]));
+        prevK = q.k;
+      }
+      graph.setAttribute('d', d);
+    }
+
+    // Kreska prostopadła do brzegu, długość 2h px; ang — kąt normalnej.
+    const bpt = tr => { const [a, b, r] = COMPS[tr.k]; return [PX(a + r * Math.cos(tr.ang)), PY(b + r * Math.sin(tr.ang))]; };
+    const tick = (x, y, ang, h) => {
+      const ux = Math.cos(ang) * h, uy = -Math.sin(ang) * h;
+      return 'M' + f1(x - ux) + ' ' + f1(y - uy) + 'L' + f1(x + ux) + ' ' + f1(y + uy);
+    };
+
+    // Przebieg (s): 0–1 obszar i z; 1–6 cztery wolne tory; 6–10 do 400 torów;
+    // 10–14 odcinek i przelot kresek; 14–20 wykres; 20–23 postój i wygaszenie.
+    const CYCLE = 23, TS = 1, DS = 1.25, LS = 1.2, TF0 = 6, TF1 = 10, TB = 10, TFLY = 10.6, SPREAD = 2.5, FLY = 0.9, TG0 = 14, TG1 = 20;
+    // Wolne tory: koła spaceru (tworzone raz); czas kroków rośnie z promieniem koła,
+    // więc drobne kroki przy brzegu są krótkie.
+    for (let j = 0; j < SLOW; j++) {
+      const tr = tracks[j], wts = tr.steps.map(p => Math.sqrt(Math.max(R * p[2], 2)));
+      const tot = wts.reduce((a, b) => a + b, 0);
+      let acc = 0;
+      tr.tt = wts.map(w => { const a = acc; acc += w / tot; return a; });
+      tr.circ = tr.steps.map(p => svg('circle', { cx: f1(PX(p[0])), cy: f1(PY(p[1])), r: f1(R * p[2]), fill: 'none', stroke: C.blue, 'stroke-width': 1, opacity: 0 }, walkG));
+    }
+    let started = false;
+
+    function nShown(t) {
+      if (t < TS) return 0;
+      if (t < TF0) return clamp(Math.floor((t - TS + DS - LS) / DS), 0, SLOW);
+      if (t < TF1) return SLOW + Math.round((NTR - SLOW) * Math.pow((t - TF0) / (TF1 - TF0), 2));
+      return NTR;
+    }
+
+    function draw(t) {
+      const u = t % CYCLE;
+      const fade = u > 21.5 ? clamp((CYCLE - u) / 1.5) : 1;
+      if (!om) sampleStep((REDUCED || PRINT) ? Infinity : BUDGET);
+
+      // Wolne tory: koła do bieżącego kroku, odcinek skoku, bieżący punkt; po końcu toru koła gasną.
+      jump.setAttribute('d', ''); cur.setAttribute('opacity', 0);
+      for (let j = 0; j < SLOW; j++) {
+        const tr = tracks[j], st = tr.steps, tt = tr.tt, t0 = TS + j * DS, loc = (u - t0) / LS;
+        if (loc < 0) { tr.circ.forEach(e => e.setAttribute('opacity', 0)); continue; }
+        if (loc > 1) {
+          const op = (0.35 * clamp(1 - (u - t0 - LS) / 0.5)).toFixed(2);
+          tr.circ.forEach(e => e.setAttribute('opacity', op));
+          continue;
+        }
+        let i = 0;
+        while (i + 1 < st.length && tt[i + 1] <= loc) i++;
+        tr.circ.forEach((e, m) => e.setAttribute('opacity', m <= i ? 0.35 : 0));
+        const s1 = i + 1 < st.length ? tt[i + 1] : 1, fr = ease(clamp((loc - tt[i]) / (s1 - tt[i])));
+        const a = [PX(st[i][0]), PY(st[i][1])], q = i + 1 < st.length ? [PX(st[i + 1][0]), PY(st[i + 1][1])] : bpt(tr);
+        const b = [lerp(a[0], q[0], fr), lerp(a[1], q[1], fr)];
+        jump.setAttribute('d', 'M' + f1(a[0]) + ' ' + f1(a[1]) + 'L' + f1(b[0]) + ' ' + f1(b[1]));
+        set(cur, { cx: f1(b[0]), cy: f1(b[1]), opacity: 1 });
+      }
+
+      // Kreski na brzegu i odczyty.
+      const n = nShown(u);
+      let ds = '', dm = '';
+      const c = [0, 0, 0, 0];
+      for (let i = 0; i < n; i++) {
+        const tr = tracks[i], [x, y] = bpt(tr);
+        c[tr.k]++;
+        if (i < SLOW) ds += tick(x, y, tr.ang, 4); else dm += tick(x, y, tr.ang, 3.5);
+      }
+      slowTicks.setAttribute('d', ds); massTicks.setAttribute('d', dm);
+      slowTicks.setAttribute('opacity', fade.toFixed(2)); massTicks.setAttribute('opacity', fade.toFixed(2));
+      setText(oN, String(n));
+      oW.forEach((o, k) => setText(o, n ? fmt(c[k] / n) : '–'));
+
+      // Odcinek [0, 1), przelot kresek, wykres.
+      const ready = !!om;
+      const aBar = ready ? ease(clamp((u - TB) / 0.6)) * fade : 0;
+      bar.setAttribute('opacity', aBar.toFixed(2));
+      let dl = '', df = '';
+      const thick = [0, 0, 0, 0];
+      if (ready && u >= TFLY) {
+        tracks.forEach(tr => {
+          const t0 = TFLY + SPREAD * tr.rank / NTR, s = (u - t0) / FLY;
+          const qx = X0 + W * tr.th;
+          if (s >= 1) { dl += 'M' + f1(qx) + ' ' + (YB - 15) + 'V' + (YB - 5); return; }
+          if (s < 0) return;
+          thick[tr.k] = 1;
+          const [px, py] = bpt(tr), e = ease(s);
+          const mx = (px + qx) / 2, my = Math.min(py, YB) - 90;
+          const x = (1 - e) * (1 - e) * px + 2 * (1 - e) * e * mx + e * e * qx;
+          const y = (1 - e) * (1 - e) * py + 2 * (1 - e) * e * my + e * e * (YB - 10);
+          df += tick(x, y, lerp(tr.ang, tr.ang >= 0 ? Math.PI / 2 : -Math.PI / 2, e), lerp(3.5, 5, e));
+        });
+      }
+      landTicks.setAttribute('d', dl); flyTicks.setAttribute('d', df);
+      landTicks.setAttribute('opacity', fade.toFixed(2));
+      rings.forEach((g, k) => g.setAttribute('stroke-width', thick[k] ? 4 : 2.2));
+      const aG = ready ? clamp((u - TG0) / (TG1 - TG0 - 1)) : 0;
+      clipR.setAttribute('width', f1((W + 4) * aG));
+      graph.setAttribute('opacity', fade.toFixed(2));
+      axis.setAttribute('opacity', (ready ? ease(clamp((u - TG0 + 0.6) / 0.6)) * fade : 0).toFixed(2));
+      gLbl.setAttribute('opacity', (clamp((u - TG1 + 1.5) / 0.8) * fade).toFixed(2));
+      if (oF) oF.style.visibility = u >= TG0 && u < CYCLE - 0.5 ? '' : 'hidden';
+    }
+
+    return {
+      poster: 20.5,
+      pausable: true,
+      start() { started = true; },
+      frame(t) {
+        // Klatka przy wczytaniu strony (slajd niewidoczny): bez liczenia próbki.
+        if (!started && !REDUCED && !PRINT) return;
+        draw(t);
+      }
+    };
+  };
+
   /* ---------------- slajd 15: okna Carlesona ---------------- */
 
   factories['carleson-windows'] = function (root) {

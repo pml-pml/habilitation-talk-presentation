@@ -663,18 +663,12 @@
 <div class="slide-content">
   <p class="eyebrow">§ 8 · Obszary kołowe · praca [5]</p>
   <h2>Przestrzenie \(HX(\Omega)\) na obszarze kołowym</h2>
-  <div class="split">
-    <figure class="figure enter">
-      <svg class="anim" data-anim="circular-domain" viewBox="0 0 560 340" role="img" aria-label="Obszar kołowy, krzywe wyczerpania zbliżające się do brzegu i kolejno wyróżniane składowe brzegu"></svg>
-      <div class="readout">
-        <span>\(\partial\Omega=\Gamma_0\cup\Gamma_1\cup\Gamma_2\cup\Gamma_3\)</span><span class="sep">|</span>
-        <span>wyróżniona składowa: <span class="val" data-out="k">Γ₀</span></span>
-      </div>
-    </figure>
+  <div class="split split--text-left split--hm">
     <div class="stack">
       <div class="card enter">
-        <p class="small">\(\Omega\) — dysk bez \(m\) rozłącznych domkniętych dysków; \((\Omega_n)\) — regularne wyczerpanie, \(\kappa_n\) — izomorfizmy przestrzeni z&nbsp;miarą:</p>
-        <div class="formula">\[\|f\|_{HX(\Omega)}=\sup_{n}\bigl\|f|_{\partial\Omega_n}\!\circ\kappa_n^{-1}\bigr\|_X\]</div>
+        <p class="small">\(\Omega\) — dysk bez \(m\) rozłącznych domkniętych dysków, \((\Omega_n)\) — regularne wyczerpanie \(\Omega\):</p>
+        <div class="formula">\[\|f\|_{HX(\Omega)}=\sup_{n}\bigl\|f|_{\partial\Omega_n}\!\circ\theta_n^{-1}\bigr\|_X,\]</div>
+        <p class="small">gdzie \(\theta_n\colon(\partial\Omega_n,\omega_{n,z})\to([0,1),m)\) zachowuje miarę, \(\omega_{n,z}\) — miara harmoniczna na \(\partial\Omega_n\).</p>
       </div>
       <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Twierdzenie</span></div>
@@ -687,13 +681,25 @@
         <div class="formula">\[\begin{gathered}F\bigl(H^1(\Omega),H^\infty(\Omega)\bigr)\\=H\!F\bigl(L^1(\partial\Omega),L^\infty(\partial\Omega)\bigr)(\Omega)\end{gathered}\]</div>
       </div>
     </div>
+    <figure class="figure enter">
+      <svg class="anim" data-anim="harmonic-measure" viewBox="0 0 600 340" role="img" aria-label="Obszar kołowy: tory ruchu Browna z punktu z kończą się na brzegu; punkty wyjścia przeniesione izomorfizmem θ na odcinek [0, 1) rozkładają się równomiernie; nad odcinkiem wykres |f ∘ θ⁻¹|"></svg>
+      <div class="readout readout--tight">
+        <span>\(z=0{,}4\)</span>
+        <span>\(N=\) <span class="val" data-out="n">0</span></span>
+        <span data-out="frow" style="visibility:hidden">\(f(w)=\sum_{k=1}^{3}\frac{1}{w-a_k}\)</span>
+        <span class="readout-break"></span>
+        <span>\(\omega_z(\Gamma_0),\dots,\omega_z(\Gamma_3)\approx\) <span class="val" data-out="w0">–</span> <span class="val" data-out="w1">–</span> <span class="val" data-out="w2">–</span> <span class="val" data-out="w3">–</span></span>
+      </div>
+    </figure>
   </div>
 </div>
 <aside class="notes">
   <p><strong>Slajd 15/17 · Obszary kołowe</strong></p>
   <p><strong>Czas:</strong> 1:05 · <strong>na zegarze:</strong> 15:30–16:35</p>
-  <p>Obszar ograniczony, którego brzeg składa się z&nbsp;\(m+1\) rozłącznych analitycznych krzywych Jordana, jest konforemnie równoważny obszarowi kołowemu (Rudin, Sarason; monografia Fishera). Na dysku normę liczymy na okręgach o&nbsp;promieniu \(r\); na \(\Omega\) ich rolę pełnią brzegi \(\partial\Omega_n\) regularnego wyczerpania z&nbsp;miarami harmonicznymi. Dla \(L^p\) i&nbsp;\(L^\phi\) wystarcza wzór z&nbsp;tą samą funkcją; dla dowolnej \(X\) przenosimy normę do \(X\) przez izomorfizm zachowujący miarę \(\kappa\).</p>
-  <p>Animacja: krzywe \(\partial\Omega_n\) zbliżają się do brzegu; wyróżniona składowa \(\Gamma_k\) i&nbsp;obszar \(E_k\) (dla \(k\geqslant1\) — dopełnienie domkniętego dysku). Rozkład był znany dla \(H^p(\Omega)\) (Chalendar, Partington); wraz z&nbsp;twierdzeniem o&nbsp;interpolacji sum prostych (Mleczko, Szwedek) daje wersję twierdzenia Xu na \(\Omega\).</p>
+  <p>Obszar ograniczony, którego brzeg składa się z&nbsp;\(m+1\) rozłącznych analitycznych krzywych Jordana, jest konforemnie równoważny obszarowi kołowemu (Rudin, Sarason; monografia Fishera). Na dysku normę liczymy na okręgach o&nbsp;promieniu \(r\); na \(\Omega\) ich rolę pełnią brzegi \(\partial\Omega_n\) regularnego wyczerpania z&nbsp;miarami harmonicznymi. Dla \(L^p\) i&nbsp;\(L^\phi\) wystarcza wzór z&nbsp;tą samą funkcją; dla dowolnej \(X\) przenosimy normę do \(X\) przez izomorfizmy zachowujące miarę \(\theta_n\).</p>
+  <p>Animacja: \(\Omega\) — dysk bez dysków o&nbsp;środkach \(a_1=-\tfrac13\), \(a_2=\tfrac13+\tfrac i3\), \(a_3=\tfrac13-\tfrac{5i}{12}\) i&nbsp;promieniach \(\tfrac13,\tfrac16,\tfrac14\); \(z=0{,}4\). \(\omega_z(E)\) to prawdopodobieństwo, że ruch Browna z&nbsp;\(z\) opuszcza \(\Omega\) przez \(E\) (Kakutani 1944); tory rysowane metodą spacerów po kołach (Muller 1956): z&nbsp;punktu \(w\) skok w&nbsp;losowy punkt okręgu o&nbsp;środku \(w\) i&nbsp;promieniu równym odległości od brzegu. Cztery tory wolno, potem 400 punktów wyjścia; \(\omega_z(\Gamma_0),\dots,\omega_z(\Gamma_3)\approx0{,}09;\,0{,}06;\,0{,}41;\,0{,}44\).</p>
+  <p>\(\theta\) — wzór (3.1) w&nbsp;[5]: \(\theta(\zeta)=\sum_{i&lt;k}\omega_z(\Gamma_i)+\omega_z((x^k,\zeta))\) dla \(\zeta\in\Gamma_k\); składowe brzegu „rozwinięte” kolejno na \([0,1)\) (od \(x^k=a_k+r_k\), w&nbsp;orientacji dodatniej względem \(\Omega\)). \(\theta\) przenosi \(\omega_z\) na miarę Lebesgue’a — kreski na odcinku rozkładają się równomiernie — więc \(\|f\|\) liczymy w&nbsp;\(X([0,1))\) dla dowolnej przestrzeni symetrycznej \(X\). Dla \(L^p\) i&nbsp;\(L^\phi\) wystarcza norma na \((\partial\Omega_n,\omega_{n,z})\); dla dowolnej \(X\) potrzebne \(\theta_n\). Wykres: \(|f\circ\theta^{-1}|\) dla \(f(w)=\sum_{k=1}^3\frac1{w-a_k}\) — przykład rozkładu \(f=f_0+\dots+f_m\) z&nbsp;\(f_0=0\), \(f_k\in HX_0(E_k)\). Kliknięcie rysunku zatrzymuje i&nbsp;wznawia animację.</p>
+  <p>Rozkład był znany dla \(H^p(\Omega)\) (Chalendar, Partington); wraz z&nbsp;twierdzeniem o&nbsp;interpolacji sum prostych (Mleczko, Szwedek) daje wersję twierdzenia Xu na \(\Omega\).</p>
   <p>Wyniki w&nbsp;ramkach: [5, Thm.&nbsp;3.2]; [5, Cor.&nbsp;3.4].</p>
   <p><strong>Źródło:</strong> Autoreferat, § 8, s. 18–20; [5, Thm.&nbsp;3.2, Cor.&nbsp;3.4].</p>
 </aside>

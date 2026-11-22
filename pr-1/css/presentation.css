@@ -972,7 +972,7 @@ html, body {
 
 /* ---------- Slajd 6: zagadnienie odwrotne ---------- */
 /* Dwie karty po lewej na wysokość okna z diagramem; karta twierdzenia wypełnia resztę. */
-.reveal .split--dual { align-items: stretch; }
+.reveal .split--dual { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: stretch; }
 .reveal .split--dual .stack { display: flex; flex-direction: column; gap: 16px; }
 .reveal .split--dual .stack > .thm:first-child { flex: 1; display: flex; flex-direction: column; justify-content: center; }
 .reveal .split--dual .figure { display: flex; flex-direction: column; justify-content: center; }
@@ -980,6 +980,11 @@ html, body {
 /* Złote kreski nad kartami: 1/2 i cała szerokość. */
 .reveal .split--dual .stack > .thm:nth-child(1)::before { width: calc((100% - 44px) / 2); }
 .reveal .split--dual .stack > .thm:nth-child(2)::before { width: calc(100% - 44px); }
+
+/* ---------- Slajd 15: obszary kołowe ---------- */
+/* Okno animacji po prawej, na wysokość kart; rysunek wyśrodkowany w pionie. */
+.reveal .split--hm { align-items: stretch; }
+.reveal .split--hm .figure { display: flex; flex-direction: column; justify-content: center; }
 
 /* ---------- Slajd 7: rys historyczny ---------- */
 /* Dwie kolumny ramek (operator złożenia, wagowy operator złożenia), pod nimi monografie. */
