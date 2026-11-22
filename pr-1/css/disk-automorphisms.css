@@ -46,16 +46,6 @@
 .reveal .disk-auto-fixed.disk-auto-repelling { fill: #AA765E; }
 .reveal .disk-auto-fixed-halo.disk-auto-repelling { stroke: #AA765E; }
 .reveal .disk-auto-label { font-family: Georgia, 'Times New Roman', serif; font-size: 20px; fill: #274660; }
-.reveal .disk-auto-meta {
-  display: flex; justify-content: flex-end; align-items: center; gap: 12px;
-  font-family: Inter, 'Segoe UI', sans-serif;
-  font-size: 15px; font-weight: 600; letter-spacing: .04em;
-  color: #34516B; margin: 0 12px 10px;
-}
-.reveal .disk-auto-time {
-  font-weight: 500; color: #788896;
-  font-variant-numeric: tabular-nums; letter-spacing: 0;
-}
 .reveal .disk-auto-track {
   height: 3px; border-radius: 3px; background: #E8E9E5;
   overflow: hidden; margin: 0 12px 2px;

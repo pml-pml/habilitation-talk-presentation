@@ -39,7 +39,7 @@
 <aside class="notes">
   <p><strong>Slajd 1/17 · Tytuł</strong></p>
   <p><strong>Czas:</strong> 0:30 · <strong>na zegarze:</strong> 0:00–0:30</p>
-  <p>Powitanie. Osiągnięcie naukowe to siedem prac z lat 2013–2023. Omówię po jednym lub dwa twierdzenia z każdej grupy zagadnień.</p>
+  <p>Powitanie. Osiągnięcie naukowe to siedem prac z lat 2013–2023. Z&nbsp;każdego tematu omówię jedno lub dwa twierdzenia.</p>
   <p><strong>Źródło:</strong> Autoreferat, s. 1–2.</p>
 </aside>
 </section>
@@ -115,8 +115,8 @@
       <div class="formula">\[\begin{aligned}&amp;\|f\|_{\mathcal B}=|f(0)|\\&amp;\quad+\sup_{z\in\mathbb D}(1-|z|^2)|f'(z)|&lt;\infty.\end{aligned}\]</div>
     </div>
   </div>
-  <div class="card spaces-examples enter">
-    <p class="tag-inline">Przykłady przestrzeni Hardy’ego</p>
+  <div class="thm spaces-examples enter">
+    <div class="thm-head"><span class="thm-label">Przykłady przestrzeni Hardy’ego</span></div>
     <ul>
       <li>klasyczne przestrzenie Hardy’ego \(H^p=HL^p\), \(1\leqslant p\leqslant\infty\);</li>
       <li>przestrzenie Hardy’ego–Lorentza \(H^{p,q}=HL^{p,q}\), \(1&lt;p&lt;\infty\), \(1\leqslant q\leqslant\infty\);</li>
@@ -127,7 +127,7 @@
 <aside class="notes">
   <p><strong>Slajd 3/17 · Przestrzenie funkcji holomorficznych</strong></p>
   <p><strong>Czas:</strong> 1:15 · <strong>na zegarze:</strong> 1:30–2:45</p>
-  <p>Trzy typy przestrzeni, na których działają operatory w&nbsp;pracach [1]–[7]. Abstrakcyjne przestrzenie Hardy’ego \(HX\): norma w&nbsp;\(H^p\) to supremum norm \(L^p\) na okręgach o&nbsp;promieniu \(r\); w&nbsp;miejsce \(L^p(\mathbb T)\) bierzemy symetryczną przestrzeń Banacha \(X\). Wtedy \(H^\infty\hookrightarrow HX\hookrightarrow H^1\). Przestrzenie Dirichleta i&nbsp;Blocha – w&nbsp;[2] (widma \(uC_\varphi\)); w&nbsp;nich \(H^\infty\) nie zawiera się w&nbsp;algebrze mnożników.</p>
+  <p>Trzy typy przestrzeni, na których działają operatory w&nbsp;pracach [1]–[7]. Abstrakcyjne przestrzenie Hardy’ego \(HX\): norma w&nbsp;\(H^p\) to supremum norm \(L^p\) na okręgach o&nbsp;promieniu \(r\); w&nbsp;miejsce \(L^p(\mathbb T)\) bierzemy symetryczną przestrzeń Banacha \(X\). Wtedy \(H^\infty\hookrightarrow HX\hookrightarrow H^1\). Dla maksymalnej \(X\) przestrzeń \(HX\) można utożsamić z&nbsp;\(\{f\in X:\widehat f(n)=0,\ n&lt;0\}\) przez granice radialne (Mastyło, Rodríguez-Piazza) – tej wersji używam na slajdach 12–13. Przestrzenie Dirichleta i&nbsp;Blocha występują w&nbsp;[2] (widma \(uC_\varphi\)); ich algebry mnożników są właściwymi podalgebrami \(H^\infty\).</p>
   <p>Przestrzenie typu \(HX\) rozważali Bryskin oraz Fehér, Gaşpar i&nbsp;Johnen; przestrzenie Hardy’ego–Orlicza – Leśniewicz (1966).</p>
   <p><strong>Źródło:</strong> Autoreferat, § 1, s. 2–3; [2, § 2].</p>
 </aside>
@@ -138,7 +138,7 @@
 <div class="slide-content">
   <p class="eyebrow">Suriektywność operatorów Carlesona</p>
   <h2>Ciągi interpolacyjne i&nbsp;operatory Carlesona</h2>
-  <p class="definition enter">Ciąg \(\lambda=(\lambda_n)\subset\mathbb D\) jest <em>interpolacyjny</em> dla \(H^\infty\), gdy dla każdego \(w\in\ell^\infty\) istnieje \(f\in H^\infty\), że \(f(\lambda_n)=w_n\) dla \(n\in\mathbb N\), tzn. operator Carlesona \(T_\lambda\colon H^\infty\to\ell^\infty\), \(T_\lambda f=\bigl(f(\lambda_n)\bigr)\), jest surjekcją.</p>
+  <p class="definition enter">Ciąg \(\lambda=(\lambda_n)\subset\mathbb D\) jest <em>interpolacyjny</em> dla \(H^\infty\), gdy dla każdego \(w\in\ell^\infty\) istnieje \(f\in H^\infty\), że \(f(\lambda_n)=w_n\) dla \(n\in\mathbb N\), tzn. operator Carlesona \(T_\lambda\colon H^\infty\to\ell^\infty\), \(T_\lambda f=\bigl(f(\lambda_n)\bigr)\), jest suriekcją.</p>
   <div class="split split--text-left split--interp">
     <div class="stack">
       <div class="thm enter">
@@ -175,22 +175,23 @@
 <aside class="notes">
   <p><strong>Slajd 4/17 · Ciągi interpolacyjne</strong></p>
   <p><strong>Czas:</strong> 1:05 · <strong>na zegarze:</strong> 2:45–3:50</p>
+  <p><strong>Do powiedzenia.</strong> Ciąg jest interpolacyjny dla \(H^\infty\), gdy operator Carlesona jest suriekcją. Carleson: warunkiem jest jednostajne oddzielenie, czyli warunek w&nbsp;geometrii hiperbolicznej dysku. Animacja: ciąg \(1-2^{-n}\) zagęszcza się euklidesowo, ale przy każdym powiększeniu wygląda tak samo; ciąg \(1-2^{-\sqrt n}\) – nie. Shapiro i&nbsp;Shields przenieśli twierdzenie na \(H^p\). Pytanie na dole: czy suriektywność przenosi się z&nbsp;\(H^p\) i&nbsp;\(H^q\) na przestrzenie pośrednie?</p>
   <p><strong>Po co ta animacja.</strong> Warunek Carlesona jest warunkiem geometrii hiperbolicznej dysku, a&nbsp;nie euklidesowej. Ciąg \(\lambda_n=1-2^{-n}\) zbiega do \(1\) i&nbsp;euklidesowo się zagęszcza, a&nbsp;mimo to jest jednostajnie oddzielony, więc interpolacyjny. Rozstrzyga odległość pseudohiperboliczna \(\rho\), która mierzy odległość w&nbsp;skali \(1-|z|\): dyski \(\{z:\rho(z,\lambda_n)&lt;0{,}15\}\) mają ten sam promień pseudohiperboliczny, choć euklidesowo maleją jak \(1-|\lambda_n|\).</p>
   <p><strong>Dwie odległości w&nbsp;pasku odczytów.</strong> Dla kolejnych punktów \(|\lambda_{k+1}-\lambda_k|=2^{-k-1}\to0\) (przy \(k=6\): \(0{,}0078\)), natomiast \(\rho(\lambda_k,\lambda_{k+1})=\frac{2^{-k-1}}{1-(1-2^{-k})(1-2^{-k-1})}=\frac1{3-2^{-k}}\to\frac13\) (\(0{,}400;\ 0{,}364;\ 0{,}348;\ \dots\)). Odległość euklidesowa jest zawsze połową odległości \(1-\lambda_k\) do brzegu, więc w&nbsp;skali brzegu punkty pozostają w&nbsp;stałych odstępach.</p>
   <p><strong>Powiększenie.</strong> Prawy panel powiększa otoczenie punktu \(1\) od ×1 do ×2048, \(k\) od \(1\) do \(12\) (złota ramka na lewym dysku pokazuje okno). Zmiana skali \(1-z\mapsto(1-z)/2\) przeprowadza \(\lambda_n\) na \(\lambda_{n+1}\), więc przy każdym powiększeniu obraz jest taki sam: te same odstępy między dyskami, dyski rozłączne. To jest „jednostajność” oddzielenia – ciąg jest rozłożony równomiernie w&nbsp;metryce hiperbolicznej, mimo że euklidesowo gromadzi się przy \(1\). W&nbsp;pasku w&nbsp;tym czasie odległość euklidesowa maleje do zera, a&nbsp;\(\rho\) stoi przy \(1/3\).</p>
   <p><strong>Złote okręgi.</strong> To dyski wokół dwóch kolejnych punktów \(\lambda_k\) i&nbsp;\(\lambda_{k+1}\), przy czym \(\lambda_k\) (złoty punkt) to punkt najbliższy środka okna – w&nbsp;trakcie powiększania \(k\) rośnie. Obie odległości w&nbsp;pasku odnoszą się dokładnie do tej pary. Dyski o&nbsp;promieniu \(r=0{,}15\) są rozłączne wtedy i&nbsp;tylko wtedy, gdy \(\rho&gt;2r/(1+r^2)\approx0{,}293\); ponieważ \(\rho(\lambda_k,\lambda_{k+1})\geqslant1/3\), złote okręgi są rozłączne przy ×2048 tak samo jak przy ×1, choć euklidesowo są ponad 2000 razy mniejsze.</p>
-  <p><strong>\(\delta_k\).</strong> \(\delta_k=\prod_{n\ne k}\rho(\lambda_n,\lambda_k)\), a&nbsp;\(1/\delta_k\) to najmniejsza norma \(f\in H^\infty\) z&nbsp;\(f(\lambda_k)=1\), \(f(\lambda_n)=0\) dla \(n\ne k\) (minimum daje \(B_k/B_k(\lambda_k)\), \(B_k\) – iloczyn Blaschkego o&nbsp;zerach \(\lambda_n\), \(n\ne k\)). Jeśli \(T_\lambda\) jest surjekcją, to z&nbsp;twierdzenia o&nbsp;odwzorowaniu otwartym \(1/\delta_k\leqslant M\) – stąd konieczność warunku. Tutaj \(\delta_k\) maleje od \(0{,}18\) do \(\bigl(\prod_{m\geqslant1}\frac{2^m-1}{2^m+1}\bigr)^2\approx0{,}0147&gt;0\), bo \(\rho(\lambda_k,\lambda_n)\geqslant\frac{2^{|n-k|}-1}{2^{|n-k|}+1}\).</p>
+  <p><strong>\(\delta_k\).</strong> \(\delta_k=\prod_{n\ne k}\rho(\lambda_n,\lambda_k)\), a&nbsp;\(1/\delta_k\) to najmniejsza norma \(f\in H^\infty\) z&nbsp;\(f(\lambda_k)=1\), \(f(\lambda_n)=0\) dla \(n\ne k\) (minimum daje \(B_k/B_k(\lambda_k)\), \(B_k\) – iloczyn Blaschkego o&nbsp;zerach \(\lambda_n\), \(n\ne k\)). Jeśli \(T_\lambda\) jest suriekcją, to z&nbsp;twierdzenia o&nbsp;odwzorowaniu otwartym \(1/\delta_k\leqslant M\) – stąd konieczność warunku. Tutaj \(\delta_k\) maleje od \(0{,}18\) do \(\bigl(\prod_{m\geqslant1}\frac{2^m-1}{2^m+1}\bigr)^2\approx0{,}0147&gt;0\), bo \(\rho(\lambda_k,\lambda_n)\geqslant\frac{2^{|n-k|}-1}{2^{|n-k|}+1}\).</p>
   <p><strong>Oddzielenie a&nbsp;warunek Carlesona.</strong> Rozłączność dysków to oddzielenie parami (\(\inf_{n\ne k}\rho(\lambda_n,\lambda_k)&gt;0\)); warunek Carlesona jest ogólnie mocniejszy. Dla ciągów leżących w&nbsp;kącie Stolza, jak tutaj, oba warunki są równoważne, więc obraz dysków oddaje warunek Carlesona.</p>
   <p><strong>Drugi ciąg: \(\lambda_n=1-2^{-\sqrt n}\).</strong> Po ciągu Carlesona animacja pokazuje ten sam przebieg dla ciągu, który nie jest jednostajnie oddzielony. To ciąg Blaschkego (\(\sum_n2^{-\sqrt n}&lt;\infty\)), zbiega do \(1\) szybciej niż każda potęga \(1/n^{s}\) – w&nbsp;przeciwieństwie do \(1-1/n\), który nie spełnia nawet warunku Blaschkego, więc nie jest zbiorem zer funkcji z&nbsp;\(H^\infty\). Mimo to \(\rho(\lambda_k,\lambda_{k+1})\approx\frac{\ln2}{4\sqrt k}\to0\) (\(0{,}181\) przy \(k=1\); \(0{,}082\) przy \(k=5\); \(0{,}043\) przy \(k=17\); \(0{,}014\) przy \(k=152\)), bo kolejne odległości od brzegu mają iloraz \(2^{\sqrt k-\sqrt{k+1}}\to1\). Dla ciągu na promieniu jednostajne oddzielenie jest równoważne warunkowi \(\sup_n(1-\lambda_{n+1})/(1-\lambda_n)&lt;1\) (zbieżność co najmniej geometryczna). Na rysunku: w&nbsp;każdym przedziale \([2^{-m-1},2^{-m}]\) odległości od brzegu leży \(2m+1\) punktów, więc przy każdym powiększeniu obraz jest gęstszy, a&nbsp;dyski nachodzą na siebie coraz bardziej – brak samopodobieństwa, które było u&nbsp;\(1-2^{-n}\). W&nbsp;pasku \(\delta_k\) spada od \(1{,}2\cdot10^{-5}\) do rzędu \(10^{-74}\) przy \(k=152\).</p>
   <p><strong>Sterowanie.</strong> Animacja około 40 s: dwa przebiegi po około 20 s (najpierw \(1-2^{-n}\), potem \(1-2^{-\sqrt n}\)), w&nbsp;każdym punkty, dyski, powiększenie (12 s). Kliknięcie rysunku zatrzymuje i&nbsp;wznawia; kliknięcie punktu wyróżnia go (wartości w&nbsp;pasku). Proponowany przebieg: zatrzymać na końcu (×2048, \(k=12\)) i&nbsp;pokazać, że obraz się nie zmienił, a&nbsp;w&nbsp;pasku \(|\lambda_{13}-\lambda_{12}|=2^{-13}\approx1{,}22\cdot10^{-4}\), \(\rho(\lambda_{12},\lambda_{13})\approx0{,}333\).</p>
-  <p>Shapiro i&nbsp;Shields: równoważnie operator \(f\mapsto\bigl((1-|\lambda_n|^2)^{1/p}f(\lambda_n)\bigr)\) przeprowadza \(H^p\) na \(\ell^p\) wtedy i&nbsp;tylko wtedy, gdy \(\lambda\) jest jednostajnie oddzielony; dla \(p=\infty\) to twierdzenie Carlesona. Pytanie: czy dla przestrzeni \(X\) leżących „między” \(L^p\) i&nbsp;\(L^q\) surjektywność \(T_\lambda\) przenosi się z \(H^p\), \(H^q\) na \(HX\) – odpowiedź na następnym slajdzie. W [6] podaliśmy nowy dowód tego twierdzenia przez interpolację operatorów (formuła Jonesa) i&nbsp;przenieśliśmy go na \(HX\).</p>
+  <p>Shapiro i&nbsp;Shields: równoważnie operator \(f\mapsto\bigl((1-|\lambda_n|^2)^{1/p}f(\lambda_n)\bigr)\) przeprowadza \(H^p\) na \(\ell^p\) wtedy i&nbsp;tylko wtedy, gdy \(\lambda\) jest jednostajnie oddzielony; dla \(p=\infty\) to twierdzenie Carlesona. Pytanie: czy dla przestrzeni \(X\) leżących „między” \(L^p\) i&nbsp;\(L^q\) suriektywność \(T_\lambda\) przenosi się z \(H^p\), \(H^q\) na \(HX\) – odpowiedź na następnym slajdzie. W [6] podaliśmy nowy dowód tego twierdzenia przez interpolację operatorów (formuła Jonesa) i&nbsp;przenieśliśmy go na \(HX\).</p>
   <p><strong>Źródło:</strong> Autoreferat, § 2, s. 3–4.</p>
 </aside>
 </section>
 
 
-<!-- 05. Twierdzenie o śladach · 1:20 · od 3:50 do 5:10 -->
-<section data-slide-topic="Ślady funkcji z HX" data-duration-seconds="80">
+<!-- 05. Ciągi interpolacyjne przestrzeni interpolacyjnych · 1:20 · od 3:50 do 5:10 -->
+<section data-slide-topic="Ciągi interpolacyjne przestrzeni interpolacyjnych" data-duration-seconds="80">
 <div class="slide-content">
   <p class="eyebrow">Suriektywność operatorów Carlesona</p>
   <h2>Ciągi interpolacyjne przestrzeni interpolacyjnych</h2>
@@ -212,7 +213,7 @@
       </div>
       <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Przestrzenie Hardy’ego–Lorentza i&nbsp;Hardy’ego–Orlicza</span></div>
-        <p>\(T_\lambda\) jest surjekcją wtedy i&nbsp;tylko wtedy, gdy \(\lambda\) jest jednostajnie oddzielony:</p>
+        <p>\(T_\lambda\) jest suriekcją wtedy i&nbsp;tylko wtedy, gdy \(\lambda\) jest jednostajnie oddzielony:</p>
         <ul class="gold-list">
           <li>\(T_\lambda\colon H^{p,q}\to\ell^{p,q}(\nu)\), \(1&lt;p&lt;\infty\), \(1\leqslant q&lt;\infty\)</li>
           <li>\(T_\lambda\colon H^\phi\to\ell^\phi(\nu)\), \(\phi\) spełnia warunek \(\Delta_2\)</li>
@@ -227,13 +228,9 @@
           <path class="arrow draw" pathLength="1" style="--d:1.8s" d="M364 84 V256"/>
           <path class="head head--open pop" style="--d:3.2s" d="M358 248 L364 256 L370 248"/>
           <path class="arrow draw" pathLength="1" style="--d:4.2s" d="M66 60 H96"/>
-          <path class="head head--open pop" style="--d:5.6s" d="M89 54 L97 60 L89 66"/>
           <path class="arrow draw" pathLength="1" style="--d:4.2s" d="M298 60 H332"/>
-          <path class="head head--open pop" style="--d:5.6s" d="M325 54 L333 60 L325 66"/>
           <path class="arrow draw" pathLength="1" style="--d:4.2s" d="M70 280 H114"/>
-          <path class="head head--open pop" style="--d:5.6s" d="M107 274 L115 280 L107 286"/>
           <path class="arrow draw" pathLength="1" style="--d:4.2s" d="M286 280 H328"/>
-          <path class="head head--open pop" style="--d:5.6s" d="M321 274 L329 280 L321 286"/>
           <path class="arrow arrow--gold draw" pathLength="1" style="--d:6.4s" d="M200 84 V256"/>
           <path class="head head--open head--gold pop" style="--d:7.8s" d="M193 247 L200 256 L207 247"/>
           <text class="mth pop" style="--d:2.4s" x="44" y="172">T</text><text class="mth pop" style="--d:2.4s" x="56" y="178" font-size="14">λ</text>
@@ -251,19 +248,20 @@
   </div>
 </div>
 <aside class="notes">
-  <p><strong>Slajd 5/17 · Twierdzenie o śladach</strong></p>
+  <p><strong>Slajd 5/17 · Ciągi interpolacyjne przestrzeni interpolacyjnych</strong></p>
   <p><strong>Czas:</strong> 1:20 · <strong>na zegarze:</strong> 3:50–5:10</p>
-  <p>Ciąg \(\lambda\) nazywamy \(E\)-interpolacyjnym dla \(X\subset H(\mathbb D)\), gdy \(E\subseteq\{(f(\lambda_n)):f\in X\}\), czyli gdy \(T_\lambda\colon X\to E\) jest surjekcją. Twierdzenie daje warunek konieczny i&nbsp;dostateczny dla przestrzeni generowanych przez funktory interpolacyjne. Pojęcie funktora dualnego w&nbsp;sensie Köthego wprowadziliśmy w [6]; przykładami są \(K\)-metoda i&nbsp;\(J\)-metoda.</p>
-  <p>Diagram (buduje się przez ok. 9 s): najpierw strzałki pionowe po bokach (twierdzenie Shapiro–Shieldsa dla \(H^p\) i&nbsp;\(H^q\)), potem strzałki poziome w&nbsp;obu wierszach (funktor \(F\) na parach \((H^p,H^q)\) i&nbsp;\((\ell^p(\nu),\ell^q(\nu))\)), na końcu złota strzałka: wniosek dla \(HX=HF(L^p(\mathbb T),L^q(\mathbb T))\). Funktory: dla \(H^{p,q}\) metoda rzeczywista \((\cdot)_{\theta,q}\) na parze \((L^{p_0},L^{p_1})\); dla \(H^\phi\) funktor \(F=(\rho_\ell)^\circ\) na parze \((L^1,L^\infty)\), gdzie \(\rho(s,t)=t\phi^{-1}(s/t)\), a&nbsp;funktorem dualnym do \(\rho_\ell\) jest \((\widehat\rho)_\ell\) (wzór Łozanowskiego i&nbsp;twierdzenie Ovchinnikova). Funktorem dualnym do \(K_\Phi\) jest \(K_{\Psi^+}\), \(\Psi=K_\Phi(\ell^1,\ell^1(2^{-n}))\) [6, Thm.&nbsp;9]. Szczególne przypadki: \(H^{p,q}\) (\(1&lt;p&lt;\infty\), \(1\leqslant q&lt;\infty\)) i&nbsp;\(H^\phi\) (\(\phi\in\Delta_2\)); dla \(HM_\phi\) ograniczoność \(T_\lambda\colon HM_\phi\to m_\phi(\nu)\) [6, Thm.&nbsp;14].</p>
-  <p>Wyniki w&nbsp;ramkach: [6, Thm.&nbsp;7]; [6, Thm.&nbsp;8]; [6, Thm.&nbsp;9, 10]; [6, Thm.&nbsp;15].</p>
+  <p><strong>Do powiedzenia.</strong> Odpowiedź na pytanie ze slajdu 4 jest twierdząca: dla przestrzeni \(X=F(L^p,L^q)\) suriektywność \(T_\lambda\) na \(H^p\) i&nbsp;\(H^q\) przenosi się na \(HX\), a&nbsp;obrazem jest \(F(\ell^p(\nu),\ell^q(\nu))\). Potrzebny jest funktor dualny w&nbsp;sensie Köthego – pojęcie wprowadzone w&nbsp;[6]; mają go metoda rzeczywista, \(K\)-metoda, \(J\)-metoda i&nbsp;funktor dolny Calderóna–Łozanowskiego. Szczególne przypadki: przestrzenie Hardy’ego–Lorentza i&nbsp;Hardy’ego–Orlicza.</p>
+  <p>Ciąg \(\lambda\) nazywamy \(E\)-interpolacyjnym dla \(X\subset H(\mathbb D)\), gdy \(E\subseteq\{(f(\lambda_n)):f\in X\}\), czyli gdy \(T_\lambda\colon X\to E\) jest suriekcją. Twierdzenie daje warunek konieczny i&nbsp;dostateczny dla przestrzeni generowanych przez funktory interpolacyjne. Pojęcie funktora dualnego w&nbsp;sensie Köthego wprowadziliśmy w [6]; przykładami są \(K\)-metoda i&nbsp;\(J\)-metoda.</p>
+  <p>Diagram (buduje się przez ok. 9 s): najpierw strzałki pionowe po bokach (twierdzenie Shapiro–Shieldsa dla \(H^p\) i&nbsp;\(H^q\)), potem odcinki łączące pary \((H^p,H^q)\) i&nbsp;\((\ell^p(\nu),\ell^q(\nu))\) z&nbsp;przestrzeniami pośrednimi (funktor \(F\); odcinki bez grotów, bo nie są to odwzorowania – dla \(p&lt;q\) mamy \(H^q\hookrightarrow HX\hookrightarrow H^p\)), na końcu złota strzałka: wniosek dla \(HX=HF(L^p(\mathbb T),L^q(\mathbb T))\). Funktory: dla \(H^{p,q}\) metoda rzeczywista \((\cdot)_{\theta,q}\) na parze \((L^{p_0},L^{p_1})\); dla \(H^\phi\) funktor \(F=(\rho_\ell)^\circ\) na parze \((L^1,L^\infty)\), gdzie \(\rho(s,t)=t\phi^{-1}(s/t)\), a&nbsp;funktorem dualnym do \(\rho_\ell\) jest \((\widehat\rho)_\ell\) (wzór Łozanowskiego i&nbsp;twierdzenie Ovchinnikova). Funktorem dualnym do \(K_\Phi\) jest \(K_{\Psi^+}\), \(\Psi=K_\Phi(\ell^1,\ell^1(2^{-n}))\) [6, Thm.&nbsp;9]. Szczególne przypadki: \(H^{p,q}\) (\(1&lt;p&lt;\infty\), \(1\leqslant q&lt;\infty\)) i&nbsp;\(H^\phi\) (\(\phi\in\Delta_2\)); dla \(HM_\phi\) ograniczoność \(T_\lambda\colon HM_\phi\to m_\phi(\nu)\) [6, Thm.&nbsp;14].</p>
+  <p>Wyniki w&nbsp;ramkach: [6, Thm.&nbsp;7]; funktory – [6, Thm.&nbsp;8] (metoda rzeczywista), [6, Thm.&nbsp;9, 10] (\(K_\Phi\), \(J_E\)), [6, Thm.&nbsp;15] (\(\rho_\ell\)); przestrzenie Hardy’ego–Lorentza i&nbsp;Hardy’ego–Orlicza – [6, Thm.&nbsp;8, 15].</p>
   <p><strong>Praca:</strong> [6] M.&nbsp;Lindström, M.&nbsp;Mastyło, P.&nbsp;Mleczko, D.&nbsp;Norrbo, M.&nbsp;Rzeczkowski, <i>Carleson interpolating sequences for Banach spaces of analytic functions</i>, J.&nbsp;Inst. Math. Jussieu 21 (2022).</p>
   <p><strong>Źródło:</strong> Autoreferat, § 2, s. 4–5; [6, Thm.&nbsp;7] (Twierdzenie 1 autoreferatu).</p>
 </aside>
 </section>
 
 
-<!-- 06. Zadanie odwrotne · 0:45 · od 5:10 do 5:55 -->
-<section data-slide-topic="Zadanie odwrotne" data-duration-seconds="45">
+<!-- 06. Ciągi interpolacyjne – zagadnienie odwrotne · 0:45 · od 5:10 do 5:55 -->
+<section data-slide-topic="Zagadnienie odwrotne" data-duration-seconds="45">
 <div class="slide-content">
   <p class="eyebrow">Suriektywność operatorów Carlesona</p>
   <h2>Ciągi interpolacyjne – zagadnienie odwrotne</h2>
@@ -271,13 +269,13 @@
     <div class="stack">
       <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Twierdzenie</span></div>
-        <p>Niech \(\lambda\subset\mathbb D\) będzie ciągiem jednostajnie oddzielonym. Dla każdej ośrodkowej przestrzeni symetrycznej \(E\) nad \((\mathbb N,2^{\mathbb N},\nu_\lambda)\) istnieje ośrodkowa przestrzeń symetryczna \(X\subset L^0(\mathbb T)\), że</p>
+        <p>Niech \(\lambda\subset\mathbb D\) będzie ciągiem jednostajnie oddzielonym. Dla każdej ośrodkowej przestrzeni symetrycznej \(E\) nad \((\mathbb N,2^{\mathbb N},\nu)\) istnieje ośrodkowa przestrzeń symetryczna \(X\subset L^0(\mathbb T)\), że</p>
         <div class="formula">\[E=\bigl\{(f(\lambda_n)):f\in HX\bigr\}.\]</div>
-        <p>W&nbsp;szczególności \(T_\lambda\colon HX\to E\) jest surjekcją.</p>
+        <p>W&nbsp;szczególności \(T_\lambda\colon HX\to E\) jest suriekcją.</p>
       </div>
       <div class="thm research-q enter">
         <div class="thm-head"><span class="thm-label">Dalsze badania</span></div>
-        <p>Zagadnienie samplingu w&nbsp;przestrzeniach Hardy’ego \(HX\).</p>
+        <p>Ciągi próbkujące w&nbsp;przestrzeniach <span class="nowrap">Hardy’ego \(HX\).</span></p>
       </div>
     </div>
     <figure class="figure enter">
@@ -303,6 +301,7 @@
   <p><strong>Czas:</strong> 0:45 · <strong>na zegarze:</strong> 5:10–5:55</p>
   <p>Pytanie odwrotne do poprzedniego: czy dla każdej przestrzeni ciągów \(E\) i&nbsp;każdego jednostajnie oddzielonego \(\lambda\) istnieje przestrzeń \(X\) funkcji holomorficznych, dla której \(\lambda\) jest \(E\)-interpolacyjny? Dla ośrodkowych przestrzeni symetrycznych odpowiedź jest twierdząca.</p>
   <p>Ciągi interpolacyjne dla \(H^\infty\) wykorzystujemy dalej w [2] i [3] przy wyznaczaniu widm.</p>
+  <p>Dalsze badania: ciągi próbkujące (sampling) dla \(HX\) – dla jakich \(\lambda\) norma \(f\in HX\) jest równoważna normie ciągu \((f(\lambda_n))\) w&nbsp;odpowiedniej przestrzeni ciągów.</p>
   <p>Wyniki w&nbsp;ramkach: [6, Thm.&nbsp;12].</p>
   <p><strong>Praca:</strong> [6] M.&nbsp;Lindström, M.&nbsp;Mastyło, P.&nbsp;Mleczko, D.&nbsp;Norrbo, M.&nbsp;Rzeczkowski, <i>Carleson interpolating sequences for Banach spaces of analytic functions</i>, J.&nbsp;Inst. Math. Jussieu 21 (2022), no.&nbsp;6, 1915–1945.</p>
   <p><strong>Źródło:</strong> Autoreferat, § 2, s. 5; [6, Thm.&nbsp;12] (Twierdzenie 2 autoreferatu).</p>
@@ -343,7 +342,7 @@
       </div>
       <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Gunatillake; Hyvärinen, Lindström, Nieminen, Saukko; Bourdon; Chalendar, Gallardo&#8209;Gutiérrez, Partington</span><span class="thm-ref">od 2005</span></div>
-        <p>Widma zwartych i&nbsp;odwracalnych \(uC_\varphi\) na \(H^2\); widma \(uC_\varphi\) dla \(\varphi\in\mathrm{Aut}(\mathbb D)\) na przestrzeniach wagowych.</p>
+        <p>Widma zwartych i&nbsp;odwracalnych \(uC_\varphi\) na \(H^2\); widma \(uC_\varphi\) dla \(\varphi\in\mathrm{Aut}(\mathbb D)\) na \(H^p\), przestrzeniach Bergmana i&nbsp;przestrzeni Dirichleta.</p>
       </div>
     </div>
     <div class="thm history-books enter">
@@ -361,7 +360,7 @@
   <p><strong>Slajd 7/17 · Wagowe operatory złożenia</strong></p>
   <p><strong>Czas:</strong> 1:00 · <strong>na zegarze:</strong> 5:55–6:55</p>
   <p>Ramki pojawiają się kolejno: najpierw lewa kolumna (operator złożenia), potem prawa (wagowy operator złożenia), na końcu monografie.</p>
-  <p><strong>Operator złożenia.</strong> Littlewood (1925): zasada podporządkowania, stąd ograniczoność \(C_\varphi\) na \(H^2\) (Ryff 1966 – na \(H^p\)). Nordgren, <i>Composition operators</i>, Canad. J. Math. 20 (1968): \(C_\varphi\) jako operator na \(H^2\), izometrie dla funkcji wewnętrznych, widmo dla automorfizmów. Schwartz (rozprawa, 1969): pierwsze kryteria zwartości związane z&nbsp;geometrią \(\varphi(\mathbb D)\). Kamowitz, J. Funct. Anal. 18 (1975): widmo \(C_\varphi\) na \(H^p\). Shapiro, Ann. of Math. 125 (1987): wzór na normę istotną przez funkcję zliczającą Nevanlinny. Lata 90.: monografie Shapiro i&nbsp;Cowena–MacCluer, przejście do przestrzeni Bergmana i&nbsp;Dirichleta; XXI wiek: dynamika liniowa, funkcje wielu zmiennych, operatory z&nbsp;wagą.</p>
+  <p><strong>Operator złożenia.</strong> Littlewood (1925): zasada podporządkowania, stąd ograniczoność \(C_\varphi\) na \(H^2\) (Ryff 1966 – na \(H^p\)). Nordgren, <i>Composition operators</i>, Canad. J. Math. 20 (1968): \(C_\varphi\) jako operator na \(H^2\), izometrie dla funkcji wewnętrznych, widmo dla automorfizmów. Schwartz (rozprawa, 1969): pierwsze kryteria zwartości związane z&nbsp;geometrią \(\varphi(\mathbb D)\). Kamowitz, J. Funct. Anal. 18 (1975): widmo \(C_\varphi\) na \(H^p\). Shapiro, Ann. of Math. 125 (1987): wzór na normę istotną przez funkcję zliczającą Nevanlinny. Monografie na slajdzie: Shapiro (1993), Cowen i&nbsp;MacCluer (1995), Lefèvre, Li, Queffélec, Rodríguez-Piazza – operatory złożenia na przestrzeniach Hardy’ego–Orlicza (Mem. Amer. Math. Soc. 207, 2010), Lefèvre i&nbsp;Queffélec (Cambridge University Press, 2026). Lata 90.: przejście do przestrzeni Bergmana i&nbsp;Dirichleta; XXI wiek: dynamika liniowa, funkcje wielu zmiennych, operatory z&nbsp;wagą.</p>
   <p><strong>Wagowy operator złożenia.</strong> Forelli, Canad. J. Math. 16 (1964): izometrie \(H^p\) w&nbsp;\(H^p\), \(p\neq2\), to \(f\mapsto F\cdot(f\circ\varphi)\), \(\varphi\) wewnętrzna; izometrie „na” to \(f\mapsto c\,(\varphi')^{1/p}f\circ\varphi\), \(\varphi\in\mathrm{Aut}(\mathbb D)\) (wcześniej, dla \(C(K)\): Banach 1932, Stone 1937). Kamowitz (1979): zwartość operatorów postaci \(uC_\varphi\). Contreras, Hernández-Díaz, <i>Weighted composition operators on Hardy spaces</i>, J. Math. Anal. Appl. 263 (2001), 224–233, i&nbsp;<i>Weighted composition operators between different Hardy spaces</i>, Integral Equations Operator Theory 46 (2003), 165–188: ograniczoność, zwartość, słaba zwartość \(uC_\varphi\colon H^p\to H^q\), opisane miarami Carlesona. Gunatillake: rozprawa doktorska (Purdue, 2005, promotor C. Cowen) i&nbsp;Proc. Amer. Math. Soc. 135 (2007) – widmo zwartego \(uC_\varphi\) na \(H^2\) przy punkcie stałym \(\varphi\) wewnątrz dysku; J. Funct. Anal. 261 (2011) – odwracalne \(uC_\varphi\) na \(H^2\) i&nbsp;ich widma. Hyvärinen, Lindström, Nieminen, Saukko, J. Funct. Anal. 265 (2013): widma \(uC_\varphi\) z&nbsp;automorficznym symbolem na przestrzeniach wagowych – punkt wyjścia prac [2], [3]. Dalej m.in. Bourdon (odwracalne \(uC_\varphi\), Proc. Amer. Math. Soc., 2014) oraz Chalendar, Gallardo-Gutiérrez, Partington (\(uC_\varphi\) na przestrzeni Dirichleta: ograniczoność i&nbsp;własności spektralne, Math. Ann., 2015).</p>
   <p><strong>Trudność.</strong> \(C_\varphi^{\,n}=C_{\varphi_n}\), ale \((uC_\varphi)^n=u\cdot(u\circ\varphi_1)\cdots(u\circ\varphi_{n-1})\,C_{\varphi_n}\): w&nbsp;iteracjach pojawia się iloczyn wartości wagi wzdłuż orbity, stąd rola \(u\) w&nbsp;punktach stałych \(\varphi\) we wzorach na promień spektralny.</p>
   <p><strong>Źródło:</strong> wykład przedhabilitacyjny (24.02.2026), s. 5–6; Autoreferat, § 3.</p>
@@ -370,12 +369,13 @@
 
 
 <!-- 08. Zagadnienia · 1:00 · od 6:55 do 7:55 -->
-<section data-slide-topic="Zagadnienia" data-duration-seconds="60">
+<section data-slide-topic="Zakres badań" data-duration-seconds="60">
 <div class="slide-content">
   <p class="eyebrow">Zakres badań</p>
   <h2>Wagowe operatory złożenia</h2>
   <div class="scope">
     <div class="thm scope-def enter">
+      <div class="thm-head"><span class="thm-label">Wagowy operator złożenia</span></div>
       <p>Niech \(X\) będzie przestrzenią funkcji holomorficznych na \(\mathbb D\), \(u\in H(\mathbb D)\) i&nbsp;\(\varphi\colon\mathbb D\to\mathbb D\) holomorficzna. Zakładamy, że \(uC_\varphi\) jest dobrze określony i&nbsp;ograniczony na \(X\).</p>
       <div class="formula formula--lead scope-key">\[uC_\varphi\colon X\to X,\qquad uC_\varphi f=u\cdot(f\circ\varphi)\]</div>
       <p class="scope-sub">Iteracje:</p>
@@ -397,7 +397,7 @@
 <aside class="notes">
   <p><strong>Slajd 8/17 · Zagadnienia</strong></p>
   <p><strong>Czas:</strong> 1:00 · <strong>na zegarze:</strong> 6:55–7:55</p>
-  <p>Przestrzenie \(\mathcal B\), \(\mathcal D\), \(HX\) zdefiniowane na slajdzie 3. Cztery zagadnienia z&nbsp;rozprawy, omawiane na kolejnych slajdach: widma [2], [3] (po klasyfikacji automorfizmów na slajdzie 9: slajdy 10–11), porządkowa ograniczoność [4] (slajd 12), twierdzenie Beurlinga [1] (slajd 13), asymptotyczne operatory Toeplitza [7] (slajd 14).</p>
+  <p>Przestrzenie \(\mathcal B\), \(\mathcal D\), \(HX\) zdefiniowane na slajdzie 3. Cztery zagadnienia omawiane dalej: widma [2], [3] – slajdy 9–11 (na każdym klasyfikacja automorfizmu i&nbsp;twierdzenie), porządkowa ograniczoność i&nbsp;\(p\)-sumowalność [4] – slajd 12, twierdzenie Beurlinga [1] – slajd 13, asymptotyczne operatory Toeplitza [7] – slajd 14.</p>
   <p><strong>Dlaczego \(uC_\varphi\) jest trudniejszy niż \(C_\varphi\).</strong> Iteracje \(C_\varphi\) są znów operatorami złożenia: \(C_\varphi^{\,n}=C_{\varphi_n}\). Iteracje \(uC_\varphi\) niosą iloczyn wartości wagi wzdłuż orbity: \((uC_\varphi)^n=u_{(n)}C_{\varphi_n}\), \(u_{(n)}=u\cdot(u\circ\varphi_1)\cdots(u\circ\varphi_{n-1})\). Promień spektralny \(\lim\|(uC_\varphi)^n\|^{1/n}\) wymaga więc kontroli \(|u_{(n)}|^{1/n}\), a&nbsp;ta zależy od wartości \(u\) w&nbsp;punktach stałych \(\varphi\).</p>
   <p>Założenie na slajdzie: \(uC_\varphi\) jest dobrze określony i&nbsp;ograniczony na \(X\) – nie wynika to z&nbsp;samej holomorficzności \(u\) i&nbsp;\(\varphi\). W&nbsp;twierdzeniach spektralnych na slajdach 9–11 zakładamy dodatkowo, że \(uC_\varphi\) jest odwracalny.</p>
   <p>Odwracalność: \(uC_\varphi\) jest odwracalny na \(\mathcal B\), \(\mathcal D\), \(HX\) wtedy i&nbsp;tylko wtedy, gdy \(\varphi\in\mathrm{Aut}(\mathbb D)\), \(u\) jest multiplikatorem i&nbsp;\(|u|&gt;0\) na \(\mathbb D\) (z&nbsp;\(1/u\) multiplikatorem); wtedy \((uC_\varphi)^{-1}=\frac1{u\circ\varphi^{-1}}C_{\varphi^{-1}}\).</p>
@@ -421,10 +421,10 @@
       </div>
       <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Twierdzenie</span></div>
-        <p>Niech \(u\in A(\mathbb D)\), \(\varphi\) będzie automorfizmem eliptycznym z&nbsp;punktem stałym \(a\in\mathbb D\), \(X=\mathcal B\) lub \(X=HX\), a&nbsp;\(uC_\varphi\colon X\to X\) niech będzie odwracalny.</p>
+        <p>Niech \(u\in A(\mathbb D)\), \(\varphi\) będzie automorfizmem eliptycznym z&nbsp;punktem stałym \(a\in\mathbb D\), \(\mathcal X=\mathcal B\) lub \(\mathcal X=HX\), a&nbsp;\(uC_\varphi\colon\mathcal X\to\mathcal X\) niech będzie odwracalny.</p>
         <ul class="gold-list">
-          <li>Jeśli \(\varphi_j\ne\mathrm{id}\) dla \(j\in\mathbb N\), to \(\sigma_X(uC_\varphi)=\{\lambda\in\mathbb C:|\lambda|=|u(a)|\}\).</li>
-          <li>Jeśli \(\varphi_j=\mathrm{id}\) dla pewnego \(j\), to \(\sigma_X(uC_\varphi)=\overline{\{\lambda\in\mathbb C:\lambda^n\in u_{(n)}(\mathbb D)\}}\),<br>gdzie \(n=\min\{j:\varphi_j=\mathrm{id}\}\), \(u_{(n)}=u\cdot(u\circ\varphi_1)\cdots(u\circ\varphi_{n-1})\).</li>
+          <li>Jeśli \(\varphi_j\ne\mathrm{id}\) dla \(j\in\mathbb N\), to \(\sigma_{\mathcal X}(uC_\varphi)=\{\lambda\in\mathbb C:|\lambda|=|u(a)|\}\).</li>
+          <li>Jeśli \(\varphi_j=\mathrm{id}\) dla pewnego \(j\), to \(\sigma_{\mathcal X}(uC_\varphi)=\overline{\{\lambda\in\mathbb C:\lambda^n\in u_{(n)}(\mathbb D)\}},\)<br>gdzie \(n=\min\{j:\varphi_j=\mathrm{id}\}\), \(u_{(n)}=u\cdot(u\circ\varphi_1)\cdots(u\circ\varphi_{n-1})\).</li>
         </ul>
       </div>
     </div>
@@ -458,8 +458,8 @@
       </div>
       <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Twierdzenie</span></div>
-        <p>Niech \(u\in A(\mathbb D)\), \(\varphi\) będzie automorfizmem parabolicznym z&nbsp;punktem stałym \(a\in\mathbb T\), \(X=\mathcal B\) lub \(X=HX\), a&nbsp;\(uC_\varphi\colon X\to X\) niech będzie odwracalny. Wtedy</p>
-        <div class="formula formula--lead">\[\sigma_X(uC_\varphi)=\bigl\{\lambda\in\mathbb C:|\lambda|=|u(a)|\bigr\}.\]</div>
+        <p>Niech \(u\in A(\mathbb D)\), \(\varphi\) będzie automorfizmem parabolicznym z&nbsp;punktem stałym \(a\in\mathbb T\), \(\mathcal X=\mathcal B\) lub \(\mathcal X=HX\), a&nbsp;\(uC_\varphi\colon\mathcal X\to\mathcal X\) niech będzie odwracalny. Wtedy</p>
+        <div class="formula formula--lead">\[\sigma_{\mathcal X}(uC_\varphi)=\bigl\{\lambda\in\mathbb C:|\lambda|=|u(a)|\bigr\}.\]</div>
       </div>
     </div>
     <figure class="disk-auto-figure enter" data-disk-automorphism="parabolic"></figure>
@@ -469,7 +469,7 @@
   <p><strong>Slajd 10/17 · Automorfizmy paraboliczne</strong></p>
   <p><strong>Czas:</strong> 1:15 · <strong>na zegarze:</strong> 9:10–10:25</p>
   <p>Kontekst: Kamowitz (\(A(\mathbb D)\)); Hyvärinen, Lindström, Nieminen, Saukko (2013) – widma odwracalnych \(uC_\varphi\) na \(H^p\), wagowych przestrzeniach Bergmana i&nbsp;wagowych przestrzeniach funkcji ograniczonych, bez przestrzeni Blocha, Dirichleta i&nbsp;\(HX\). Na \(HX\) zamiast oszacowania \(|f(z)|\leqslant\|f\|(1-|z|^2)^{-s}\) używamy oszacowania Mastyły i&nbsp;Rodrígueza-Piazzy \(|f(z)|\leqslant C\|f\|_{HX}/\phi_X(1-|z|)\).</p>
-  <p>Animacja: siatka (okręgi i&nbsp;promienie) deformowana przez automorfizmy paraboliczne o&nbsp;jedynym punkcie stałym \(a=1\) na brzegu; ruch w&nbsp;półpłaszczyźnie (przez przekształcenie Cayleya) jest przesunięciem pionowym, siatka zagęszcza się przy \(a\). Złota przerywana krzywa to tor wyróżnionego punktu, licznik i&nbsp;pasek pokazują postęp (75 s); kliknięcie zatrzymuje animację. Widmo zależy wyłącznie od \(|u(a)|\).</p>
+  <p>Animacja: siatka (okręgi i&nbsp;promienie) deformowana przez automorfizmy paraboliczne o&nbsp;jedynym punkcie stałym \(a=1\) na brzegu; ruch w&nbsp;półpłaszczyźnie (przez przekształcenie Cayleya) jest przesunięciem pionowym, siatka zagęszcza się przy \(a\). Złota przerywana krzywa to tor wyróżnionego punktu; animacja trwa 75 s (czas slajdu), pasek pod rysunkiem pokazuje postęp, potem zostaje ostatnia klatka; kliknięcie zatrzymuje animację. Widmo zależy wyłącznie od \(|u(a)|\).</p>
   <p>W dowodzie dla parabolicznego \(\varphi\) korzystamy z&nbsp;tego, że dla \(z\in\mathbb D\) ciąg \((\varphi_n(z))\) jest interpolacyjny dla \(H^\infty\).</p>
   <p><strong>Źródło:</strong> Autoreferat, § 4, s. 7–11; Twierdzenia 3, 4, 6, 7 autoreferatu.</p>
   <p><strong>Twierdzenia na slajdzie:</strong> [2, Thm.&nbsp;4.3], [3, Thm.&nbsp;3]. Prace: [2] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, Studia Math. 232 (2016); [3] T.&nbsp;Eklund, M.&nbsp;Lindström, P.&nbsp;Mleczko, M.&nbsp;Rzeczkowski, RACSAM 113 (2019).</p>
@@ -528,7 +528,7 @@
       <p>Niech \(X\subset L^0(\mathbb T)\), \(X\ne L^\infty(\mathbb T)\), będzie maksymalną i&nbsp;symetryczną przestrzenią z&nbsp;funkcją fundamentalną \(\phi_X\), niech \(Y\subset L^0(\mathbb T)\) będzie kratą Banacha i&nbsp;niech <span class="nowrap">\(\varphi\in H(\mathbb D)\), \(\varphi(\mathbb D)\subseteq\mathbb D\)</span>. Następujące warunki są równoważne:</p>
       <ol class="equiv-list">
         <li><span>operator \(\widetilde C_\varphi\colon HX\to Y\) jest porządkowo ograniczony,</span></li>
-        <li><span>\(\phi_X(1-|\widetilde\varphi|)^{-1}\in Y\).</span></li>
+        <li><span>\(1/\phi_X(1-|\widetilde\varphi|)\in Y\).</span></li>
       </ol>
     </div>
     <div class="thm enter">
@@ -558,10 +558,11 @@
 <aside class="notes">
   <p><strong>Slajd 12/17 · Absolutnie sumujące operatory złożenia</strong></p>
   <p><strong>Czas:</strong> 1:15 · <strong>na zegarze:</strong> 11:55–13:10</p>
+  <p><strong>Do powiedzenia.</strong> Ramki wchodzą kolejno: najpierw twierdzenia (lewa kolumna), potem definicje (prawa). Operator \(\widetilde C_\varphi\) przyjmuje wartości w&nbsp;kracie, więc ma sens porządkowa ograniczoność. Dla maksymalnej \(X\) jest ona równoważna warunkowi \(1/\phi_X(1-|\widetilde\varphi|)\in Y\); dla \(H^{p,q}\to L^p\), \(p&gt;2\), \(q=p/(p-1)\), porządkowa ograniczoność, \(p\)-sumowalność i&nbsp;\((1-|\widetilde\varphi|)^{-1}\in L^1\) są równoważne.</p>
   <p>W \(HX\) nie ma naturalnego porządku, ale gdy \(X\) ma własność Fatou, \(f\mapsto\widetilde f\) (granice radialne) jest izometrią \(HX\) na podprzestrzeń \(\widetilde{HX}\subset X\). Stąd operator \(\widetilde C_\varphi f=\widetilde{C_\varphi f}\) o wartościach w&nbsp;kracie. Operator jest porządkowo ograniczony, gdy obraz kuli jednostkowej leży w&nbsp;przedziale porządkowym.</p>
   <p><strong>Twierdzenia na slajdzie:</strong> [4, Prop.&nbsp;3.1]; [4, Thm.&nbsp;4.5].</p>
   <p><strong>Praca:</strong> [4] M.&nbsp;Mastyło, P.&nbsp;Mleczko, <i>Composition operators on Banach spaces of analytic functions</i>, Ann. Acad. Sci. Fenn. Math. 44 (2019).</p>
-  <p>Dla \(X=L^p\) funkcja fundamentalna to \(t^{1/p}\), więc warunek z [4, Prop.&nbsp;3.1] z&nbsp;\(Y=L^p\) daje \((1-|\widetilde\varphi|)^{-1}\in L^1\). Inspiracja: Shapiro i&nbsp;Taylor (\(p\)-sumujące \(C_\varphi\) na \(H^p\)), Hunziker i&nbsp;Jarchow, Jarchow, Domenig, Lefèvre, Li, Queffélec, Rodríguez-Piazza. Najogólniejszy wynik o&nbsp;porządkowej ograniczoności dotyczy przestrzeni wzrostu \(X_\rho\) [4, Thm.&nbsp;3.4].</p>
+  <p>Dla \(X=L^p\) funkcja fundamentalna to \(t^{1/p}\), więc warunek \(1/\phi_X(1-|\widetilde\varphi|)\in Y\) z&nbsp;[4, Prop.&nbsp;3.1] dla \(Y=L^p\) daje \((1-|\widetilde\varphi|)^{-1}\in L^1\). Inspiracja: Shapiro i&nbsp;Taylor (\(p\)-sumujące \(C_\varphi\) na \(H^p\)), Hunziker i&nbsp;Jarchow, Jarchow, Domenig, Lefèvre, Li, Queffélec, Rodríguez-Piazza. Najogólniejszy wynik o&nbsp;porządkowej ograniczoności dotyczy przestrzeni wzrostu \(X_\rho\) [4, Thm.&nbsp;3.4].</p>
   <p>Dalsze badania: praca z&nbsp;M.&nbsp;Rzeczkowskim <i>Complemented copies and factorization of weighted composition operators on Hardy spaces</i>, wysłana do czasopisma.</p>
   <p><strong>Źródło:</strong> Autoreferat, § 5, s. 11–14; Twierdzenia 10, 11 autoreferatu.</p>
 </aside>
@@ -577,17 +578,17 @@
     <div class="stack">
       <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Twierdzenie Beurlinga</span><span class="thm-ref">1949</span></div>
-        <p>Niech \(S\colon H^2\to H^2\), \(Sf(z)=zf(z)\). Domknięta podprzestrzeń \(M\subseteq H^2\) jest niezmiennicza dla \(S\) wtedy i&nbsp;tylko wtedy, gdy \(M=\theta H^2\) dla pewnej funkcji wewnętrznej \(\theta\).</p>
+        <p>Niech \(S\colon H^2\to H^2\), \((Sf)(z)=zf(z)\). Niezerowa domknięta podprzestrzeń \(M\subseteq H^2\) jest niezmiennicza dla \(S\) wtedy i&nbsp;tylko wtedy, gdy \(M=\theta H^2\) dla pewnej funkcji wewnętrznej \(\theta\).</p>
       </div>
       <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Twierdzenie</span></div>
-        <p>Niech \(X\subset L^0(\mathbb T)\) będzie jednostajnie wypukłą przestrzenią symetryczną, \(Sf(t)=e^{it}f(e^{it})\), niech \(M\subseteq X\) i&nbsp;\(S(M)\neq M\). Wówczas \(M\) jest podprzestrzenią niezmienniczą wtedy i&nbsp;tylko wtedy, gdy</p>
+        <p>Niech \(X\subset L^0(\mathbb T)\) będzie jednostajnie wypukłą przestrzenią symetryczną, \((Sf)(e^{it})=e^{it}f(e^{it})\), i&nbsp;niech \(M\subseteq X\) będzie domkniętą podprzestrzenią, \(S(M)\neq M\). Wówczas \(M\) jest podprzestrzenią niezmienniczą wtedy i&nbsp;tylko wtedy, gdy</p>
         <div class="formula">\[M=\upsilon\,HX,\]</div>
-        <p>gdzie \(\upsilon\in L^0(\mathbb T)\) oraz \(|\upsilon|=1\) prawie wszędzie na&nbsp;\(\mathbb T\). W&nbsp;szczególności podprzestrzeń \(M\subseteq HX\) jest niezmiennicza wtedy i&nbsp;tylko wtedy, gdy \(M=\theta\,HX\) dla pewnej funkcji wewnętrznej \(\theta\).</p>
+        <p>gdzie \(\upsilon\in L^0(\mathbb T)\) oraz \(|\upsilon|=1\) prawie wszędzie na&nbsp;\(\mathbb T\). W&nbsp;szczególności niezerowa domknięta podprzestrzeń \(M\subseteq HX\) jest niezmiennicza wtedy i&nbsp;tylko wtedy, gdy \(M=\theta\,HX\) dla pewnej funkcji wewnętrznej \(\theta\).</p>
       </div>
       <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Twierdzenie</span></div>
-        <p>Niech \(X\subset L^0(\mathbb T)\) będzie jednostajnie wypukłą przestrzenią symetryczną i&nbsp;niech \(M\subseteq X\). Wówczas \(S(M)=M\) wtedy i&nbsp;tylko wtedy, gdy</p>
+        <p>Niech \(X\subset L^0(\mathbb T)\) będzie jednostajnie wypukłą przestrzenią symetryczną i&nbsp;niech \(M\subseteq X\) będzie domkniętą podprzestrzenią. Wówczas \(S(M)=M\) wtedy i&nbsp;tylko wtedy, gdy</p>
         <div class="formula">\[M=\mathbf 1_E\,X,\]</div>
         <p>gdzie \(E\subseteq\mathbb T\) jest zbiorem mierzalnym.</p>
       </div>
@@ -601,7 +602,7 @@
   <p><strong>Slajd 13/17 · Twierdzenie Beurlinga</strong></p>
   <p><strong>Czas:</strong> 0:55 · <strong>na zegarze:</strong> 13:10–14:05</p>
   <p>Analogon dla \(H^p\), \(1\leqslant p\leqslant\infty\), jest znany (Helson). Punkt wyjścia: praca Redetta o&nbsp;przesunięciu na \(L^p\), \(1&lt;p&lt;\infty\), która korzysta z&nbsp;jawnej postaci funkcjonału wybierającego normę. Dla ogólnej jednostajnie wypukłej \(X\) takiej postaci nie ma.</p>
-  <p>Na \(X\): gdy \(S(M)\ne M\), podprzestrzeń niezmiennicza ma postać \(M=\upsilon HX\), \(|\upsilon|=1\) p.w. [1, Thm.&nbsp;2.3]; stąd wersja dla \(HX\). Gdy \(S(M)=M\): \(M=\mathbf 1_EX\) dla mierzalnego \(E\subseteq\mathbb T\).</p>
+  <p>Na \(X\): domknięta podprzestrzeń niezmiennicza \(M\) z&nbsp;\(S(M)\ne M\) ma postać \(M=\upsilon HX\), \(|\upsilon|=1\) p.w. [1, Thm.&nbsp;2.3]; stąd wersja dla \(HX\): niezerowe domknięte podprzestrzenie niezmiennicze to \(\theta HX\), \(\theta\) wewnętrzna [1, Cor.&nbsp;2.4]. Gdy \(S(M)=M\): \(M=\mathbf 1_EX\) dla mierzalnego \(E\subseteq\mathbb T\) [1, Thm.&nbsp;2.6].</p>
   <p><strong>Animacja:</strong> kula jednostkowa \(B\) normy \(\ell^{3/2}\) na \(\mathbb R^2\), \(|x|^{3/2}+|y|^{3/2}\leqslant1\), i&nbsp;kula \((1-\delta)B\) (przerywana), pierścień między nimi ma szerokość \(\delta\) (podpis na dole); \(\varepsilon=1{,}3\), \(\delta=\delta(\varepsilon)\approx0{,}121\). Niebieska cięciwa łączy dwa punkty sfery, \(\|x-y\|\geqslant\varepsilon\); złoty odcinek na niej, symetrycznie wokół środka, ma długość \(\varepsilon\) w&nbsp;tej normie. Środek cięciwy (złota kropka) zawsze leży w&nbsp;\((1-\delta)B\). Przy cięciwach symetrycznych względem przekątnych o&nbsp;długości dokładnie \(\varepsilon\) złoty odcinek wypełnia całą cięciwę, a&nbsp;środek dotyka brzegu \((1-\delta)B\); dłuższe cięciwy i&nbsp;cięciwy przecinające osie mają środek głębiej. Jedno \(\delta\) dla wszystkich par: to jest jednostajność.</p>
   <p>Twierdzenia na slajdzie: Beurling, Acta Math. 81 (1949); [1, Thm.&nbsp;2.3] z&nbsp;wnioskiem [1, Cor.&nbsp;2.4]; [1, Thm.&nbsp;2.6].</p>
   <p>Praca: [1] P.&nbsp;Mleczko, <i>On Beurling type theorem for abstract Hardy spaces</i>, J.&nbsp;Math. Anal. Appl. 403 (2013), 1–4.</p>
@@ -670,7 +671,8 @@
   <h2>Przestrzenie Hardy’ego na obszarze kołowym</h2>
   <div class="split split--text-left split--hm">
     <div class="stack">
-      <div class="card enter">
+      <div class="thm enter">
+        <div class="thm-head"><span class="thm-label">Definicja</span></div>
         <p class="small">\(\Omega\) – dysk bez \(m\) rozłącznych domkniętych dysków, \((\Omega_n)\) – regularne wyczerpanie \(\Omega\):</p>
         <div class="formula">\[\|f\|_{HX(\Omega)}=\sup_{n}\bigl\|f|_{\partial\Omega_n}\!\circ\theta_n^{-1}\bigr\|_X,\]</div>
         <p class="small">gdzie \(\theta_n\colon(\partial\Omega_n,\omega_{n,z})\to([0,1),m)\) zachowuje miarę, \(\omega_{n,z}\) – miara harmoniczna na \(\partial\Omega_n\).</p>
@@ -678,11 +680,12 @@
       <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Twierdzenie</span></div>
         <p class="small">Dla maksymalnej przestrzeni symetrycznej \(X\):</p>
-        <div class="formula">\[f=f_0+f_1+\dots+f_m,\qquad f_k\in HX(E_k),\]</div>
-        <p class="small">\(HX(\Omega)\) jest sumą prostą przestrzeni \(HX(E_k)\).</p>
+        <div class="formula">\[f=f_0+f_1+\dots+f_m,\qquad f_0\in HX(E_0),\]</div>
+        <p class="small">\(f_k\in HX_0(E_k)\), \(k\geqslant1\), gdzie \(E_k\) – dopełnienie <span class="nowrap">\(k\)-tego</span> dysku, a&nbsp;\(HX_0(E_k)\) – funkcje znikające w&nbsp;\(\infty\); \(HX(\Omega)\) jest sumą prostą tych przestrzeni.</p>
       </div>
-      <div class="thm thm--quiet enter">
+      <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Wniosek</span></div>
+        <p class="small">Dla każdego dokładnego funktora <span class="nowrap">interpolacyjnego \(F\):</span></p>
         <div class="formula">\[\begin{gathered}F\bigl(H^1(\Omega),H^\infty(\Omega)\bigr)\\=H\!F\bigl(L^1(\partial\Omega),L^\infty(\partial\Omega)\bigr)(\Omega)\end{gathered}\]</div>
       </div>
     </div>
@@ -704,6 +707,7 @@
   <p>Obszar ograniczony, którego brzeg składa się z&nbsp;\(m+1\) rozłącznych analitycznych krzywych Jordana, jest konforemnie równoważny obszarowi kołowemu (Rudin, Sarason; monografia Fishera). Na dysku normę liczymy na okręgach o&nbsp;promieniu \(r\); na \(\Omega\) ich rolę pełnią brzegi \(\partial\Omega_n\) regularnego wyczerpania z&nbsp;miarami harmonicznymi. Dla \(L^p\) i&nbsp;\(L^\phi\) wystarcza wzór z&nbsp;tą samą funkcją; dla dowolnej \(X\) przenosimy normę do \(X\) przez izomorfizmy zachowujące miarę \(\theta_n\).</p>
   <p>Animacja: \(\Omega\) – dysk bez dysków o&nbsp;środkach \(a_1=-\tfrac13\), \(a_2=\tfrac13+\tfrac i3\), \(a_3=\tfrac13-\tfrac{5i}{12}\) i&nbsp;promieniach \(\tfrac13,\tfrac16,\tfrac14\); \(z=0{,}4\). \(\omega_z(E)\) to prawdopodobieństwo, że ruch Browna z&nbsp;\(z\) opuszcza \(\Omega\) przez \(E\) (Kakutani 1944); tory rysowane metodą spacerów po kołach (Muller 1956): z&nbsp;punktu \(w\) skok w&nbsp;losowy punkt okręgu o&nbsp;środku \(w\) i&nbsp;promieniu równym odległości od brzegu. Cztery tory wolno, potem 400 punktów wyjścia; \(\omega_z(\Gamma_0),\dots,\omega_z(\Gamma_3)\approx0{,}09;\,0{,}06;\,0{,}41;\,0{,}44\).</p>
   <p>\(\theta\) – wzór (3.1) w&nbsp;[5]: \(\theta(\zeta)=\sum_{i&lt;k}\omega_z(\Gamma_i)+\omega_z((x^k,\zeta))\) dla \(\zeta\in\Gamma_k\); składowe brzegu „rozwinięte” kolejno na \([0,1)\) (od \(x^k=a_k+r_k\), w&nbsp;orientacji dodatniej względem \(\Omega\)). \(\theta\) przenosi \(\omega_z\) na miarę Lebesgue’a – kreski na odcinku rozkładają się równomiernie – więc \(\|f\|\) liczymy w&nbsp;\(X([0,1))\) dla dowolnej przestrzeni symetrycznej \(X\). Dla \(L^p\) i&nbsp;\(L^\phi\) wystarcza norma na \((\partial\Omega_n,\omega_{n,z})\); dla dowolnej \(X\) potrzebne \(\theta_n\). Wykres: \(|f\circ\theta^{-1}|\) dla \(f(w)=\sum_{k=1}^3\frac1{w-a_k}\) – przykład rozkładu \(f=f_0+\dots+f_m\) z&nbsp;\(f_0=0\), \(f_k\in HX_0(E_k)\). Kliknięcie rysunku zatrzymuje i&nbsp;wznawia animację.</p>
+  <p>Oznaczenia z&nbsp;twierdzenia: \(\Omega=E_0\cap E_1\cap\dots\cap E_m\), \(E_0\) – dysk zewnętrzny, \(E_k\) (\(k\geqslant1\)) – dopełnienie \(k\)-tego wyciętego domkniętego dysku w&nbsp;sferze Riemanna; \(HX_0(E_k)\) – funkcje z&nbsp;\(HX(E_k)\) znikające w&nbsp;\(\infty\). Rozkład \(f=f_0+\dots+f_m\) jest jednoznaczny, a&nbsp;rzuty \(f\mapsto f_k\) są ograniczone [5, Thm.&nbsp;3.2]; stąd \(HX(\Omega)\cong HX(E_0)\oplus HX_0(E_1)\oplus\dots\oplus HX_0(E_m)\). Wniosek zachodzi dla każdego dokładnego funktora interpolacyjnego \(F\) [5, Cor.&nbsp;3.4].</p>
   <p>Rozkład był znany dla \(H^p(\Omega)\) (Chalendar, Partington); wraz z&nbsp;twierdzeniem o&nbsp;interpolacji sum prostych (Mleczko, Szwedek) daje wersję twierdzenia Xu na \(\Omega\).</p>
   <p>Wyniki w&nbsp;ramkach: [5, Thm.&nbsp;3.2]; [5, Cor.&nbsp;3.4].</p>
   <p><strong>Źródło:</strong> Autoreferat, § 8, s. 18–20; [5, Thm.&nbsp;3.2, Cor.&nbsp;3.4].</p>
@@ -773,13 +777,13 @@
         <div class="thm-head"><span class="thm-label">Operatory Carlesona</span></div>
         <ul class="gold-list">
           <li>\(\{(f(\lambda_n)):f\in HX\}=F(\ell^p(\nu),\ell^q(\nu))\) dla \(X=F(L^p,L^q)\) wtedy i&nbsp;tylko wtedy, gdy \(\lambda\) jest jednostajnie oddzielony</li>
-          <li>każda ośrodkowa przestrzeń symetryczna \(E\) jest przestrzenią śladów pewnej \(HX\) na&nbsp;\(\lambda\)</li>
+          <li>każda ośrodkowa przestrzeń symetryczna \(E\) jest przestrzenią śladów <span class="nowrap">pewnej \(HX\) na \(\lambda\)</span></li>
         </ul>
       </div>
       <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Widma wagowych operatorów złożenia</span></div>
         <ul class="gold-list">
-          <li>automorfizmy eliptyczne i&nbsp;paraboliczne: widma \(uC_\varphi\) na \(\mathcal B\), \(\mathcal D\) i&nbsp;\(HX\)</li>
+          <li>automorfizmy eliptyczne i&nbsp;paraboliczne: widma \(uC_\varphi\) na \(\mathcal B\) i&nbsp;\(HX\)</li>
           <li>automorfizmy hiperboliczne: \(r_{\mathcal D}(uC_\varphi)=\max(|u(a)|,|u(b)|)\), \(\sigma_{H^{p,q}}(uC_\varphi)=\sigma_{H^p}(uC_\varphi)\)</li>
         </ul>
       </div>
@@ -794,7 +798,7 @@
       <div class="thm enter">
         <div class="thm-head"><span class="thm-label">Obszary kołowe</span></div>
         <ul class="gold-list">
-          <li>\(HX(\Omega)\) jest sumą prostą przestrzeni \(HX(E_k)\)</li>
+          <li>\(HX(\Omega)\cong HX(E_0)\oplus HX_0(E_1)\oplus\dots\oplus HX_0(E_m)\)</li>
           <li>miary Carlesona na \(\Omega\) a&nbsp;ograniczoność \(HX(\Omega)\hookrightarrow X(\Omega,\mu)\)</li>
         </ul>
       </div>

@@ -110,19 +110,12 @@
       'aria-label': descriptions[type], 'data-type': type
     });
     frame.appendChild(picture);
-    const caption = document.createElement('div');
-    caption.className = 'disk-auto-meta';
-    const time = document.createElement('span');
-    time.className = 'disk-auto-time';
-    time.setAttribute('aria-live', 'off');
-    caption.append(time);
-    if (type === 'elliptic') caption.style.display = 'none';
     const bar = document.createElement('div');
     bar.className = 'disk-auto-track';
     const fill = document.createElement('div');
     fill.className = 'disk-auto-fill';
     bar.appendChild(fill);
-    figure.append(frame, caption, bar);
+    figure.append(frame, bar);
 
     node('circle', {cx, cy, r: R, fill: '#fcfbf7', stroke: '#254765', 'stroke-width': 2.6}, picture);
     const ghost = node('g', {fill: 'none', 'stroke-linecap': 'round'}, picture);
@@ -157,7 +150,7 @@
       mark(hyperbolicAttracting, 'a', false, true);
     } else mark(z(1), 'a', false, true);
 
-    function render(phase, elapsed) {
+    function render(phase) {
       const p = type === 'elliptic' ? phase % 1 : Math.max(0, Math.min(1, phase));
       const fn = w => transform(type, w, p);
       for (const item of paths) item.element.setAttribute('d', path(item.points, fn));
@@ -171,7 +164,6 @@
       moving.setAttribute('cx', fmt(mx));
       moving.setAttribute('cy', fmt(my));
       fill.style.width = (p * 100).toFixed(1) + '%';
-      if (type !== 'elliptic') time.textContent = Math.min(duration, Math.round(elapsed)) + ' / ' + duration + ' s';
       figure.dataset.diskProgress = p.toFixed(5);
     }
 

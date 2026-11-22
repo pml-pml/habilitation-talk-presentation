@@ -621,6 +621,7 @@ html, body {
 .reveal .spaces-grid .thm:nth-child(2)::before { width: calc((100% - 32px) * 2 / 3); }
 .reveal .spaces-grid .thm:nth-child(3)::before { width: calc(100% - 32px); }
 .reveal .spaces-examples { margin-top: 22px; }
+.reveal .spaces-examples::before { width: calc(100% - 44px); }
 .reveal .spaces-examples ul { list-style: none; margin: 0.5em 0 0.2em; padding: 0; }
 .reveal .spaces-examples li { position: relative; margin: 0.7em 0; padding-left: 30px; }
 .reveal .gold-list { list-style: none; margin: 0.3em 0 0.1em; padding: 0; }
@@ -951,10 +952,10 @@ html, body {
 .reveal .readout-break { flex-basis: 100%; height: 0; }
 .reveal .split--interp .research-q p { font-size: 19px; font-weight: 600; }
 /* Złote kreski nad kartami po lewej: 1/3, 2/3 i cała szerokość. */
-.reveal .split--interp .stack > .thm::before { left: 20px; }
-.reveal .split--interp .stack > .thm:nth-child(1)::before { width: calc((100% - 40px) / 3); }
-.reveal .split--interp .stack > .thm:nth-child(2)::before { width: calc((100% - 40px) * 2 / 3); }
-.reveal .split--interp .stack > .thm:nth-child(3)::before { width: calc(100% - 40px); }
+.reveal .split--interp .stack > .thm::before { left: 22px; }
+.reveal .split--interp .stack > .thm:nth-child(1)::before { width: calc((100% - 44px) / 3); }
+.reveal .split--interp .stack > .thm:nth-child(2)::before { width: calc((100% - 44px) * 2 / 3); }
+.reveal .split--interp .stack > .thm:nth-child(3)::before { width: calc(100% - 44px); }
 
 /* ---------- Slajd 5: ciągi interpolacyjne przestrzeni interpolacyjnych ---------- */
 .reveal .split--hx { grid-template-columns: minmax(0, 1.32fr) minmax(0, 0.68fr); }
@@ -986,13 +987,18 @@ html, body {
 /* ---------- Slajd 15: obszary kołowe ---------- */
 /* Okno animacji po prawej, na wysokość kart; rysunek wyśrodkowany w pionie. */
 .reveal .split--hm { align-items: stretch; }
+.reveal .split--hm .stack > .thm { font-size: 19px; padding-top: 12px; padding-bottom: 10px; }
 .reveal .split--hm .figure { display: flex; flex-direction: column; justify-content: center; }
+/* Złote kreski: 1/3, 2/3, cała szerokość. */
+.reveal .split--hm .stack > .thm:nth-child(1)::before { width: calc((100% - 44px) / 3); }
+.reveal .split--hm .stack > .thm:nth-child(2)::before { width: calc((100% - 44px) * 2 / 3); }
+.reveal .split--hm .stack > .thm:nth-child(3)::before { width: calc(100% - 44px); }
 
 /* ---------- Slajd 16: miary Carlesona i operatory złożenia na Ω ---------- */
 /* Dwie kolumny równej wysokości; w każdej dwie ramki, druga wypełnia resztę. */
 .reveal .split--omega { align-items: stretch; }
 .reveal .split--omega .stack { display: flex; flex-direction: column; gap: 16px; }
-.reveal .split--omega .stack > .thm:not(.research-q) { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.reveal .split--omega .stack > .thm:not(.research-q) { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
 .reveal .split--omega .research-q p { font-weight: 400; }
 /* Złote kreski: w każdej kolumnie 1/2 i cała szerokość. */
 .reveal .split--omega .stack > :nth-child(1)::before { width: calc((100% - 44px) / 2); }
@@ -1022,14 +1028,14 @@ html, body {
 /* ---------- Slajd 8: zagadnienia ---------- */
 /* Dwie ramki równej wysokości: po lewej wzór i iteracje, po prawej zagadnienia; pod nimi prace w jednej kolumnie. */
 .reveal .scope { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: stretch; margin-top: 4px; }
-.reveal .scope .thm { font-size: 21px; line-height: 1.4; padding: 14px 22px 12px; }
+.reveal .scope .thm { font-size: 23px; line-height: 1.45; padding: 16px 22px 14px; }
 .reveal .scope .thm p { margin: 0.2em 0; }
-.reveal .scope .gold-list { font-size: 20.5px; }
-.reveal .scope .gold-list li { margin: 0.5em 0; }
+.reveal .scope .gold-list { font-size: 22.5px; }
+.reveal .scope .gold-list li { margin: 0.65em 0; }
 /* Złote kreski: lewa ramka połowa, prawa cała szerokość. */
-.reveal .scope .thm::before { left: 20px; width: calc(100% - 40px); }
-.reveal .scope > .thm:nth-child(1)::before { width: calc((100% - 40px) / 2); }
-.reveal .scope-def { border-color: rgba(176, 138, 72, 0.55); display: flex; flex-direction: column; justify-content: space-between; }
+.reveal .scope .thm::before { left: 22px; width: calc(100% - 44px); }
+.reveal .scope > .thm:nth-child(1)::before { width: calc((100% - 44px) / 2); }
+.reveal .scope-def { display: flex; flex-direction: column; justify-content: space-between; }
 .reveal .scope-key { margin: 0.35em -8px 0.5em; padding: 6px 0; border-radius: 10px; background: rgba(176, 138, 72, 0.09); font-size: 1.1em; }
 .reveal .scope .thm p.scope-sub { margin-top: 0.6em; }
 .reveal .scope-papers { list-style: none; margin: 16px 0 0; padding: 10px 0 0; border-top: 1px solid var(--hairline); font-size: 17px; line-height: 1.36; color: rgba(23, 51, 80, 0.8); }
