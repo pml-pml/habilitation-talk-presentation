@@ -4,8 +4,8 @@
  * zmieniać lokalnie bez ingerencji w silnik animacji.
  *
  * Eliptyczny: pełny, płynny obrót co 16 s, bez przerwy między cyklami.
- * Paraboliczny i hiperboliczny: postęp trwa data-duration-seconds slajdu,
- * po czym zostaje ostatnia klatka. Brzegowe punkty stałe są osiągane tylko
+ * Paraboliczny i hiperboliczny: postęp trwa data-duration-seconds slajdu
+ * (hiperboliczny 1,5 raza szybciej), po czym zostaje ostatnia klatka. Brzegowe punkty stałe są osiągane tylko
  * asymptotycznie — animacja kończy się przed nimi.
  */
 (() => {
@@ -53,7 +53,7 @@
     }
     // Φ_q = M_c ∘ H_q ∘ M_c^{-1}; q=tanh(s/2), więc H_q jest grupą
     // hiperboliczną. Przy q=0 identyczność (nieruchoma klatka początkowa).
-    // Parametryzacja utrzymuje ruch aż do końca przewidzianych 90 s.
+    // Parametryzacja utrzymuje ruch aż do końca animacji (60 s).
     const q = 0.995 * phase;
     const x = tauInv(w, hyperbolicConjugator);
     const hx = div(add(x, z(q)), add(one, mul(z(q), x)));
@@ -100,7 +100,9 @@
     figure.dataset.diskInitialized = 'true';
     figure.classList.add('disk-auto-figure');
     const section = figure.closest('.reveal .slides > section');
-    const duration = Math.max(10, Number(section?.dataset.durationSeconds) || 75);
+    // Przyspieszenie względem czasu slajdu (hiperboliczny: 90 s slajdu → 60 s animacji).
+    const speedup = type === 'hyperbolic' ? 1.5 : 1;
+    const duration = Math.max(10, Number(section?.dataset.durationSeconds) || 75) / speedup;
     const period = 16;
 
     const frame = document.createElement('div');

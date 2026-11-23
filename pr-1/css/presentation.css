@@ -997,7 +997,7 @@ html, body {
 .reveal .split--omega { align-items: stretch; }
 .reveal .split--omega .stack { display: flex; flex-direction: column; gap: 16px; }
 .reveal .split--omega .stack > .thm { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
-/* Złote kreski: po lewej 1/2 i cała szerokość, po prawej (jedna ramka) cała. */
+/* Złote kreski: w każdej kolumnie 1/2 i cała szerokość. */
 .reveal .split--omega .stack > :nth-child(1)::before { width: calc((100% - 44px) / 2); }
 .reveal .split--omega .stack > :nth-child(2)::before,
 .reveal .split--omega .stack > :only-child::before { width: calc(100% - 44px); }
